@@ -1,0 +1,3 @@
+# Mounting Your Amazon FSx for Lustre File System Automatically<a name="mount-fs-auto-mount-onreboot"></a>
+
+You can use `fstab` to automatically mount your Amazon FSx for Lustre file system when the Amazon EC2 instance it is mounted on reboots\. You can set up automatic mounting in two ways\. You can update the `/etc/fstab` file in your Amazon EC2 instance after you connect to the instance for the first time, or you can configure automatic mounting of your Amazon FSx for Lustre file system when you create your Amazon EC2 instance\.
