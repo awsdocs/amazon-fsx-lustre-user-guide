@@ -1,7 +1,7 @@
 # Amazon FSx for Lustre User Guide
 
 -----
-*****Copyright &copy; 2018 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
+*****Copyright &copy; 2019 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
 
 -----
 Amazon's trademarks and trade dress may not be used in 
@@ -30,6 +30,7 @@ Amazon's trademarks and trade dress may not be used in
    + [Administration Access Control with IAM for Amazon FSx for Lustre Resources](access-control-overview.md)
       + [Using Service-Linked Roles for Amazon FSx for Lustre](using-service-linked-roles.md)
       + [Amazon FSx for Lustre API Permissions: Actions, Resources, and Conditions Reference](fsx-api-permissions-ref.md)
++ [Logging Amazon FSx for Windows File Server API Calls with AWS CloudTrail](logging-using-cloudtrail.md)
 + [Amazon FSx for Lustre Maintenance Windows](maintenance-windows.md)
 + [Limits](limits.md)
 + [Troubleshooting](troubleshooting.md)

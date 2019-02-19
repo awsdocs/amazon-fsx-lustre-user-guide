@@ -44,5 +44,3 @@ A *permissions policy* describes who has access to what\. The following section 
 This section discusses using IAM in the context of Amazon FSx for Lustre\. It doesn't provide detailed information about the IAM service\. For complete IAM documentation, see [What Is IAM?](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html) in the *IAM User Guide*\. For information about IAM policy syntax and descriptions, see [AWS IAM Policy Reference](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies.html) in the *IAM User Guide*\.
 
 Policies attached to an IAM identity are referred to as *identity\-based* policies \(IAM policies\) and policies attached to a resource are referred to as *resource\-based* policies\. Amazon FSx for Lustre supports only identity\-based policies \(IAM policies\)\. 
-
-**Topics**

@@ -33,18 +33,26 @@ Next, you create your file system in the console\.
 
 1. From the dashboard, choose **Create file system** to start the file system creation wizard\.
 
-1. Provide a name for your file system\. You can use up to 256 Unicode letters, whitespace, and numbers plus the special characters **\+ \- = \. \_ : /**\.
+1. Choose **FSx for Lustre** and then choose **Next** to display the Create File System page\.
 
-1. Provide the **storage capacity** for your file system, in GiB\. This value can be any whole number in increments of 3,600 GiB\.
+1. Provide information in the **File system detail** section, following\.
+   + Provide a name for your file system\. You can use up to 256 Unicode letters, white space, and numbers plus the special characters **\+ \- = \. \_ : /**\.
+   + Provide the **storage capacity** for your file system, in GiB\. This value can be any whole number in increments of 3,600 GiB\.  
+![\[File system details section of the Amazon FSx for Lustre Create File System console page.\]](http://docs.aws.amazon.com/fsx/latest/LustreGuide/images/CreateFSxLustre-details.png)
 
-1. Choose the VPC that you want to associate with your file system\. For the purposes of this getting started exercise, choose the same VPC that you chose for your Amazon EC2 instance\.
+   The estimated costs for your file system are displayed in **Your file system**\.  
+![\[File system cost estimates display in Your file system.\]](http://docs.aws.amazon.com/fsx/latest/LustreGuide/images/FSxLustre-2.png)
 
-1. Choose any value for the **Availability Zones** and **Subnet**\.
-
-1. For **VPC security groups**, the ID for the default security group for your VPC should be already added\. If you're not using the default security group, make sure that the following inbound rule is added to the security group you're using for this getting started exercise\.    
+1. Provide networking and security group information in the **Network & security** section, following\.  
+![\[Network & Security section of the Amazon FSx for Lustre Create File System console page.\]](http://docs.aws.amazon.com/fsx/latest/LustreGuide/images/FSxLustreNetworkSecurity-3.png)
+   + Choose the VPC that you want to associate with your file system\. For the purposes of this getting started exercise, choose the same VPC that you chose for your Amazon EC2 instance\.
+   + Choose any value for the **Availability Zones** and **Subnet**\.
+   + For **VPC security groups**, the ID for the default security group for your VPC should be already added\. If you're not using the default security group, make sure that the following inbound rule is added to the security group you're using for this getting started exercise\.    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/fsx/latest/LustreGuide/getting-started.html)
 
-1. \(Optional\) For **Data Lake integration**, choose ** Amazon S3** and specify the Amazon S3 bucket \(with optional prefix\) as the data repository source\.
+1. \(Optional\) For **Data repository integration**, choose ** Amazon S3** and specify the Amazon S3 bucket \(with optional prefix\) as the data repository source\.
+
+   Keep **Export prefix** at the default setting\. For more information about the data repository integration, see [Using Data Repositories](fsx-data-repositories.md)
 **Important**  
 If you link one or more Amazon FSx for Lustre file systems to an Amazon S3 bucket, don't delete the Amazon S3 bucket until all linked file systems have been deleted\.
 
@@ -92,19 +100,19 @@ You might need to reboot your compute instance for the client to finish installi
 1. Make a directory for the mount point with the following command\.
 
    ```
-   $ sudo mkdir /fsx
+   $ sudo mkdir -p /mnt/fsx
    ```
 
 1. Mount the Amazon FSx for Lustre file system to the directory that you created\. Use the following command and replace `file_system_dns_name` with the actual file system's DNS name\.
 
    ```
-   sudo mount -t lustre file_system_dns_name@tcp:/fsx /fsx
+   sudo mount -t lustre file_system_dns_name@tcp:/fsx /mnt/fsx
    ```
 
 1. To see the contents of your data repository in your file system, use the following command\.
 
    ```
-   ls /fsx
+   ls /mnt/fsx
    ```
 
 ## Step 3: Run Your Analysis<a name="getting-started-step3"></a>
@@ -128,16 +136,16 @@ After you have finished this exercise, you should follow these steps to clean up
 1. If you want to do a final export, run the following command\.
 
    ```
-   find /fsx -type f -print0 | xargs -0 -n 50 -P 8 sudo lfs hsm_archive
+   nohup find /mnt/fsx -type f -print0 | xargs -0 -n 1 sudo lfs hsm_archive &
    ```
 
 1. On the Amazon EC2 console, terminate your instance\. For more information, see [Terminate Your Instance](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/terminating-instances.html) in the *Amazon EC2 User Guide for Linux Instances\.*
 
 1. On the Amazon FSx for Lustre console, delete your file system with the following procedure:
 
-   1. From the navigation pane, choose **File systems**\.
+   1. In the navigation pane, choose **File systems**\.
 
-   1. Choose the file system you want to delete from list of file systems on the dashboard\.
+   1. Choose the file system that you want to delete from list of file systems on the dashboard\.
 
    1. For **Actions**, choose **Delete file system**\.
 

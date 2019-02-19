@@ -2,25 +2,38 @@
 
 ## File System Mount Hangs and Then Fails with Timeout Error<a name="mount-hangs-fails-timeout"></a>
 
-The file system mount command hangs for a minute or two, and then fails with a timeout error\. The following code shows an example\.
+The file system mount command hangs for a minute or two, and then fails with a timeout error\. 
+
+The following code shows an example\.
 
 ```
-sudo mount -t lustre file_system_dns_name@tcp:/fsx /fsx
+sudo mount -t lustre file_system_dns_name@tcp:/fsx /mnt/fsx
 
 [2+ minute wait here]
 Connection timed out
 ```
 
+This error can occur because the security groups for the Amazon EC2 instance or the file system aren't configured properly\.
+
 **Action to Take**
 
-This error can occur because the security groups for the Amazon EC2 instance or the file system aren't configured properly\. Make sure that your security groups for the file system have the inbound rules specified in [Amazon VPC Security Groups](limit-access-security-groups.md#fsx-vpc-security-groups)\. 
+Make sure that your security groups for the file system have the inbound rules specified in [Amazon VPC Security Groups](limit-access-security-groups.md#fsx-vpc-security-groups)\. 
+
+## Automatic Mounting Fails and the Instance Is Unresponsive<a name="lustre-automount-fails"></a>
+
+In some cases, automatic mounting might fail for a file system and your Amazon EC2 instance might stop responding\.
+
+This issue can occur if the `_netdev` option wasn't declared\. If `_netdev` is missing, your Amazon EC2 instance can stop responding\. This result is because network file systems need to be initialized after the compute instance starts its networking\.
+
+**Action to Take**  
+If this issue occurs, contact AWS Support\.
 
 ## File System Mount Using DNS Name Fails<a name="mount-fails-dns-name"></a>
 
 A file system mount that is using a Domain Name Service \(DNS\) name fails\. The following code shows an example\.
 
 ```
-sudo mount -t lustre file_system_dns_name@tcp:/fsx /fsx
+sudo mount -t lustre file_system_dns_name@tcp:/fsx /mnt/fsx
 mount.lustre: Can't parse NID 
 'file_system_dns_name@tcp:/fsx'
 ```
@@ -41,8 +54,6 @@ You can't create a file system linked to a data repository in Amazon S3 bucket, 
 ```
 User: arn:aws:iam::012345678901:user/username is not authorized to perform: iam:PutRolePolicy on resource: resource ARN
 ```
-
-**Cause**
 
 This error can happen if you try to create a file system linked to a data repository in an Amazon S3 bucket without the necessary IAM permissions\. The required IAM permissions support the Amazon FSx for Lustre service\-linked role that is used to access the specified Amazon S3 bucket on your behalf\.
 

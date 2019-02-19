@@ -12,7 +12,7 @@ Following are the limits for Amazon FSx for Lustre per AWS account, per AWS Regi
 | Resource | Default limit | Can be increased up to | 
 | --- | --- | --- | 
 | Number of file systems | 100 | Thousands | 
-| Total storage for all file systems | 25,200 GiB | Petabytes | 
+| Total storage for all file systems | 100,800 GiB | Petabytes | 
 
 **To request a limit increase**
 
