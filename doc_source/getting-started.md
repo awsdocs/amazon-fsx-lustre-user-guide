@@ -83,14 +83,14 @@ To mount your Amazon FSx for Lustre from your Amazon EC2 instance, first install
    1. Download the Lustre client with the following commands\. The client comes in two packages that must be downloaded\.
 
       ```
-      wget https://downloads.whamcloud.com/public/lustre/lustre-2.10.5/el7/client/RPMS/x86_64/kmod-lustre-client-2.10.5-1.el7.x86_64.rpm
-      wget https://downloads.whamcloud.com/public/lustre/lustre-2.10.5/el7/client/RPMS/x86_64/lustre-client-2.10.5-1.el7.x86_64.rpm
+      wget https://downloads.whamcloud.com/public/lustre/lustre-2.10.6/el7/client/RPMS/x86_64/kmod-lustre-client-2.10.6-1.el7.x86_64.rpm
+      wget https://downloads.whamcloud.com/public/lustre/lustre-2.10.6/el7/client/RPMS/x86_64/lustre-client-2.10.6-1.el7.x86_64.rpm
       ```
 
    1. Install the packages with the following command\.
 
       ```
-      sudo yum localinstall -y *lustre-client-2.10.5*.rpm
+      sudo yum localinstall -y *lustre-client-2.10.6*.rpm
       ```
 **Note**  
 You might need to reboot your compute instance for the client to finish installing\.
