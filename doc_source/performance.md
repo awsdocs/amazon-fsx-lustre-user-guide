@@ -6,7 +6,7 @@ Amazon FSx for Lustre is built on Lustre, a popular open\-source parallel file s
 
 Amazon FSx for Lustre file systems scale to hundreds of GBps of throughput and millions of IOPS\. Amazon FSx for Lustre also supports concurrent access to the same file or directory from thousands of compute instances\. This access enables rapid data checkpointing from application memory to storage, which is a common technique in high\-performance computing \(HPC\)\.
 
-The throughput that a file system can support is based on its size\. With Amazon FSx for Lustre, each terabyte \(TiB\) of storage capacity supports a baseline of 200 MBps of throughput in aggregate across all client connections to the file system\. File systems can also burst for short durations to meet the performance needs of spiky workloads\. The following table provides a set of example file systems of different sizes\.
+The throughput that a file system can support is based on its size\. With Amazon FSx for Lustre, each tebibyte \(TiB\) of storage capacity supports a baseline of 200 MBps of throughput for file system read operations in aggregate across all client connections to the file system\. File systems can also burst for short durations to meet the performance needs of spiky workloads\. The following table provides a set of example file systems of different sizes\.
 
 
 ****  

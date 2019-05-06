@@ -78,7 +78,7 @@ The following example use the `adminuser` as the `profile` parameter value\. To 
   $ aws fsx create-file-system \
         --client-request-token CRT1234 \
         --file-system-type LUSTRE \
-        --lustre-configuration import-path=s3://lustre-export-test-bucket/ export-path=s3://lustre-export-test-bucket/export \
+        --lustre-configuration ImportPath=s3://lustre-export-test-bucket/ ExportPath=s3://lustre-export-test-bucket/export \
         --storage-capacity 3600 \
         --subnet-ids subnet-123456 \
         --tags Key="Name",Value=Lustre-TEST-1 \

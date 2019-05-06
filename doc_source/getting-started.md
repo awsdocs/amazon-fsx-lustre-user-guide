@@ -15,7 +15,7 @@ This getting started exercise includes these steps:
 
 To perform this getting started exercise, you need the following:
 + An AWS account with the permissions necessary to create an Amazon FSx for Lustre file system and an Amazon EC2 instance\. For more information, see [Setting Up](setting-up.md)\.
-+ An Amazon EC2 instance running a supported Linux\-based Amazon EC2 instance in your virtual private cloud \(VPC\) based on the Amazon VPC service\. The Lustre client supports CentOS 7, CentOS 7\.5, RedHat 7, RedHat 7\.5, SUSE Linux 12 SP3, and Ubuntu 16\.04\. For this getting started exercise, we recommend CentOS 7, which is available in the [AWS Marketplace](https://aws.amazon.com/marketplace/pp/B00O7WM7QW?ref=cns_1clkPro)\. When creating your Amazon EC2 instance for this getting started exercise, keep the following in mind:
++ An Amazon EC2 instance running a supported Linux release in your virtual private cloud \(VPC\) based on the Amazon VPC service\. The Lustre client supports Amazon Linux, Amazon Linux 2, CentOS 7\.5, RedHat 7\.5, SUSE Linux 12 SP3, and Ubuntu 16\.04\. For this getting started exercise, we recommend CentOS 7\.5, which is available in the [AWS Marketplace](https://aws.amazon.com/marketplace/pp/B07DPPMZ6R?qid=1551900841128&sr=0-1&ref_=srh_res_product_title)\. When creating your Amazon EC2 instance for this getting started exercise, keep the following in mind:
   + We recommend that you create your instance in your default VPC\.
   + Verify that an inbound rule exists for the security group you're using with the following values\.
     + **Type:** TCP
@@ -70,27 +70,15 @@ To mount your Amazon FSx for Lustre from your Amazon EC2 instance, first install
 
 1. Connect to your Amazon EC2 instance\.
 
-1. Install the Lustre client on your CentOS 7 instance with the following procedure:
+1. Install the Lustre client on your CentOS 7\.5 instance with the following procedure:
 
    1. Open a terminal on your client\.
 
-   1. If you haven't done so already, install the `wget` package with the following command\.
+   1. Download and install the Lustre client with the following commands\. The client comes in two packages that must be downloaded and installed\.
 
       ```
-      sudo yum -y install wget
-      ```
-
-   1. Download the Lustre client with the following commands\. The client comes in two packages that must be downloaded\.
-
-      ```
-      wget https://downloads.whamcloud.com/public/lustre/lustre-2.10.5/el7/client/RPMS/x86_64/kmod-lustre-client-2.10.5-1.el7.x86_64.rpm
-      wget https://downloads.whamcloud.com/public/lustre/lustre-2.10.5/el7/client/RPMS/x86_64/lustre-client-2.10.5-1.el7.x86_64.rpm
-      ```
-
-   1. Install the packages with the following command\.
-
-      ```
-      sudo yum localinstall -y *lustre-client-2.10.5*.rpm
+      sudo yum -y install https://downloads.whamcloud.com/public/lustre/lustre-2.10.5/el7.5.1804/client/RPMS/x86_64/kmod-lustre-client-2.10.5-1.el7.x86_64.rpm
+      sudo yum -y install https://downloads.whamcloud.com/public/lustre/lustre-2.10.5/el7.5.1804/client/RPMS/x86_64/lustre-client-2.10.5-1.el7.x86_64.rpm
       ```
 **Note**  
 You might need to reboot your compute instance for the client to finish installing\.

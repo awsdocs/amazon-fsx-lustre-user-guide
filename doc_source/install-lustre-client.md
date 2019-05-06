@@ -1,35 +1,77 @@
 # Installing the Lustre Client<a name="install-lustre-client"></a>
 
-To mount your Amazon FSx for Lustre file system from a Linux instance, first you need to install the open\-source Lustre client\. When you install the Lustre client, keep the following information in mind:
-+ Amazon FSx for Lustre supports access from the Lustre client versions 2\.10\.5 and 2\.10\.6\.
-+ The Lustre client version 2\.10\.5 supports CentOS 7\.5 and RedHat 7\.5\.
-+ The Lustre client version 2\.10\.6 supports CentOS 7\.6, RedHat 7\.6, SUSE Linux 12 SP3, and Ubuntu 16\.04\.
+To mount your Amazon FSx for Lustre file system from a Linux instance, first you need to install the open\-source Lustre client\. Amazon FSx for Lustre supports access from the Lustre client versions 2\.10\.5 and 2\.10\.6\.
 
-------
-#### [ CentOS 7\.5 or RedHat 7\.5  ]
+Then, depending on your operating system version, use one of the procedures following\.
 
-**To install the Lustre client as an RPM package**
+## To install the Lustre client as an RPM package \(Amazon Linux\)<a name="install-lustre-client-amazon-linux"></a>
 
 1. Open a terminal on your client\.
 
-1. Download and install the Lustre client with the following commands\. The client comes in two packages that must be downloaded and installed\.
+1. Determine which kernel is currently running on the compute instance\. The Lustre client requires Amazon Linux kernel 4\.14, version 104 or higher\. Run the following command to determine which kernel is running\.
 
    ```
-   sudo yum -y install https://downloads.whamcloud.com/public/lustre/lustre-2.10.5/el7.5.1804/client/RPMS/x86_64/kmod-lustre-client-2.10.5-1.el7.x86_64.rpm
-   sudo yum -y install https://downloads.whamcloud.com/public/lustre/lustre-2.10.5/el7.5.1804/client/RPMS/x86_64/lustre-client-2.10.5-1.el7.x86_64.rpm
+   uname -r
    ```
 
-**Note**  
-You might need to reboot your compute instance for the client to finish installing\.
+   If the command returns `4.14.104-78.84.amzn1.x86_64` or a higher version of 4\.14, continue to step 4 to download and install the Lustre client\. If the result is less than 4\.14\.104, continue to the next step to install the supported kernel\.
 
-------
-#### [ CentOS 7\.6 or RedHat 7\.6  ]
+1.  Update the kernel and reboot your Amazon EC2 instance by running the following command\. 
 
-**To install the Lustre client as an RPM package**
+   ```
+   sudo yum -y update kernel && sudo reboot
+   ```
+
+1. Download and install the Lustre client with the following command\.
+
+   ```
+   sudo yum install -y lustre-client
+   ```
+
+## To install the Lustre client as an RPM package \(Amazon Linux 2\)<a name="install-lustre-client-amazon-linux-2"></a>
 
 1. Open a terminal on your client\.
 
-1. Download and install the Lustre client with the following commands\. The client comes in two packages that you need to download and install\.
+1. Determine which kernel is currently running on the compute instance\. The Lustre client requires Amazon Linux kernel 4\.14, version 104 or higher\. Run the following command to determine which kernel is running\.
+
+   ```
+   uname -r
+   ```
+
+   If the command returns `4.14.104-95.84.amzn2.x86_64` or a higher version of 4\.14, continue to step 4 to download and install the Lustre client\. If the result is less than 4\.14\.104, continue to the next step to install the supported kernel\.
+
+1.  Update the kernel and reboot your EC2 instance by running the following command\. 
+
+   ```
+   sudo yum -y update kernel && sudo reboot
+   ```
+
+1. Download and install the Lustre client with the following command\.
+
+   ```
+   sudo amazon-linux-extras install -y lustre2.10
+   ```
+
+## To install the Lustre client as an RPM package \(CentOS and RedHat 7\.5 or 7\.6\)<a name="install-lustre-client-amazon-centos-7.5"></a>
+
+1. Open a terminal on your client\.
+
+1. Determine which kernel is currently running on the compute instance with the following command\.
+
+   ```
+   uname -r
+   ```
+   + If the instance is running kernel version `3.10.0-862.*`, then continue with [step 3](#lustre-2.10.5) to download and install the Lustre 2\.10\.5 client\.
+   + If the instance is running kernel version `3.10.0-957.*`, then continue with [step 4](#lustre-2.10.6) to download and install the Lustre 2\.10\.6 client\.
+
+1. <a name="lustre-2.10.5"></a>For instances running linux kernel 3\.10\.0\-862\.\* – download and install the Lustre 2\.10\.5 client with the following commands\. The client comes in two packages that must be downloaded and installed\.
+
+   ```
+   sudo yum -y install https://downloads.whamcloud.com/public/lustre/lustre-2.10.5/el7/client/RPMS/x86_64/kmod-lustre-client-2.10.5-1.el7.x86_64.rpm
+   sudo yum -y install https://downloads.whamcloud.com/public/lustre/lustre-2.10.5/el7/client/RPMS/x86_64/lustre-client-2.10.5-1.el7.x86_64.rpm
+   ```
+
+1. <a name="lustre-2.10.6"></a>For instances running linux kernel 3\.10\.0\-957\.\* – download and install the Lustre 2\.10\.6 client with the following commands\. The client comes in two packages that you need to download and install\.
 
    ```
    sudo yum -y install https://downloads.whamcloud.com/public/lustre/lustre-2.10.6/el7/client/RPMS/x86_64/kmod-lustre-client-2.10.6-1.el7.x86_64.rpm
@@ -39,10 +81,7 @@ You might need to reboot your compute instance for the client to finish installi
 **Note**  
 You might need to reboot your compute instance for the client to finish installing\.
 
-------
-#### [ SUSE Linux 12 SP3  ]
-
-**To install the Lustre client as an RPM package**
+## To install the Lustre client as an RPM package \(SUSE Linux 12 SP3\)<a name="install-lustre-client-SUSE-Linux"></a>
 
 1. Open a terminal on your client\.
 
@@ -56,20 +95,17 @@ You might need to reboot your compute instance for the client to finish installi
 **Note**  
 You might need to reboot your compute instance for the client to finish installing\.
 
-------
-#### [ Ubuntu 16\.04 ]
-
-**To install the Lustre client as a DEB package**
+## To install the Lustre client as a \.deb package \(Ubuntu 16\.04\)<a name="install-lustre-client-Ubuntu-16"></a>
 
 1. Open a terminal on your client\.
 
-1. The Lustre client requires kernel 4\.4\.0\-131\-generic\. Determine which kernel is currently running on the compute instance using the following command:
+1. Determine which kernel is currently running on the compute instance\. The Lustre client requires kernel 4\.4\.0\-131\-generic\. Run the following command to determine which kernel is running\.
 
    ```
    uname -r
    ```
 
-   If the command returns `4.4.0-131-generic` then continue with [step 7](#install-lustre) to download the Lustre client\. If the result is NOT `4.4.0-131-generic` continue to the next step to install the supported kernel and headers\.
+   If the command returns `4.4.0-131-generic`, then continue with [step 7](#install-lustre) to download the Lustre client\. If the result is not `4.4.0-131-generic`, continue to the next step to install the supported kernel and headers\.
 
 1. Install the supported kernel and associated Linux kernel headers with the following commands\.
 
@@ -78,7 +114,7 @@ You might need to reboot your compute instance for the client to finish installi
    sudo apt-get install -y linux-headers-4.4.0-131-generic
    ```
 
-1. Once that completes, edit the `/etc/default/grub` file with the following command\.
+1. After installation completes, edit the `/etc/default/grub` file with the following command\.
 
    ```
    sudo sed -i 's/GRUB_DEFAULT=.\+/GRUB\_DEFAULT="Advanced options for Ubuntu>Ubuntu, with Linux 4.4.0-131-generic"/' /etc/default/grub
@@ -108,5 +144,3 @@ You might need to reboot your compute instance for the client to finish installi
    ```
    sudo apt-get install -y ./lustre-*_2.10.6*.deb
    ```
-
-------

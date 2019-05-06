@@ -25,6 +25,8 @@ For more information on security group rules, see [Security Group Rules](https:/
 1. Add the following inbound rules\.    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/fsx/latest/LustreGuide/limit-access-security-groups.html)
 
+   Setting the source to 0\.0\.0\.0/0 on a security group rule provides client access from all IP ranges within your VPC security group for the protocol and port range for that rule\. To further limit access to your file systems we recommend using more restrictive sources for your security group rules, for example more specific CIDR ranges, IP addresses, or security group IDs\.
+
 **To associate a security group with your Amazon FSx for Lustre file system**
 
 1. Open the Amazon FSx console at [https://console\.aws\.amazon\.com/fsx/](https://console.aws.amazon.com/fsx/)\.

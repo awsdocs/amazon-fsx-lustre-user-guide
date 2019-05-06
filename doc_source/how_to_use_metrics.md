@@ -5,5 +5,5 @@ The metrics reported by Amazon FSx for Lustre provide information that you can a
 
 | How Do I Determine\.\.\. | Relevant Metrics | 
 | --- | --- | 
-| My file system's throughput? | SUM\(DataReadBytes \+ DataWriteBytes\)  | 
-| My file system's IOPS? | Total IOPS = SUM\(DataReadOperations \+ DataWriteOperations \+ MetadataOperations\) | 
+| My file system's throughput? | SUM\(DataReadBytes \+ DataWriteBytes\)/Period \(in seconds\)  | 
+| My file system's IOPS? | Total IOPS = SUM\(DataReadOperations \+ DataWriteOperations \+ MetadataOperations\)/Period \(in seconds\) | 
