@@ -47,6 +47,17 @@ To specify a DNS name in the `mount` command, do the following:
 + Connect your Amazon EC2 instance inside a VPC configured to use the DNS server provided by Amazon\. For more information, see [DHCP Options Sets](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_DHCP_Options.html) in the *Amazon VPC User Guide*\.
 + Ensure that the Amazon VPC of the connecting Amazon EC2 instance has DNS host names enabled\. For more information, see [Updating DNS Support for Your VPC](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-dns.html#vpc-dns-updating) in the *Amazon VPC User Guide*\.
 
+A file system mount that is using a Domain Name Service \(DNS\) name fails\. The following code shows an example\.
+
+```
+mount -t lustre file_system_dns_name@tcp:/fsx /mnt/fsx
+mount.lustre: mount file_system_dns_name@tcp:/fsx at /mnt/fsx failed: Input/output error Is the MGS running?
+```
+
+**Action to Take**
+
+ Make sure that the client's VPC security groups have the correct outbound traffic rules applied, especially if you are not using the default security group, or if you have modified the default security group\. To learn more, see [Amazon VPC Security Groups](limit-access-security-groups.md#fsx-vpc-security-groups) 
+
 ## Creating a File System with Data Repository Fails<a name="slr-permissions-fails"></a>
 
 You can't create a file system linked to a data repository in Amazon S3 bucket, and encounter an error like the following\.

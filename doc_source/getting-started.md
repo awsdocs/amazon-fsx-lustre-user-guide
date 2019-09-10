@@ -17,7 +17,7 @@ To perform this getting started exercise, you need the following:
 + An AWS account with the permissions necessary to create an Amazon FSx for Lustre file system and an Amazon EC2 instance\. For more information, see [Setting Up](setting-up.md)\.
 + An Amazon EC2 instance running a supported Linux release in your virtual private cloud \(VPC\) based on the Amazon VPC service\. The Lustre client supports Amazon Linux, Amazon Linux 2, CentOS 7\.5, RedHat 7\.5, SUSE Linux 12 SP3, and Ubuntu 16\.04\. For this getting started exercise, we recommend CentOS 7\.5, which is available in the [AWS Marketplace](https://aws.amazon.com/marketplace/pp/B07DPPMZ6R?qid=1551900841128&sr=0-1&ref_=srh_res_product_title)\. When creating your Amazon EC2 instance for this getting started exercise, keep the following in mind:
   + We recommend that you create your instance in your default VPC\.
-  + Verify that an inbound rule exists for the security group you're using with the following values\.
+  + Verify that an inbound rule exists for the security group you're using with the following values to allow inbound traffic from your Amazon FSx file system\.
     + **Type:** TCP
     + **Protocol:** 6
     + **Port Range:** 988
@@ -40,9 +40,6 @@ Next, you create your file system in the console\.
    + Provide the **storage capacity** for your file system, in GiB\. This value can be any whole number in increments of 3,600 GiB\.  
 ![\[File system details section of the Amazon FSx for Lustre Create File System console page.\]](http://docs.aws.amazon.com/fsx/latest/LustreGuide/images/CreateFSxLustre-details.png)
 
-   The estimated costs for your file system are displayed in **Your file system**\.  
-![\[File system cost estimates display in Your file system.\]](http://docs.aws.amazon.com/fsx/latest/LustreGuide/images/FSxLustre-2.png)
-
 1. Provide networking and security group information in the **Network & security** section, following\.  
 ![\[Network & Security section of the Amazon FSx for Lustre Create File System console page.\]](http://docs.aws.amazon.com/fsx/latest/LustreGuide/images/FSxLustreNetworkSecurity-3.png)
    + Choose the VPC that you want to associate with your file system\. For the purposes of this getting started exercise, choose the same VPC that you chose for your Amazon EC2 instance\.
@@ -64,11 +61,11 @@ Now that you've created your file system, make a note of its fully qualified dom
 
 ## Step 2: Install and Configure the Lustre Client on your Instance Before Mounting Your File System<a name="getting-started-step2"></a>
 
-To mount your Amazon FSx for Lustre from your Amazon EC2 instance, first install the Lustre client\.
+To mount your Amazon FSx for Lustre file system from your Amazon EC2 instance, first install the Lustre client\.
 
 **To download the Lustre client onto your Amazon EC2 instance**
 
-1. Connect to your Amazon EC2 instance\.
+1. Connect to your Amazon EC2 instance\. For more information, see [Connecting to Your Linux Instance from Windows Using PuTTY](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/putty.html) or [Connecting to Your Linux Instance Using SSH](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
 1. Install the Lustre client on your CentOS 7\.5 instance with the following procedure:
 
@@ -88,20 +85,42 @@ You might need to reboot your compute instance for the client to finish installi
 1. Make a directory for the mount point with the following command\.
 
    ```
-   $ sudo mkdir -p /mnt/fsx
+   $ sudo mkdir -p /fsx
    ```
 
 1. Mount the Amazon FSx for Lustre file system to the directory that you created\. Use the following command and replace `file_system_dns_name` with the actual file system's DNS name\.
 
    ```
-   sudo mount -t lustre file_system_dns_name@tcp:/fsx /mnt/fsx
+   sudo mount -t lustre -o noatime,flock file_system_dns_name@tcp:/fsx /fsx
    ```
 
-1. To see the contents of your data repository in your file system, use the following command\.
+    This command mounts your file system using 2 options, `-o noatime,flock`, following: 
+   +  `noatime` – mounts your file system with inode access time updates turned off\. If you want to update inode access times, use the command without `noatime`\. 
+   +  `flock` – mounts your file system with file locking enabled\. If you do not want file locking enable, use the command without `flock`\. 
+
+1. Verify that the mount command was successful by listing the contents of the directory to which you mounted the file system, /fsx by using the following command\.
 
    ```
-   ls /mnt/fsx
+   $ ls /fsx
+   import-path  lustre
+   $
    ```
+
+   You can also use the `df` command, following\.
+
+   ```
+   $ df
+   Filesystem              1K-blocks    Used  Available Use% Mounted on
+   devtmpfs                  1001808       0    1001808   0% /dev
+   tmpfs                     1019760       0    1019760   0% /dev/shm
+   tmpfs                     1019760     392    1019368   1% /run
+   tmpfs                     1019760       0    1019760   0% /sys/fs/cgroup
+   /dev/xvda1                8376300 1263180    7113120  16% /
+   123.456.789.0@tcp:/fsx 3547698816   13824 3547678848   1% /fsx
+   tmpfs                      203956       0     203956   0% /run/user/1000
+   ```
+
+   The results show the Amazon FSx file system mounted on /fsx\.
 
 ## Step 3: Run Your Analysis<a name="getting-started-step3"></a>
 

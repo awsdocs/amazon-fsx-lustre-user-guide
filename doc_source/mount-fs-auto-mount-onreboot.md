@@ -2,7 +2,7 @@
 
 You can use `fstab` to automatically mount your Amazon FSx for Lustre file system when the Amazon EC2 instance it is mounted on reboots\. You can set up automatic mounting in two ways\. You can update the `/etc/fstab` file in your Amazon EC2 instance after you connect to the instance for the first time, or you can configure automatic mounting of your Amazon FSx for Lustre file system when you create your Amazon EC2 instance\.
 
-## Updating an Existing EC2 Instance to Mount Automatically<a name="lustre-mount-fs-auto-mount-update-fstab"></a>
+## Updating an Existing EC2 Instance to Mount Amazon FSx for Lustre Automatically<a name="lustre-mount-fs-auto-mount-update-fstab"></a>
 
 To automatically remount your Amazon FSx for Lustre file system directory when the Amazon EC2 instance reboots, you can use the `fstab` file\. The `fstab` file contains information about file systems\. The command `mount -a`, which runs during instance startup, mounts the file systems listed in the `fstab` file\.
 
@@ -13,10 +13,10 @@ Before you can update the `/etc/fstab` file of your EC2 instance, make sure that
 
 1. Connect to your EC2 instance, and open the `/etc/fstab` file in an editor\.
 
-1. Add the following line to the `/etc/fstab` file\.
+1. Add the following line to the `/etc/fstab` file\. Replace */fsx* with the directory to which you want to mount your Amazon FSx file system\.
 
    ```
-   file_system_dns_name@tcp:/fsx /mnt/fsx lustre defaults,_netdev 0 0
+   file_system_dns_name@tcp:/fsx /fsx lustre defaults,noatime,flock,_netdev 0 0
    ```
 **Warning**  
 Use the `_netdev` option, used to identify network file systems, when mounting your file system automatically\. If `_netdev` is missing, your EC2 instance might stop responding\. This result is because network file systems need to be initialized after the compute instance starts its networking\. For more information, see [Automatic Mounting Fails and the Instance Is Unresponsive](troubleshooting.md#lustre-automount-fails)\.

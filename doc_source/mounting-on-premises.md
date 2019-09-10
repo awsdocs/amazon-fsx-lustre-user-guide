@@ -4,6 +4,12 @@ You can access your Amazon FSx for Lustre file system in two ways\. One is from 
 
 You can mount your file system from outside its VPC using the IP address of its primary network interface\. The primary network interface is the first network interface returned when you run the `aws fsx describe-file-systems` AWS CLI command\. You can also get this IP address from the AWS Management Console\.
 
+**Note**  
+Amazon FSx can support access from resources outside the VPC associated with your file system\. It can do this if those resources have an IP address in the following private IP version 4 \(IPv4\) address ranges, as specified in [RFC 1918](http://www.faqs.org/rfcs/rfc1918.html):  
+10\.0\.0\.0–10\.255\.255\.255 \(10/8 prefix\)
+172\.16\.0\.0–172\.31\.255\.255 \(172\.16/12 prefix\)
+192\.168\.0\.0–192\.168\.255\.255 \(192\.168/16 prefix\)
+
 **To get the IP address of the primary network interface for a file system**
 
 1. Open the Amazon FSx console at [https://console\.aws\.amazon\.com/fsx/](https://console.aws.amazon.com/fsx/)\.
