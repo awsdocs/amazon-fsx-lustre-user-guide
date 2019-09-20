@@ -9,6 +9,10 @@ Amazon FSx for Lustre is deeply integrated with Amazon S3\. This integration mea
 **Important**  
 In many cases, you link one or more Amazon FSx for Lustre file systems to an Amazon S3 bucket\. If so, don't delete the Amazon S3 bucket until all linked file systems have been deleted\.
 
+## Service Linked Roles and Customer Managed KMS Keys<a name="service-linked-role"></a>
+
+If you are using a Customer Managed KMS Key (CMK) for the default encryption for your S3 Bucket then you will have to grant the Amazon FSx for Lustre Service Linked Role for your file system permissions to encrypt and decrypt with this CMK\. For more information please see [https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html](AWS Key Management Service Concepts)\.
+
 ## Importing Data from Your Amazon S3 Bucket<a name="import-data-repository"></a>
 
 During file system creation, you have the option of Amazon FSx for Lustre automatically preloading a listing of file metadata \(file name, size, and modification time\) into your file system\. Doing this allows clients to view the listing of files in your data repository as soon as your file system is available\.
