@@ -1,5 +1,19 @@
 # Troubleshooting<a name="troubleshooting"></a>
 
+## File System Mount Fails Right Away<a name="mount-fails-right-away"></a>
+
+The file system mount command fails right away\. The following code shows an example\.
+
+```
+mount.lustre: mount fs-0123456789abcdef0.fsx.us-east-1.aws@tcp:/fsx at /lustre
+failed: No such file or directory
+
+Is the MGS specification correct?
+Is the filesystem name correct?
+```
+
+This error can occur if you aren't using the correct `mountname` value when mounting a persistent or scratch 2 file system by using the mount command\. You can get the `mountname` value from the response of the describe\-file\-systems AWS CLI command or the [DescribeFileSystems](https://docs.aws.amazon.com/APIReference/API_DescribeFileSystems.html) API operation\.
+
 ## File System Mount Hangs and Then Fails with Timeout Error<a name="mount-hangs-fails-timeout"></a>
 
 The file system mount command hangs for a minute or two, and then fails with a timeout error\. 
@@ -7,7 +21,7 @@ The file system mount command hangs for a minute or two, and then fails with a t
 The following code shows an example\.
 
 ```
-sudo mount -t lustre file_system_dns_name@tcp:/fsx /mnt/fsx
+sudo mount -t lustre file_system_dns_name@tcp:/mountname /mnt/fsx
 
 [2+ minute wait here]
 Connection timed out
@@ -33,9 +47,9 @@ If this issue occurs, contact AWS Support\.
 A file system mount that is using a Domain Name Service \(DNS\) name fails\. The following code shows an example\.
 
 ```
-sudo mount -t lustre file_system_dns_name@tcp:/fsx /mnt/fsx
+sudo mount -t lustre file_system_dns_name@tcp:/mountname /mnt/fsx
 mount.lustre: Can't parse NID 
-'file_system_dns_name@tcp:/fsx'
+'file_system_dns_name@tcp:/mountname'
 ```
 
 **Action to Take**
@@ -50,13 +64,13 @@ To specify a DNS name in the `mount` command, do the following:
 A file system mount that is using a Domain Name Service \(DNS\) name fails\. The following code shows an example\.
 
 ```
-mount -t lustre file_system_dns_name@tcp:/fsx /mnt/fsx
-mount.lustre: mount file_system_dns_name@tcp:/fsx at /mnt/fsx failed: Input/output error Is the MGS running?
+mount -t lustre file_system_dns_name@tcp:/mountname /mnt/fsx
+mount.lustre: mount file_system_dns_name@tcp:/mountname at /mnt/fsx failed: Input/output error Is the MGS running?
 ```
 
 **Action to Take**
 
- Make sure that the client's VPC security groups have the correct outbound traffic rules applied, especially if you are not using the default security group, or if you have modified the default security group\. To learn more, see [Amazon VPC Security Groups](limit-access-security-groups.md#fsx-vpc-security-groups) 
+ Make sure that the client's VPC security groups have the correct outbound traffic rules applied\. This recommendation holds true especially if you aren't using the default security group, or if you have modified the default security group\. For more information, see [Amazon VPC Security Groups](limit-access-security-groups.md#fsx-vpc-security-groups)\. 
 
 ## Creating a File System with Data Repository Fails<a name="slr-permissions-fails"></a>
 

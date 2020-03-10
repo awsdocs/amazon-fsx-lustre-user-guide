@@ -86,7 +86,7 @@ To verify the sign\-in link for IAM users for your account, open the IAM console
 
 ### Adding Permissions to Use Data Repositories in Amazon S3<a name="fsx-adding-permissions-s3"></a>
 
-Amazon FSx for Lustre is deeply integrated with Amazon S3\. This integration means that you can seamlessly access the objects stored in your Amazon S3 buckets from applications mounting your Amazon FSx for Lustre file system\. For more information, see [Using Data Repositories](fsx-data-repositories.md)\.
+Amazon FSx for Lustre is deeply integrated with Amazon S3\. This integration means that you can seamlessly access the objects stored in your Amazon S3 buckets from applications mounting your Amazon FSx for Lustre file system\. For more information, see [Using Data Repositories with Amazon FSx for Lustre](fsx-data-repositories.md)\.
 
 To use data repositories, you must first allow Amazon FSx for Lustre certain IAM permissions in a role associated with the account for your administrator user\.
 

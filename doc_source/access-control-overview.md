@@ -16,9 +16,7 @@ When granting permissions, you decide who is getting the permissions, the resour
 
 ## Resources and Operations for Amazon FSx for Lustre<a name="access-control-resources"></a>
 
-In Amazon FSx for Lustre, the primary resource is a *file system*\. 
-
-These resources have unique Amazon Resource Names \(ARNs\) associated with them as shown in the following table\. 
+In Amazon FSx for Lustre, the primary resource is a *file system*\. Amazon FSx for Lustre also supports additional resource types, the data repository task\. However, for Amazon FSx, you can create data repository tasks only in the context of an existing file system\. Data repository tasks are referred to as subresources\. These resources and subresources have unique Amazon Resource Names \(ARNs\) associated with them as shown in the following table\.
 
 
 ****  
@@ -26,6 +24,7 @@ These resources have unique Amazon Resource Names \(ARNs\) associated with them 
 | Resource Type | ARN Format | 
 | --- | --- | 
 | File system | arn:aws:fsx:region:account\-id:file\-system/filesystem\-id | 
+| Data repository task | arn:aws:fsx:region:account\-id:task/task\-id | 
 
 Amazon FSx for Lustre provides a set of operations to work with Amazon FSx for Lustre resources\. For a list of available operations, see the [Amazon FSx for Lustre API Reference](https://docs.aws.amazon.com/fsx/latest/APIReference/Welcome.html)\.
 

@@ -46,7 +46,7 @@ If the Amazon FSx for Lustre service is using the role when you try to delete th
 
 **To manually delete a service\-linked role using IAM**
 
-Use the IAM console, the IAM CLI, or the IAM API to delete the AWSServiceRoleForAmazonFSx service\-linked role\. For more information, see [Deleting a Service\-Linked Role](https://docs.aws.amazon.com/IAM/latest/UserGuide/using-service-linked-roles.html#delete-service-linked-role) in the *IAM User Guide*\.
+Use the IAM console, the AWS CLI, or the IAM API to delete the AWSServiceRoleForAmazonFSx service\-linked role\. For more information, see [Deleting a Service\-Linked Role](https://docs.aws.amazon.com/IAM/latest/UserGuide/using-service-linked-roles.html#delete-service-linked-role) in the *IAM User Guide*\.
 
 ## Supported Regions for Amazon FSx for Lustre Service\-Linked Roles<a name="slr-regions"></a>
 

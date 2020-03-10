@@ -1,12 +1,15 @@
 # Document History<a name="doc-history"></a>
 + **API version:** 
-+ **Latest documentation update:** July 09, 2019
++ **Latest documentation update:** February 12, 2020
 
 The following table describes important changes to the *Amazon FSx for Lustre User Guide*\. For notifications about documentation updates, you can subscribe to the RSS feed\.
 
 | Change | Description | Date | 
 | --- |--- |--- |
-| [Additional AWS Region support added](#doc-history) | Amazon FSx for Lustre is now available in the EU \(London\) Region AWS Region\. For Amazon FSx for Lustre region\-specific limits, see [Limits](https://docs.aws.amazon.com/fsx/latest/LustreGuide/limits.html)\. | July 9, 2019 | 
+| [Two new file system deployment types released](#doc-history) |  Scratch file systems are designed for temporary storage and shorter\-term processing of data\. Persistent file systems are designed for longer\-term storage and workloads\. For more information, see [ FSx for Lustre Deployment Options](https://docs.aws.amazon.com/fsx/latest/LustreGuide/using-fsx-lustre.html#lustre-deployment-types)\. | February 12, 2020 | 
+| [Support for POSIX metadata added](#doc-history) | Amazon FSx for Lustre retains associated POSIX metadata when importing and exporting files to a linked durable data repository on Amazon S3\. For more information, see [ POSIX Metadata Support for Data Repositories](https://docs.aws.amazon.com/fsx/latest/LustreGuide/posix-metadata-support.html)\. | December 23, 2019 | 
+| [New data repository tasks feature released](#doc-history) | You can now export changed data and associated POSIX metadata to a linked durable data repository on Amazon S3 using data repository tasks\. For more information, see [ Transferring Data & Metadata Using Data Repository Tasks](https://docs.aws.amazon.com/fsx/latest/LustreGuide/data-repository-tasks.html)\. | December 23, 2019 | 
+| [Additional AWS Region support added](#doc-history) | Amazon FSx for Lustre is now available in the Europe \(London\) Region AWS Region\. For Amazon FSx for Lustre region\-specific limits, see [Limits](https://docs.aws.amazon.com/fsx/latest/LustreGuide/limits.html)\. | July 9, 2019 | 
 | [Additional AWS Region support added](#doc-history) | Amazon FSx for Lustre is now available in the Asia Pacific \(Singapore\) AWS Region\. For Amazon FSx for Lustre region\-specific limits, see [Limits](https://docs.aws.amazon.com/fsx/latest/LustreGuide/limits.html)\. | June 26, 2019 | 
 | [Lustre client support for Amazon Linux and Amazon Linux 2 added](#doc-history) | The Amazon FSx for Lustre client now supports Amazon EC2 instances running Amazon Linux and Amazon Linux 2\. For more information see [Installing the Lustre Client](https://docs.aws.amazon.com/fsx/latest/LustreGuide/install-lustre-client.html)\. | March 11, 2019 | 
 | [User\-defined data export path support added](#doc-history) | Users now have the option to overwrite the original objects in your Amazon S3 bucket or write the new or changed files to a prefix that you specify\. With this option, you have additional flexibility to incorporate Amazon FSx for Lustre into your data processing workflows\. For more information, see [Exporting Data to Your Amazon S3 Bucket](https://docs.aws.amazon.com/fsx/latest/LustreGuide/fsx-data-repositories.html#export-data-repository)\. | February 6, 2019 | 

@@ -1,13 +1,18 @@
-# Security<a name="security"></a>
+# Security in Amazon FSx for Lustre<a name="security"></a>
 
-Amazon FSx for Lustre provides various features to secure your file systems\. In the following sections, you can find information on how to secure your file system data and configure access controls for your Amazon FSx for Lustre file systems\.
+Cloud security at AWS is the highest priority\. As an AWS customer, you benefit from data centers and network architectures that are built to meet the requirements of the most security\-sensitive organizations\.
 
-Amazon FSx for Lustre is PCI\-DSS, ISO, and SOC compliant and HIPAA eligible\.
+Security is a shared responsibility between AWS and you\. The [shared responsibility model](http://aws.amazon.com/compliance/shared-responsibility-model/) describes this as security *of* the cloud and security *in* the cloud:
++ **Security of the cloud** – AWS is responsible for protecting the infrastructure that runs AWS services in the AWS Cloud\. AWS also provides you with services that you can use securely\. Third\-party auditors regularly test and verify the effectiveness of our security as part of the [AWS Compliance Programs](http://aws.amazon.com/compliance/programs/)\. To learn about the compliance programs that apply to Amazon FSx for Lustre, see [AWS Services in Scope by Compliance Program](http://aws.amazon.com/compliance/services-in-scope/)\.
++ **Security in the cloud** – Your responsibility is determined by the AWS service that you use\. You are also responsible for other factors including the sensitivity of your data, your company’s requirements, and applicable laws and regulations\. 
 
-## Amazon VPC Network ACLs<a name="limit-access-acl"></a>
+This documentation helps you understand how to apply the shared responsibility model when using Amazon FSx for Lustre\. The following topics show you how to configure Amazon FSx to meet your security and compliance objectives\. You also learn how to use other AWS services that help you to monitor and secure your Amazon FSx for Lustre resources\. 
 
-Another option for securing access to the file system within your VPC is to establish network access control lists \(network ACLs\)\. Network ACLs are separate from security groups, but have similar functionality to add an additional layer of security to the resources in your VPC\. For more information on network ACLs, see [Network ACLs](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_ACLs.html) in the *Amazon VPC User Guide\.* 
+Following, you can find a description of security considerations for working with Amazon FSx\. 
 
-## Encryption<a name="encryption"></a>
-
-All Amazon FSx for Lustre file systems are encrypted at rest with keys managed by the service\. Data is encrypted using an XTS\-AES\-256 block cipher\. Data is automatically encrypted before being written to the file system, and automatically decrypted as it is read\. These processes are handled transparently by Amazon FSx for Lustre, so you don’t have to modify your applications\.
+**Topics**
++ [Data Protection in Amazon FSx for Lustre](data-protection.md)
++ [File System Access Control with Amazon VPC](limit-access-security-groups.md)
++ [Amazon VPC Network ACLs](limit-access-acl.md)
++ [Administration Access Control with IAM for Amazon FSx for Lustre Resources](access-control-overview.md)
++ [Compliance Validation for Amazon FSx for Lustre](SERVICENAME-compliance.md)
