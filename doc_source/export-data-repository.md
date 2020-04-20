@@ -39,10 +39,10 @@ You can specify an export path, or prefix, when you create your file system usin
   $ aws fsx create-file-system \
         --client-request-token CRT1234 \
         --file-system-type LUSTRE \
-        --lustre-configuration ImportPath=s3://lustre-export-test-bucket/ ExportPath=s3://lustre-export-test-bucket/export \
+        --lustre-configuration DeploymentType=PERSISTENT_1,ImportPath=s3://lustre-export-test-bucket/,ExportPath=s3://lustre-export-test-bucket/export \
         --storage-capacity 3600 \
         --subnet-ids subnet-123456 \
-        --tags Key="Name",Value="Lustre-TEST-1" \
+        --tags Key=Name,Value=Lustre-TEST-1 \
         --region us-east-2
   ```
 
@@ -76,6 +76,7 @@ After successfully creating the file system, Amazon FSx returns the file system 
             ],
             "LustreConfiguration": {
                 "WeeklyMaintenanceStartTime": "2:04:30",
+                "DeploymentType": "PERSISTENT_1",
                 "DataRepositoryConfiguration": {
                     "ImportPath": "s3://lustre-export-test-bucket/",
                     "ExportPath": "s3://lustre-export-test-bucket/export",

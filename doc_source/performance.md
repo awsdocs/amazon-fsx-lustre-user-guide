@@ -1,26 +1,33 @@
 # Amazon FSx for Lustre Performance<a name="performance"></a>
 
-Amazon FSx for Lustre, built on Lustre, the popular high\-performance file system, provides scale\-out performance that increases linearly with a ﬁle system’s size\. Lustre file systems scale horizontally across multiple file servers and disks\. This scaling gives each client direct access to the data stored on each disk to remove many of the bottlenecks present in traditional file systems\. Amazon FSx for Lustre builds on Lustre’s scalable architecture to support high levels of performance across large numbers of clients\.
+Amazon FSx for Lustre, built on Lustre, the popular high\-performance file system, provides scale\-out performance that increases linearly with a ﬁle system’s size\. Lustre file systems scale horizontally across multiple file servers and disks\. This scaling gives each client direct access to the data stored on each disk to remove many of the bottlenecks present in traditional file systems\. Amazon FSx for Lustre builds on Lustre's scalable architecture to support high levels of performance across large numbers of clients\.
+
+## How Lustre File Systems Work<a name="how-lustre-fs-work"></a>
+
+ Each Amazon FSx for Lustre file system is comprised of the file servers that the clients communicate with, and a set of disks attached to each file server that store your data\. Each file server employs a fast, in\-memory cache to enhance performance for the most frequently accessed data\. When a client accesses data that's stored in the in\-memory cache, the file server doesn't need to read it from disk, which reduces latency and increases the total amount of throughput you can drive\. The following diagram illustrates the paths of a write operation, a read operation served from disk, and a read operation served from in\-memory cache: 
+
+![\[Amazon FSx for Lustre performance architecture.\]](http://docs.aws.amazon.com/fsx/latest/LustreGuide/images/LustrePerfDiagram.png)
+
+ When you read data that is stored on the file server's in\-memory cache, file system performance is determined by the network throughput\. When you write data to your file system, or when you read data that is not stored on the in\-memory cache, file system performance is determined by the lower of the network throughput and disk throughput\. 
 
 ## Aggregate File System Performance<a name="fsx-aggregate-perf"></a>
 
-Amazon FSx for Lustre file systems scale to hundreds of GBps of throughput and millions of IOPS\. Amazon FSx for Lustre also supports concurrent access to the same file or directory from thousands of compute instances\. This access enables rapid data checkpointing from application memory to storage, which is a common technique in high\-performance computing \(HPC\)\.
+The throughput that an Amazon FSx for Lustre file system supports is proportional to its storage capacity\. Amazon FSx for Lustre file systems scale to hundreds of GBps of throughput and millions of IOPS\. Amazon FSx for Lustre also supports concurrent access to the same file or directory from thousands of compute instances\. This access enables rapid data checkpointing from application memory to storage, which is a common technique in high\-performance computing \(HPC\)\.
 
-The throughput that a scratch Amazon FSx for Lustre file system can support is based on its size\. With scratch file systems, each tebibyte \(TiB\) of storage capacity supports a baseline of 200 MBps of throughput for file system read operations\. This throughput exists in aggregate across all client connections to the file system\. The latest generation of scratch file systems can burst up to six times this baseline bandwidth to meet the performance needs of spiky workloads\. They can burst up to 1,200 MBps of throughput per TiB of storage capacity, as shown in the following table\.
+Amazon FSx for Lustre file systems provide burst read throughput using a network I/O credit mechanism to allocate network bandwidth based on average bandwidth utilization\. The file systems accrue credits when their network bandwidth usage is below their baseline limits, and can use these credits when they perform network data transfers\.
 
+The following table shows the disk and network throughput and IOPS for each TiB of file system storage capacity, for Amazon FSx for Lustre deployment options:
 
-****  
+[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/fsx/latest/LustreGuide/performance.html)
 
-| File System Size \(TiB\) | Baseline Throughput \(MBps\) | Burst Throughput \(MBps\) | 
-| --- | --- | --- | 
-| 1\.2 | 234 | Up to 1,404 | 
-| 2\.4 | 468 | Up to 2,808 | 
-| 4\.8 | 937 | Up to 5,622 | 
-| 9\.6 | 1,875 | Up to 11,250 | 
-| 19\.2 | 3,750 | Up to 22,500 | 
-| 38\.4 | 7,500 | Up to 45,000 | 
+**Note**  
+\*Persistent file systems in the following AWS Regions provide network burst up to 530 MB/s per TiB of storage: Europe \(Frankfurt\), Europe \(London\), Europe \(Stockholm\), Asia Pacific \(Singapore\), and US West \(Los Angeles\)\.
 
-For a persistent Amazon FSx for Lustre file system, you can specify the amount of throughput capacity for each TiB of storage when you create one\. You can choose either 50 MB/sec/TiB, 100 MB/sec/TiB, or 200 MB/sec/TiB of throughput capacity\.
+### Example: Aggregate Baseline and Burst Throughput<a name="example-persistant-throughput"></a>
+
+The following example illustrates how storage capacity and disk throughput impact file system performance\.
+
+A persistent file system with a storage capacity of 4\.8 TiB and 50 MB/s per TiB of throughput per unit of storage provides an aggregate baseline disk throughput of 234 MB/s and a burst disk throughput of 1\.125 GB/s\.
 
 Regardless of file system size, Amazon FSx for Lustre provides consistent, submillisecond latencies for file operations\.
 

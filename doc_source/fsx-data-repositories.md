@@ -6,6 +6,9 @@ When you use Amazon FSx with a durable storage repository, you can ingest and pr
 
 You can link your Amazon FSx file system to an Amazon S3 durable data repository when you create the file system\. For more information, see [Step 1: Create Your Amazon FSx for Lustre File System](getting-started-step1.md)\.
 
+**Note**  
+Data from an Amazon S3 linked repository is imported into your Amazon FSx for Lustre file system only once, at creation\. Any data added to your S3 repository after this initial import can't be imported into your Lustre file system\. You will have to create a new Amazon FSx for Lustre file system and link it to the S3 repository to download the newly added data\. 
+
 Amazon FSx is deeply integrated with Amazon S3\. This integration means that you can seamlessly access the objects stored in your Amazon S3 buckets from applications that mount your Amazon FSx file system\. When you use Amazon FSx with a data repository, you can import your data into your Amazon FSx file system as needed\. You can also run your compute\-intensive workloads on Amazon EC2 instances in the AWS Cloud and export the results to your data repository after your workload is complete\.
 
 Amazon FSx also supports cloud bursting workloads with on\-premises file systems by enabling you to copy data from on\-premises clients using AWS Direct Connect or VPN\.

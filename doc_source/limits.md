@@ -12,7 +12,7 @@ Following are the quotas for Amazon FSx for Lustre per AWS account, per AWS Regi
 | Resource | Default limit | Can be increased up to | 
 | --- | --- | --- | 
 | Number of file systems | 100 | Thousands | 
-| Total storage for all file systems |  US East \(Ohio\) Region – 100,800 GiB US East \(N\. Virginia\) Region – 100,800 GiB US West \(N\. California\) Region – 25,200 GiB US West \(Oregon\) Region – 100,800 GiB Asia Pacific \(Singapore\) – 25,200 GiB Asia Pacific \(Sydney\) – 100,800 GiB Asia Pacific \(Tokyo\) – 100,800 GiB Europe \(Frankfurt\) Region – 100,800 GiB Europe \(Ireland\) Region – 100,800 GiB Europe \(London\) Region – 25,200 GiB Europe \(Stockholm\) Region – 25,200 GiB  | Petabytes | 
+| Total storage for all file systems |  US East \(Ohio\) Region – 100,800 GiB US East \(N\. Virginia\) Region – 100,800 GiB US West \(N\. California\) Region – 25,200 GiB US West \(Oregon\) Region – 100,800 GiB Asia Pacific \(Hong Kong\) Region – 25,200 GiB Asia Pacific \(Singapore\) – 25,200 GiB Asia Pacific \(Sydney\) – 100,800 GiB Asia Pacific \(Tokyo\) – 100,800 GiB Europe \(Frankfurt\) Region – 100,800 GiB Europe \(Ireland\) Region – 100,800 GiB Europe \(London\) Region – 25,200 GiB Europe \(Stockholm\) Region – 25,200 GiB  | Petabytes | 
 
 **To request a limit increase**
 

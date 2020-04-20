@@ -12,7 +12,7 @@ Is the MGS specification correct?
 Is the filesystem name correct?
 ```
 
-This error can occur if you aren't using the correct `mountname` value when mounting a persistent or scratch 2 file system by using the mount command\. You can get the `mountname` value from the response of the describe\-file\-systems AWS CLI command or the [DescribeFileSystems](https://docs.aws.amazon.com/APIReference/API_DescribeFileSystems.html) API operation\.
+This error can occur if you aren't using the correct `mountname` value when mounting a persistent or scratch 2 file system by using the mount command\. You can get the `mountname` value from the response of the [https://docs.aws.amazon.com/cli/latest/reference/fsx/describe-file-systems.html](https://docs.aws.amazon.com/cli/latest/reference/fsx/describe-file-systems.html) AWS CLI command or the [https://docs.aws.amazon.com/fsx/latest/APIReference/API_DescribeFileSystems.html](https://docs.aws.amazon.com/fsx/latest/APIReference/API_DescribeFileSystems.html) API operation\.
 
 ## File System Mount Hangs and Then Fails with Timeout Error<a name="mount-hangs-fails-timeout"></a>
 

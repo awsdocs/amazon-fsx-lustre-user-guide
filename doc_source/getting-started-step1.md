@@ -20,7 +20,7 @@ Next, you create your file system in the console\.
    + For **Storage capacity**, provide a storage capacity for your file system, in TiB: 
      + For a persistent or scratch 2 file system, this value can be 1\.2 TiB or increments of 2\.4 TiB\.
      + For a scratch 1 file system, this value can be 1\.2, 2\.4, or increments of 3\.6 TiB\.
-   + For a persistent file system, set a value for **Per unit storage throughput** to either 50, 100, or 200 MB/s per tebibyte \(TiB\)\. *Per unit storage throughput* is the amount of read and write throughput for each 1 tebibyte \(TiB\) of storage provisioned, in MB/s/TiB\. For a 2\.4 TiB ﬁle system, provisioning 50 MB/s/TiB of per unit storage throughput yields 117 MB/s of ﬁle system throughput\. You pay for the amount of throughput that you provision\.  
+   + For a persistent file system, set a value for **Throughput per unit of storage ** to either 50, 100, or 200 MB/s per tebibyte \(TiB\)\. *Throughput per unit of storage* is the amount of read and write throughput for each 1 tebibyte \(TiB\) of storage provisioned, in MB/s/TiB\. For a 2\.4 TiB ﬁle system, provisioning 50 MB/s/TiB of per unit storage throughput yields 117 MB/s of ﬁle system throughput\. You pay for the amount of throughput that you provision\.  
 ![\[File system details section of the Amazon FSx for Lustre Create File System console page.\]](http://docs.aws.amazon.com/fsx/latest/LustreGuide/images/FSxLScreenShot.png)
 
 1. Provide networking and security group information in the **Network & security** section:

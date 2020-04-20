@@ -2,6 +2,9 @@
 
 You can create, duplicate, view details, and cancel data repository tasks using the Amazon FSx console, CLI, or API\.
 
+**Note**  
+We recommend that you download the latest AWS CLI so that you have access to all the required functionality\. For more information, see [Installing the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html) in the *AWS Command Line Interface User Guide*\. Look for the **Upgrade** section for your operating system\.
+
 ## Creating a Data Repository Task<a name="creating-data-repo-task"></a>
 
 You can create a data repository task by using the Amazon FSx console, CLI, or API\. After you create a task, you can view the task's progress and status by using the console, CLI, or API\. 
@@ -274,7 +277,7 @@ You can cancel a data repository task while it's in either the PENDING or EXECUT
 + Amazon FSx continues processing any files that are currently in process\.
 + Amazon FSx doesn't revert any files that the task already processed\.
 
-### To Cancel a Data Repository Task \(Console\)<a name="w60aac15c21c15c11b7b1"></a>
+### To Cancel a Data Repository Task \(Console\)<a name="w63aac15c23c15c13b7b1"></a>
 
 1. Open the Amazon FSx console at [https://console\.aws\.amazon\.com/fsx/](https://console.aws.amazon.com/fsx/)\.
 
@@ -286,7 +289,7 @@ You can cancel a data repository task while it's in either the PENDING or EXECUT
 
 1. Enter the task ID to confirm the cancellation request\.
 
-### To Cancel a Data Repository Task \(CLI\)<a name="w60aac15c21c15c11b7b3"></a>
+### To Cancel a Data Repository Task \(CLI\)<a name="w63aac15c23c15c13b7b3"></a>
 
 Use the Amazon FSx [https://docs.aws.amazon.com/cli/latest/reference/fsx/cancel-data-repository-task.html](https://docs.aws.amazon.com/cli/latest/reference/fsx/cancel-data-repository-task.html) CLI command, to cancel a task\. [ `CancelDataRepositoryTask`](https://docs.aws.amazon.com/fsx/latest/APIReference/API_CancelDataRepositoryTask.html) is the equivalent API command\.
 + Use the following command to view all data repository task objects in your account\.

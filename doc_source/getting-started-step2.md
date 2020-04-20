@@ -6,16 +6,27 @@ To mount your Amazon FSx for Lustre file system from your Amazon EC2 instance, f
 
 1. Connect to your Amazon EC2 instance\. For more information, see [Connecting to Your Linux Instance from Windows Using PuTTY](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/putty.html) or [Connecting to Your Linux Instance Using SSH](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html) in the *Amazon EC2 User Guide for Linux Instances*\.
 
-1. Install the Lustre client on your CentOS 7\.5 instance with the following procedure:
+1. Open a terminal on your client\.
 
-   1. Open a terminal on your client\.
+1. Determine which kernel is currently running on the compute instance with the following command\.
 
-   1. Download and install the Lustre client with the following commands\. The client comes in two packages that must be downloaded and installed\.
+   ```
+   uname -r
+   ```
 
-      ```
-      sudo yum -y install https://downloads.whamcloud.com/public/lustre/lustre-2.10.5/el7.5.1804/client/RPMS/x86_64/kmod-lustre-client-2.10.5-1.el7.x86_64.rpm
-      sudo yum -y install https://downloads.whamcloud.com/public/lustre/lustre-2.10.5/el7.5.1804/client/RPMS/x86_64/lustre-client-2.10.5-1.el7.x86_64.rpm
-      ```
+1. Do one of the following:
+   + If the instance is running kernel version `3.10.0-862.*`, download and install the Lustre 2\.10\.5 client with the following commands\. The client comes in two packages to download and install\.
+
+     ```
+     sudo yum -y install https://downloads.whamcloud.com/public/lustre/lustre-2.10.5/el7/client/RPMS/x86_64/kmod-lustre-client-2.10.5-1.el7.x86_64.rpm
+     sudo yum -y install https://downloads.whamcloud.com/public/lustre/lustre-2.10.5/el7/client/RPMS/x86_64/lustre-client-2.10.5-1.el7.x86_64.rpm
+     ```
+   + If the instance is running kernel version `3.10.0-957.*`, download and install the Lustre 2\.10\.6 client with the following commands\. The client comes in two packages to download and install\.
+
+     ```
+     sudo yum -y install https://downloads.whamcloud.com/public/lustre/lustre-2.10.6/el7/client/RPMS/x86_64/kmod-lustre-client-2.10.6-1.el7.x86_64.rpm
+     sudo yum -y install https://downloads.whamcloud.com/public/lustre/lustre-2.10.6/el7/client/RPMS/x86_64/lustre-client-2.10.6-1.el7.x86_64.rpm
+     ```
 **Note**  
 You might need to reboot your compute instance for the client to finish installing\.
 
@@ -29,7 +40,7 @@ You might need to reboot your compute instance for the client to finish installi
 
 1. Mount the Amazon FSx for Lustre file system to the directory that you created\. Use the following command and replace the following items:
    + Replace `file_system_dns_name` with the actual file system's Domain Name System \(DNS\) name\.
-   + Replace `mountname` with the file system's mount name, which you can get by running the describe\-file\-systems AWS CLI command or the [DescribeFileSystems](https://docs.aws.amazon.com/APIReference/API_DescribeFileSystems.html) API operation\.
+   + Replace `mountname` with the file system's mount name, which you can get by running the describe\-file\-systems AWS CLI command or the [DescribeFileSystems](https://docs.aws.amazon.com/fsx/latest/APIReference/API_DescribeFileSystems.html) API operation\.
 
    ```
    sudo mount -t lustre -o noatime,flock file_system_dns_name@tcp:/mountname /mnt/fsx
@@ -61,4 +72,4 @@ You might need to reboot your compute instance for the client to finish installi
    tmpfs                             203956       0     203956   0% /run/user/1000
    ```
 
-   The results show the Amazon FSx file system mounted on /fsx\.
+   The results show the Amazon FSx file system mounted on /mnt/fsx\.
