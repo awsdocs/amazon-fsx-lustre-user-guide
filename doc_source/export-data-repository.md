@@ -2,6 +2,9 @@
 
 In Amazon FSx for Lustre, you can export files and their associated metadata that you have written or modified in your file system to your durable data repository on Amazon S3 at any time\. When you export a file or directory, your file system exports only data files and metadata that were created or modified since the last export or since file system creation\. Such an export includes POSIX metadata\. 
 
+**Important**  
+To ensure that Amazon FSx can export your data to your S3 data repository, it must be stored in a UTF\-8 compatible format\.
+
 ## Setting the Export Prefix<a name="export-prefix"></a>
 
 You set the export path, or prefix, when you create your file system using the Amazon FSx console, CLI, or API\. The export prefix specifies the path to export changed data and metadata to on your data repository on S3\. You can't change the export prefix after the file system is created\.
@@ -150,6 +153,9 @@ You can view a file system's export path using the Amazon FSx for Lustre console
 You can export data and metadata changes, including POSIX metadata, from your Amazon FSx file system to its linked data repository\. Associated POSIX metadata includes ownership, permissions, and timestamps\. To perform this export, you use a data repository task\.
 
 Data repository tasks optimize data transfer by tracking changes between your Amazon FSx file system and its linked data repository\. Only files or directories with new or modified data or metadata are exported\. By exporting this data, you can implement and maintain access controls between your Amazon FSx for Lustre file system and its linked durable data repository on Amazon S3\. For more information, see [Transferring Data and Metadata with Data Repository Tasks](data-repository-tasks.md)\. 
+
+**Important**  
+To ensure that Amazon FSx can export your data to your S3 data repository, it must be stored in a UTF\-8 compatible format\.
 
 Use the following procedures to export data and metadata changes by using the Amazon FSx console and CLI\.
 

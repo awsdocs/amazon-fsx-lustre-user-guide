@@ -2,14 +2,14 @@
 
 Amazon FSx for Lustre automatically transfers Portable Operating System Interface \(POSIX\) metadata for files, directories, and symbolic links \(symlinks\) when importing and exporting data to and from a linked durable data repository on Amazon S3\. Amazon FSx also exports POSIX metadata changes, along with data changes, to the linked data repository on S3\. Because of this metadata export, you can implement and maintain access controls between your Amazon FSx for Lustre file system and its data repository on S3\.
 
-**Note**  
- Amazon FSx imports only S3 objects that have POSIX\-compliant object keys, such as the following\.  
+ Amazon FSx imports only S3 objects that have POSIX\-compliant object keys, such as the following\.
 
 ```
 test/mydir/ 
 test/
 ```
-Amazon FSx doesn't import S3 object keys that are not POSIX\-compliant, such as the following\.  
+
+Amazon FSx doesn't import S3 object keys that are not POSIX\-compliant, such as the following\.
 
 ```
 .

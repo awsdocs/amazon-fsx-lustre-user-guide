@@ -45,6 +45,8 @@ Amazon's trademarks and trade dress may not be used in
    + [Mounting Your Amazon FSx File System Automatically](mount-fs-auto-mount-onreboot.md)
    + [Unmounting File Systems](unmounting-fs.md)
    + [Working with Amazon EC2 Spot Instances](working-with-ec2-spot-instances.md)
++ [Working with Backups](using-backups-fsx.md)
+   + [Setting Up a Custom Backup Schedule](custom-backup-schedule-fsx.md)
 + [Monitoring Amazon FSx for Lustre](monitoring_overview.md)
    + [How to Use Amazon FSx for Lustre Metrics](how_to_use_metrics.md)
    + [Accessing CloudWatch Metrics](accessingmetrics.md)

@@ -21,7 +21,7 @@ The following table shows the disk and network throughput and IOPS for each TiB 
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/fsx/latest/LustreGuide/performance.html)
 
 **Note**  
-\*Persistent file systems in the following AWS Regions provide network burst up to 530 MB/s per TiB of storage: Europe \(Frankfurt\), Europe \(London\), Europe \(Stockholm\), Asia Pacific \(Singapore\), and US West \(Los Angeles\)\.
+\*Persistent file systems in the following AWS Regions provide network burst up to 530 MB/s per TiB of storage: Europe \(Frankfurt\), Europe \(London\), Europe \(Stockholm\), Asia Pacific \(Hong Kong\), Asia Pacific \(Singapore\), Canada \(Central\), and US West \(Los Angeles\)\.
 
 ### Example: Aggregate Baseline and Burst Throughput<a name="example-persistant-throughput"></a>
 
