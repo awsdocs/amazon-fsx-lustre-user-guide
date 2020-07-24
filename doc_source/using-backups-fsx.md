@@ -1,8 +1,11 @@
 # Working with Backups<a name="using-backups-fsx"></a>
 
-With Amazon FSx for Lustre, backups are file\-system\-consistent, highly durable, and incremental\. To ensure high durability, Amazon FSx for Lustre stores backups in Amazon Simple Storage Service \(Amazon S3\) with 99\.999999999% \(11 9's\) of durability\. 
+With Amazon FSx for Lustre, you can take automatic daily backups and manual backups of persistent file systems that are not linked to an Amazon S3 durable data repository\. Amazon FSx backups are file\-system\-consistent, highly durable, and incremental\. To ensure high durability, Amazon FSx for Lustre stores backups in Amazon Simple Storage Service \(Amazon S3\) with 99\.999999999% \(11 9's\) durability\.
 
 Amazon FSx for Lustre backups are incremental, whether they are generated using the automatic daily backup or the manual backup feature\. This means that only the data on the file system that has changed after your most recent backup is saved\. This minimizes the time required to create the backup and saves on storage costs by not duplicating data\. When you delete a backup, only the data unique to that backup is removed\. Each Amazon FSx for Lustre backup contains all of the information that is needed to create a new file system from the backup, effectively restoring a point\-in\-time snapshot of the file system\.
+
+**Note**  
+Backups are available only on persistent file systems that are not linked to an Amazon S3 durable data repository\. For more information, see [Using File System Deployment Options](using-fsx-lustre.md) and [Using data repositories](fsx-data-repositories.md)\.
 
 Creating regular backups for your file system is a best practice that complements the replication that Amazon FSx for Lustre performs for your file system\. Amazon FSx backups help support your backup retention and compliance needs\. Working with Amazon FSx for Lustre backups is easy, whether it's creating backups, restoring a file system from a backup, or deleting a backup\.
 

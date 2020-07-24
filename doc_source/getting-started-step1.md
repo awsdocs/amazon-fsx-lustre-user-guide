@@ -28,7 +28,7 @@ Next, you create your file system in the console\.
    + For **VPC security groups**, the ID for the default security group for your VPC should be already added\. If you're not using the default security group, make sure that the following inbound rule is added to the security group you're using for this getting started exercise\.    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/fsx/latest/LustreGuide/getting-started-step1.html)
 
-     The following screenshot shows an example of editing inbound rules\.  
+     The following screen capture shows an example of editing inbound rules\.  
 ![\[Inbound traffic rule on the default security group assigned to the Amazon FSx for Lustre file system.\]](http://docs.aws.amazon.com/fsx/latest/LustreGuide/images/Inbound-Traffic-Lustrec-rule.PNG)
    + For **Subnet**, choose any value from the list of available subnets\.
 
@@ -37,13 +37,33 @@ Next, you create your file system in the console\.
    + For a scratch file system, data at rest is encrypted using the default Amazon FSx–managed key\.
    + For scratch 2 and persistent file systems, data in transit is encrypted automatically when the file system is accessed from a supported Amazon EC2 instance type\. For more information, see [Encrypting Data in Transit](encryption-in-transit-fsxl.md)\.
 
-1. \(Optional\) For **Data repository integration**, choose ** Amazon S3** and specify the Amazon S3 bucket \(with optional prefix\) as the data repository source\.
+1. \(Optional\) Use the **Data repository import/export** panel to configure a data repository linked to an Amazon S3 bucket\.
 
-   Keep **Export prefix** at the default setting\. For more information about the data repository integration, see [Using Data Repositories with Amazon FSx for Lustre](fsx-data-repositories.md)\.
+    Select **Import data from and export data to S3** to expand the panel and configure the data repository settings\.  
+![\[The Data repository import and export configuration panel in the Create Lustre file system page.\]](http://docs.aws.amazon.com/fsx/latest/LustreGuide/images/Data-repository-int.png)
+
+1. \(Optional\) Choose how Amazon FSx imports new and changed files from the linked S3 bucket\. By default, Amazon FSx imports file listings at file system creation, and then whenever new files are added after this initial import\. For more information, see [Automatically import updates from your S3 bucket](autoimport-data-repo.md)\. 
+
+1. Enter an optional **Import prefix** if you want to import only some of the data in your S3 bucket into your file system\. The import prefix defines where in your S3 bucket to import data from\. For more information, see [Automatically import updates from your S3 bucket](autoimport-data-repo.md)\.
+
+1. Keep **Export prefix** at the default setting\. For more information about the data repository integration, see [Linking your file system to an S3 bucket](create-fs-linked-data-repo.md)\.
 **Important**  
 If you link one or more Amazon FSx for Lustre file systems to an Amazon S3 bucket, don't delete the Amazon S3 bucket until all linked file systems have been deleted\.
 
-1. Choose **Review and create**\.
+1. In **Backup and maintenance \- *optional*** you can do the following\.
+
+   For daily automatic backups:
+   +  Disable the **Daily automatic backup**, which is enabled by default\. 
+   + Set the start time for **Daily automatic backup window**\.
+   + Set the **Automatic backup retention period**, from 1 \- 35 days\.
+
+   For more information, see [Working with Backups](using-backups-fsx.md)\.
+
+1. Set the **Weekly maintenance window** start time, or leave it set to the default **No preference**\.
+
+1. Create any tags that you want to apply to your file system\.
+
+1. Choose **Next** to display the **Create file system summary** page\.
 
 1. Review the settings for your Amazon FSx for Lustre file system, and choose **Create file system**\.
 

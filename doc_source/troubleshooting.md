@@ -72,15 +72,58 @@ mount.lustre: mount file_system_dns_name@tcp:/mountname at /mnt/fsx failed: Inpu
 
  Make sure that the client's VPC security groups have the correct outbound traffic rules applied\. This recommendation holds true especially if you aren't using the default security group, or if you have modified the default security group\. For more information, see [Amazon VPC Security Groups](limit-access-security-groups.md#fsx-vpc-security-groups)\. 
 
-## Creating a File System with Data Repository Fails<a name="slr-permissions-fails"></a>
+## Misconfigured linked S3 bucket<a name="troubleshooting-misconfigured-data-repository"></a>
 
-You can't create a file system linked to a data repository in Amazon S3 bucket, and encounter an error like the following\.
+In some cases, an Amazon FSx for Lustre file system's linked S3 bucket will have a misconfigured data repository lifecycle state\. For more information, see [Data repository lifecycle state](overview-data-repo.md#data-repository-lifecycles)\. A linked data repository can have a misconfigured lifecycle state under the following conditions:
++ The linked S3 bucket has an existing event notification configuration with event types that overlap with the Amazon FSx event notification configuration \(`s3:ObjectCreated:*`, `s3:ObjectRemoved:*`\)\.
++ The Amazon FSx event notification configuration on the linked S3 bucket was deleted or modified\.
++ Amazon FSx does not have the necessary IAM permissions required to access the linked S3 bucket\.
+
+**Possible cause**
+
+Amazon FSx does not have the necessary IAM permissions required to access the linked S3 bucket\.
+
+**Action to Take**
+
+1. Ensure that your IAM entity \(user, group, or role\) has the appropriate permissions to create file systems\. Doing this includes adding the permissions policy that supports the Amazon FSx for Lustre service\-linked role\. For more information, see [Adding Permissions to Use Data Repositories in Amazon S3](setting-up.md#fsx-adding-permissions-s3)\.
+
+1. Using the Amazon FSx CLI or API, refresh the file system's `AutoImportPolicy` with the `update-file-system` CLI command \([UpdateFileSystem](https://docs.aws.amazon.com/fsx/latest/APIReference/API_UpdateFileSystem.html) is the equivalent API action\), as follows\. 
+
+   ```
+   aws fsx update-file-system \
+   --file-system-id fs-0123456789abcdef0 \
+   --lustre-configuration AutoImportPolicy=the_existing_AutoImportPolicy
+   ```
+
+For more information about service\-linked roles, see [Using Service\-Linked Roles for Amazon FSx for Lustre](using-service-linked-roles.md)\.
+
+**Possible causes**
+
+A linked S3 bucket can have a misconfigured data repository lifecycle state if either of the following conditions exist:
++ The linked S3 bucket has an existing event notification configuration with event types that overlap with the Amazon FSx event notification configuration \(`s3:ObjectCreated:*`, `s3:ObjectRemoved:*`\)\. 
++ The Amazon FSx event notification configuration on the linked S3 bucket was deleted or modified\.
+
+**Action to take**
+
+1. Remove any existing event notification on the linked S3 bucket that uses either of the event types that the FSx event configuration uses, `s3:ObjectCreated:*` and `s3:ObjectRemoved:*`\.
+
+1. Reapply the FSx event notification configuration on the S3 bucket by using the Amazon FSx CLI or API, to refresh the file system's `AutoImportPolicy`\. Do so with the `update-file-system` CLI command \([UpdateFileSystem](https://docs.aws.amazon.com/fsx/latest/APIReference/API_UpdateFileSystem.html) is the equivalent API action\), as follows\. 
+
+   ```
+   aws fsx update-file-system \
+   --file-system-id fs-0123456789abcdef0 \
+   --lustre-configuration AutoImportPolicy=the_existing_AutoImportPolicy
+   ```
+
+## Cannot create a file system that is linked to an S3 bucket<a name="slr-permissions-fails"></a>
+
+If creating a new file system that is linked to an S3 bucket fails with an error message similar to the following\.
 
 ```
 User: arn:aws:iam::012345678901:user/username is not authorized to perform: iam:PutRolePolicy on resource: resource ARN
 ```
 
-This error can happen if you try to create a file system linked to a data repository in an Amazon S3 bucket without the necessary IAM permissions\. The required IAM permissions support the Amazon FSx for Lustre service\-linked role that is used to access the specified Amazon S3 bucket on your behalf\.
+This error can happen if you try to create a file system linked to an Amazon S3 bucket without the necessary IAM permissions\. The required IAM permissions support the Amazon FSx for Lustre service\-linked role that is used to access the specified Amazon S3 bucket on your behalf\.
 
 **Action to Take**
 

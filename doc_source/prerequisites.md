@@ -2,7 +2,7 @@
 
 To perform this getting started exercise, you need the following:
 + An AWS account with the permissions necessary to create an Amazon FSx for Lustre file system and an Amazon EC2 instance\. For more information, see [Setting Up](setting-up.md)\.
-+ An Amazon EC2 instance running a supported Linux release in your virtual private cloud \(VPC\) based on the Amazon VPC service\. You will install the Lustre client on this EC2 instance, and then mount you're Amazon FSx for Lustre file system on the EC2 instance\. The Lustre client supports Amazon Linux, Amazon Linux 2, CentOS and Red Hat Enterprise Linux 7\.5, 7\.6, 7\.7, and newer 7\.x versions, SUSE Linux Enterprise Server 12 SP3, and Ubuntu 16\.04 and 18\.04\. For this getting started exercise, we recommend using CentOS 7\.5, which is available in the [AWS Marketplace](https://aws.amazon.com/marketplace/pp/B07DPPMZ6R?qid=1551900841128&sr=0-1&ref_=srh_res_product_title)\. 
++ An Amazon EC2 instance running a supported Linux release in your virtual private cloud \(VPC\) based on the Amazon VPC service\. You will install the Lustre client on this EC2 instance, and then mount you're Amazon FSx for Lustre file system on the EC2 instance\. The Lustre client supports Amazon Linux, Amazon Linux 2, CentOS and Red Hat Enterprise Linux 7\.5, 7\.6, 7\.7, and newer 7\.x versions, SUSE Linux Enterprise Server 12 SP3, and Ubuntu 16\.04 and 18\.04\. For this getting started exercise, we recommend using Amazon Linux 2\.
 
   When creating your Amazon EC2 instance for this getting started exercise, keep the following in mind:
   + We recommend that you create your instance in your default VPC\.

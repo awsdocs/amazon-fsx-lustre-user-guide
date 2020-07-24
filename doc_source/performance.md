@@ -18,7 +18,21 @@ Amazon FSx for Lustre file systems provide burst read throughput using a network
 
 The following table shows the disk and network throughput and IOPS for each TiB of file system storage capacity, for Amazon FSx for Lustre deployment options:
 
-[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/fsx/latest/LustreGuide/performance.html)
+
+| Deployment Type | Network throughput \(MB/s per TiB of file system storage provisioned\) | Network IOPS \(IOPS per TiB of file system storage provisioned\) | Memory for caching \(GiB per TiB of file system storage provisioned\) | Disk throughput \(MB/s per TiB of file system storage provisioned\) | Disk IOPS \(IOPS per TiB of file system storage provisioned\) | 
+| --- |--- |--- |--- |--- |--- |
+| **** | **Baseline** | **Burst** | **** | **** | **Baseline** | **Burst** | **** | 
+| --- |--- |--- |--- |--- |--- |--- |--- |
+| SCRATCH\_1 | 200 | 350 | Tens of thousands baseline | 17 | 200 \(read\)200 \(write\) | – | Thousands sustained | 
+| --- |--- |--- |--- |--- |--- |--- |--- |
+| SCRATCH\_2 | 200 | 1300 | Tens of thousands baselineHundreds of thousands burst | 6\.7 | 200 \(read\)100 \(write\) | – | 
+| --- |--- |--- |--- |--- |--- |--- |
+| PERSISTENT\-50 | 250 | 1,300\* | 2\.2 | 50 | 240 | Thousands sustained and burst | 
+| --- |--- |--- |--- |--- |--- |--- |
+| PERSISTENT\-100 | 500 | 1,300\* | 4\.4 | 100 | 240 | 
+| --- |--- |--- |--- |--- |--- |
+| PERSISTENT\-200 | 750 | 1,300\* | 8\.8 | 200 | 240 | 
+| --- |--- |--- |--- |--- |--- |
 
 **Note**  
 \*Persistent file systems in the following AWS Regions provide network burst up to 530 MB/s per TiB of storage: Europe \(Frankfurt\), Europe \(London\), Europe \(Stockholm\), Asia Pacific \(Hong Kong\), Asia Pacific \(Singapore\), Canada \(Central\), and US West \(Los Angeles\)\.

@@ -1,11 +1,15 @@
 # Document History<a name="doc-history"></a>
 + **API version:** 
-+ **Latest documentation update:** February 12, 2020
++ * role="bold">Latest documentation update:* July 23, 2020
 
 The following table describes important changes to the *Amazon FSx for Lustre User Guide*\. For notifications about documentation updates, you can subscribe to the RSS feed\.
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [Support for importing linked data repository changes into FSx for Lustre](#doc-history) | You can now configure your Amazon FSx for Lustre file system to automatically import new files added to and files that have changed in a linked data repository after file system creation\. For more information, see [Automatically import updates from the data repository](https://docs.aws.amazon.com/fsx/latest/LustreGuide/autoimport-data-repo.html)\. | July 23, 2020 | 
+| [Lustre client support for SUSE Linux SP4 and SP5 added](#doc-history) | The Amazon FSx for Lustre client now supports Amazon EC2 instances running SUSE Linux SP4 and SP5\. For more information see [Installing the lustre client](https://docs.aws.amazon.com/fsx/latest/LustreGuide/install-lustre-client.html)\. | July 20, 2020 | 
+| [Lustre client support for Centos and Red Hat Enterprise Linux \(RHEL\) 8\.2 added](#doc-history) | The Amazon FSx for Lustre client now supports Amazon EC2 instances running Centos and Red Hat Enterprise Linux \(RHEL\) 8\.2\. For more information see [Installing the lustre client](https://docs.aws.amazon.com/fsx/latest/LustreGuide/install-lustre-client.html)\. | July 20, 2020 | 
+| [Support for automatic and manual file system backups added](#doc-history) | You can now take automatic daily backups and manual backups of file systems not linked to an Amazon S3 durable data repository\. For more information, see [Working with backups](https://docs.aws.amazon.com/fsx/latest/LustreGuide/using-backups-fsx.html)\. | June 23, 2020 | 
 | [Two new file system deployment types released](#doc-history) |  Scratch file systems are designed for temporary storage and shorter\-term processing of data\. Persistent file systems are designed for longer\-term storage and workloads\. For more information, see [ FSx for Lustre Deployment Options](https://docs.aws.amazon.com/fsx/latest/LustreGuide/using-fsx-lustre.html#lustre-deployment-types)\. | February 12, 2020 | 
 | [Support for POSIX metadata added](#doc-history) | Amazon FSx for Lustre retains associated POSIX metadata when importing and exporting files to a linked durable data repository on Amazon S3\. For more information, see [ POSIX Metadata Support for Data Repositories](https://docs.aws.amazon.com/fsx/latest/LustreGuide/posix-metadata-support.html)\. | December 23, 2019 | 
 | [New data repository tasks feature released](#doc-history) | You can now export changed data and associated POSIX metadata to a linked durable data repository on Amazon S3 using data repository tasks\. For more information, see [ Transferring Data & Metadata Using Data Repository Tasks](https://docs.aws.amazon.com/fsx/latest/LustreGuide/data-repository-tasks.html)\. | December 23, 2019 | 

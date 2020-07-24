@@ -18,7 +18,7 @@ You can use Amazon FSx for Lustre to process cloud datasets stored for the longe
 
 ### Amazon S3 Integration<a name="s3-integration"></a>
 
-Amazon FSx for Lustre integrates with Amazon S3, making it easy for you to process cloud datasets using the Lustre high\-performance file system\. You can use Amazon FSx for Lustre to process cloud datasets stored in Amazon S3 by linking an S3 bucket to the file system\. When linked to a durable data repository on Amazon S3, an Amazon FSx for Lustre file system transparently presents S3 objects as files\. The file system also enables you to write file system data back to S3\. Data repository tasks simplify the transfer of data and metadata between your Amazon FSx for Lustre file system and its durable data repository on Amazon S3\. For more information, see [Using Data Repositories with Amazon FSx for Lustre](fsx-data-repositories.md) and [Transferring Data and Metadata with Data Repository Tasks](data-repository-tasks.md)\. 
+Amazon FSx for Lustre integrates with Amazon S3, making it easy for you to process cloud datasets using the Lustre high\-performance file system\. You can use Amazon FSx for Lustre to process cloud datasets stored in Amazon S3 by linking an S3 bucket to the file system\. When linked to an Amazon S3 bucket, an Amazon FSx for Lustre file system transparently presents S3 objects as files\. Amazon FSx imports listings of all existing files in your S3 bucket at file system creation\. Amazon FSx can also import listings of files added to the data repository after the file system is created\. You can set the import preferences to match your workflow needs\. The file system also enables you to write file system data back to S3\. Data repository tasks simplify the transfer of data and metadata between your Amazon FSx for Lustre file system and its durable data repository on Amazon S3\. For more information, see [Using data repositories with Amazon FSx for Lustre](fsx-data-repositories.md) and [Data repository tasks](data-repository-tasks.md)\. 
 
 ### On\-Premises Data Repositories<a name="on-prem-repo"></a>
 
@@ -71,7 +71,7 @@ If you are a first\-time user of Amazon FSx for Lustre, we recommend that you re
 
 1. For information on performance, see [Amazon FSx for Lustre Performance](performance.md)\.
 
-1. For information on linking your file system to an Amazon S3 bucket data repository, see [Using Data Repositories with Amazon FSx for Lustre](fsx-data-repositories.md)\.
+1. For information on linking your file system to an Amazon S3 bucket data repository, see [Using data repositories with Amazon FSx for Lustre](fsx-data-repositories.md)\.
 
 1. For Amazon FSx for Lustre security details, see [Security in Amazon FSx for Lustre](security.md)\.
 

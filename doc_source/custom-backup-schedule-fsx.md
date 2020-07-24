@@ -14,6 +14,10 @@ For more information on CRON schedule patterns, see [Schedule Expressions for Ru
 
 ## Architecture Overview<a name="fsx-custom-backup-overview"></a>
 
+Deploying this solution builds the following resources in the AWS Cloud\.
+
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/fsx/latest/LustreGuide/images/fsx-custom-backup-architecture.png)
+
 This solution does the following:
 
 1. The AWS CloudFormation template deploys an CloudWatch Event, a Lambda function, an Amazon SNS queue, and an IAM role\. The IAM role gives the Lambda function permission to invoke the Amazon FSx for Lustre API operations\.

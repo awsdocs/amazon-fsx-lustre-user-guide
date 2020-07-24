@@ -4,33 +4,29 @@ To mount your Amazon FSx for Lustre file system from your Amazon EC2 instance, f
 
 **To download the Lustre client onto your Amazon EC2 instance**
 
-1. Connect to your Amazon EC2 instance\. For more information, see [Connecting to Your Linux Instance from Windows Using PuTTY](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/putty.html) or [Connecting to Your Linux Instance Using SSH](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/AccessingInstancesLinux.html) in the *Amazon EC2 User Guide for Linux Instances*\.
-
 1. Open a terminal on your client\.
 
-1. Determine which kernel is currently running on the compute instance with the following command\.
+1. Determine which kernel is currently running on your compute instance by running the following command\.
 
    ```
    uname -r
    ```
 
 1. Do one of the following:
-   + If the instance is running kernel version `3.10.0-862.*`, download and install the Lustre 2\.10\.5 client with the following commands\. The client comes in two packages to download and install\.
+   + If the command returns `4.14.104-95.84.amzn2.x86_64` for x86\-based EC2 instances, or `4.14.181-142.260.amzn2.aarch64` or higher for Graviton2\-based EC2 instances, download and install the Lustre client with the following command\.
 
      ```
-     sudo yum -y install https://downloads.whamcloud.com/public/lustre/fsx-data-repositorieslustre-2.10.5/el7/client/RPMS/x86_64/kmod-lustre-client-2.10.5-1.el7.x86_64.rpm
-     sudo yum -y install https://downloads.whamcloud.com/public/lustre/lustre-2.10.5/el7/client/RPMS/x86_64/lustre-client-2.10.5-1.el7.x86_64.rpm
+     sudo amazon-linux-extras install -y lustre2.10
      ```
-   + PERSISTENT\_1
-
-     If the instance is running kernel version `3.10.0-957.*`, download and install the Lustre 2\.10\.6 client with the following commands\. The client comes in two packages to download and install\.
+   +  If the command returns a result less than `4.14.104-95.84.amzn2.x86_64` for x86\-based EC2 instances, or less than `4.14.181-142.260.amzn2.aarch64` for Graviton2\-based EC2 instances, update the kernel and reboot your Amazon EC2 instance by running the following command\. 
 
      ```
-     sudo yum -y install https://downloads.whamcloud.com/public/lustre/lustre-2.10.6/el7/client/RPMS/x86_64/kmod-lustre-client-2.10.6-1.el7.x86_64.rpm
-     sudo yum -y install https://downloads.whamcloud.com/public/lustre/lustre-2.10.6/el7/client/RPMS/x86_64/lustre-client-2.10.6-1.el7.x86_64.rpm
+     sudo yum -y update kernel && sudo reboot
      ```
-**Note**  
-You might need to reboot your compute instance for the client to finish installing\.
+
+     Confirm that the kernel has been updated using the uname \-r command\. Then download and install the Lustre client as described above\.
+
+   For information about installing the Lustre client on other Linux distributions, see [Installing the Lustre Client](install-lustre-client.md)\.
 
 **To mount your file system**
 
