@@ -8,17 +8,39 @@ As a fully managed service, Amazon FSx makes it easier for you to use Lustre for
 
  Amazon FSx for Lustre is POSIX\-compliant, so you can use your current Linux\-based applications without having to make any changes\. Amazon FSx for Lustre provides a native file system interface and works as any file system does with your Linux operating system\. It also provides read\-after\-write consistency and supports file locking\. 
 
+**Topics**
++ [Multiple Deployment Options](#deployment-options)
++ [Multiple Storage Options](#storage-options)
++ [Amazon FSx for Lustre and Data Repositories](#data-repo-features)
++ [Accessing File Systems](#compute-access)
++ [Integrations with AWS Services](#integration-aws-services)
++ [Security and Compliance](#security-compliance)
++ [Assumptions](#assumptions)
++ [Pricing for Amazon FSx for Lustre](#pricing)
++ [Amazon FSx for Lustre Forums](#fsx-forums)
++ [Are You a First\-Time User of Amazon FSx for Lustre?](#first-time-user)
+
 ## Multiple Deployment Options<a name="deployment-options"></a>
 
 Amazon FSx for Lustre offers a choice of *scratch* and *persistent* file systems to accommodate different data processing needs\. Scratch file systems are ideal for temporary storage and shorter\-term processing of data\. Data is not replicated and does not persist if a file server fails\. Persistent file systems are ideal for longer\-term storage and workloads\. In persistent file systems, data is replicated, and file servers are replaced if they fail\. For more information, see [File System Deployment Options for Amazon FSx for Lustre ](using-fsx-lustre.md#lustre-deployment-types)\.
 
+## Multiple Storage Options<a name="storage-options"></a>
+
+Amazon FSx for Lustre offers a choice of SSD \(solid state drive\) and HDD \(hard disk drive\) storage types that are optimized for different data processing requirements\.
++ SSD storage options — For low\-latency, IOPS\-intensive workloads that typically have small, random file operations, choose one of the SSD storage options\.
++ HDD storage options — For throughput\-intensive workloads that typically have large, sequential file operations, choose one of the HDD storage options\.
+
+If you are provisioning a file system with the HDD storage option, you might also want to consider provisioning a read\-only SSD cache automatically sized to 20 percent of your HDD storage capacity\. This provides sub\-millisecond latencies and higher IOPS for frequently accessed files\. Both SSD\-based and HDD\-based file systems are provisioned with SSD\-based metadata servers so that all metadata operations, which represent the majority of file system operations, are delivered with sub\-millisecond latencies\. 
+
+For more information about performance of these storage options, see [Amazon FSx for Lustre Performance](performance.md)\.
+
 ## Amazon FSx for Lustre and Data Repositories<a name="data-repo-features"></a>
 
-You can use Amazon FSx for Lustre to process cloud datasets stored for the longer\-term on persistent file systems, Amazon S3, or your on\-premises data repository using in\-cloud compute instances\.
+Amazon FSx for Lustre file systems can be linked to data repositories on Amazon S3 or to an on\-premises data store\.
 
 ### Amazon S3 Integration<a name="s3-integration"></a>
 
-Amazon FSx for Lustre integrates with Amazon S3, making it easy for you to process cloud datasets using the Lustre high\-performance file system\. You can use Amazon FSx for Lustre to process cloud datasets stored in Amazon S3 by linking an S3 bucket to the file system\. When linked to an Amazon S3 bucket, an Amazon FSx for Lustre file system transparently presents S3 objects as files\. Amazon FSx imports listings of all existing files in your S3 bucket at file system creation\. Amazon FSx can also import listings of files added to the data repository after the file system is created\. You can set the import preferences to match your workflow needs\. The file system also enables you to write file system data back to S3\. Data repository tasks simplify the transfer of data and metadata between your Amazon FSx for Lustre file system and its durable data repository on Amazon S3\. For more information, see [Using data repositories with Amazon FSx for Lustre](fsx-data-repositories.md) and [Data repository tasks](data-repository-tasks.md)\. 
+Amazon FSx for Lustre integrates with Amazon S3, making it easy for you to process cloud datasets using the Lustre high\-performance file system\. When linked to an Amazon S3 bucket, an Amazon FSx for Lustre file system transparently presents S3 objects as files\. Amazon FSx imports listings of all existing files in your S3 bucket at file system creation\. Amazon FSx can also import listings of files added to the data repository after the file system is created\. You can set the import preferences to match your workflow needs\. The file system also enables you to write file system data back to S3\. Data repository tasks simplify the transfer of data and metadata between your Amazon FSx for Lustre file system and its durable data repository on Amazon S3\. For more information, see [Using data repositories with Amazon FSx for Lustre](fsx-data-repositories.md) and [Data Repository Tasks](data-repository-tasks.md)\. 
 
 ### On\-Premises Data Repositories<a name="on-prem-repo"></a>
 
@@ -38,15 +60,15 @@ For more information, see [Accessing File Systems](accessing-fs.md)\.
 
 ## Integrations with AWS Services<a name="integration-aws-services"></a>
 
- Amazon FSx for Lustre integrates with Amazon SageMaker as an input data source\. When using Amazon SageMaker with Amazon FSx for Lustre, your machine learning training jobs are accelerated by eliminating the initial download step from Amazon S3\. Additionally, your total cost of ownership \(TCO\) is reduced by avoiding the repetitive download of common objects for iterative jobs on the same dataset as you save on S3 requests costs\. For more information, see [What Is Amazon SageMaker?](https://docs.aws.amazon.com/sagemaker/latest/dg/whatis.html) in the *Amazon SageMaker Developer Guide* 
+ Amazon FSx for Lustre integrates with SageMaker as an input data source\. When using SageMaker with Amazon FSx for Lustre, your machine learning training jobs are accelerated by eliminating the initial download step from Amazon S3\. Additionally, your total cost of ownership \(TCO\) is reduced by avoiding the repetitive download of common objects for iterative jobs on the same dataset as you save on S3 requests costs\. For more information, see [What Is SageMaker?](https://docs.aws.amazon.com/sagemaker/latest/dg/whatis.html) in the *Amazon SageMaker Developer Guide*\. 
 
-Amazon FSx for Lustre integrates with AWS Batch using EC2 Launch Templates\. AWS Batch enables you to run batch computing workloads on the AWS Cloud, including high\-performance computing \(HPC\), machine learning \(ML\), and other asynchronous workloads\. AWS Batch automatically and dynamically sizes instances based on job resource requirements\. For more information, see [What Is AWS Batch?](https://docs.aws.amazon.com/batch/latest/userguide/what-is-batch.html) in the *AWS Batch User Guide*\. 
+Amazon FSx for Lustre integrates with AWS Batch using EC2 Launch Templates\. AWS Batch enables you to run batch computing workloads on the AWS Cloud, including high performance computing \(HPC\), machine learning \(ML\), and other asynchronous workloads\. AWS Batch automatically and dynamically sizes instances based on job resource requirements\. For more information, see [What Is AWS Batch?](https://docs.aws.amazon.com/batch/latest/userguide/what-is-batch.html) in the *AWS Batch User Guide*\. 
 
  Amazon FSx for Lustre integrates with AWS ParallelCluster\. AWS ParallelCluster is an AWS\-supported open\-source cluster management tool used to deploy and manage HPC clusters\. It can automatically create Amazon FSx for Lustre file systems or use existing file systems during the cluster creation process\. 
 
 ## Security and Compliance<a name="security-compliance"></a>
 
-Amazon FSx for Lustre file systems support encryption at rest and in transit\. Amazon FSx automatically encrypts file system data at rest using keys managed in AWS Key Management Service \(AWS KMS\)\. Data in transit is also automatically encrypted on file systems in certain AWS Regions when accessed from supported EC2 instances\. For more information about data encryption in Amazon FSx for Lustre, including AWS Regions where encryption of data in transit is supported, see [Data Encryption in Amazon FSx for Lustre](encryption-fsxl.md)\. Amazon FSx has been assessed to comply with ISO, PCI\-DSS, and SOC certifications, and is HIPAA eligible\. For more more information, see [Security in Amazon FSx for Lustre](security.md)\.
+Amazon FSx for Lustre file systems support encryption at rest and in transit\. Amazon FSx automatically encrypts file system data at rest using keys managed in AWS Key Management Service \(AWS KMS\)\. Data in transit is also automatically encrypted on file systems in certain AWS Regions when accessed from supported EC2 instances\. For more information about data encryption in Amazon FSx for Lustre, including AWS Regions where encryption of data in transit is supported, see [Data Encryption in Amazon FSx for Lustre](encryption-fsxl.md)\. Amazon FSx has been assessed to comply with ISO, PCI\-DSS, and SOC certifications, and is HIPAA eligible\. For more information, see [Security in Amazon FSx for Lustre](security.md)\.
 
 ## Assumptions<a name="assumptions"></a>
 

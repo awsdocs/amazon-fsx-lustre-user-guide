@@ -1,4 +1,4 @@
-# Data repository tasks<a name="data-repository-tasks"></a>
+# Data Repository Tasks<a name="data-repository-tasks"></a>
 
 By using data repository tasks, you can manage the transfer of data and metadata between your Amazon FSx for Lustre file system and its durable data repository on Amazon S3\. 
 
@@ -8,7 +8,7 @@ Data repository tasks maintain the file system's Portable Operating System Inter
 
 ## Types of Data Repository Tasks<a name="data-repo-task-types"></a>
 
-Currently, the **Export to repository** data repository task is the only task available\. For more information about using this task to export from your Lustre file system to its linked data repository on S3, see [Using data repository tasks to export data and metadata changes](export-data-repo-task.md)\.
+Currently, the **Export to repository** data repository task is the only task available\. For more information about using this task to export from your Lustre file system to its linked data repository on S3, see [Using Data Repository Tasks to Export Data and Metadata Changes](export-data-repo-task.md)\.
 
 **Topics**
 + [Types of Data Repository Tasks](#data-repo-task-types)

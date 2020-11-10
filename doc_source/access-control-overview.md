@@ -25,6 +25,7 @@ In Amazon FSx for Lustre, the primary resource is a *file system*\. Amazon FSx f
 | --- | --- | 
 | File system | arn:aws:fsx:region:account\-id:file\-system/filesystem\-id | 
 | Data repository task | arn:aws:fsx:region:account\-id:task/task\-id | 
+| Backup | arn:aws:fsx:region:account\-id:backup/backup\-id | 
 
 Amazon FSx for Lustre provides a set of operations to work with Amazon FSx for Lustre resources\. For a list of available operations, see the [Amazon FSx for Lustre API Reference](https://docs.aws.amazon.com/fsx/latest/APIReference/Welcome.html)\.
 

@@ -1,4 +1,4 @@
-# Amazon FSx for Lustre Maintenance Windows<a name="maintenance-windows"></a>
+# Amazon FSx for Lustre maintenance windows<a name="maintenance-windows"></a>
 
 Amazon FSx for Lustre performs routine software patching for the Lustre software it manages\. The maintenance window is your opportunity to control what day and time of the week this software patching occurs\.
 
@@ -12,11 +12,11 @@ You can use the Amazon FSx Management Console, AWS CLI or one of the AWS SDKs to
 
 1. Open the Amazon FSx console at [https://console\.aws\.amazon\.com/fsx/](https://console.aws.amazon.com/fsx/)\.
 
-1. Choose **File systems** in the left hand navigation column\.
+1. Choose **File systems** in the navigation pane\.
 
-1. Choose the file system that you want to changes the maintenance window for\. The file system details page displays\.
+1. Choose the file system that you want to change the maintenance window for\. The file system details page appears\.
 
-1. Choose the **Maintenance** tab\. The maintenance window **Settings** panel displays\.
+1. Choose the **Maintenance** tab\. The maintenance window **Settings** panel appears\.
 
 1. Choose **Edit** and enter the new day and time that you want the maintenance window to start\.
 

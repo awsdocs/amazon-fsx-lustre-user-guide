@@ -14,7 +14,7 @@ You can mount your file system from an Amazon EC2 instance\.
 
 1. Mount the Amazon FSx for Lustre file system to the directory that you created\. Use the following command and replace the following items:
    + Replace `file_system_dns_name` with the actual file system's DNS name\.
-   + Replace `mountname` with the file system's mount name\. This mount name is returned in the `CreateFileSystem` API operation response\. It's also returned in the response of the describe\-file\-systems AWS CLI command, the describe\-file\-systems CLI command, and the [DescribeFileSystems](https://docs.aws.amazon.com/APIReference/API_DescribeFileSystems.html) API operation\.
+   + Replace `mountname` with the file system's mount name\. This mount name is returned in the `CreateFileSystem` API operation response\. It's also returned in the response of the describe\-file\-systems AWS CLI command, and the [DescribeFileSystems](https://docs.aws.amazon.com/fsx/latest/APIReference/API_DescribeFileSystems.html) API operation\.
 
    ```
    sudo mount -t lustre -o noatime,flock file_system_dns_name@tcp:/mountname /fsx

@@ -18,9 +18,10 @@ For `AWSServiceRoleForAmazonFSx`, the role permissions policy allows Amazon FSx 
 For `AWSServiceRoleForFSxS3Access_fs-01234567890`, the role permissions policy allows Amazon FSx for Lustre to complete the following actions on your Amazon S3 bucket hosting your data repository\.
 + `s3:AbortMultipartUpload`
 + `s3:DeleteObject`
-+ `s3:PutObject`
 + `s3:Get*`
 + `s3:List*`
++ `s3:PutBucketNotification`
++ `s3:PutObject`
 
 You must configure permissions to allow an IAM entity \(such as a user, group, or role\) to create, edit, or delete a service\-linked role\. For more information, see [Service\-Linked Role Permissions](https://docs.aws.amazon.com/IAM/latest/UserGuide/using-service-linked-roles.html#service-linked-role-permissions) in the *IAM User Guide*\.
 
@@ -32,6 +33,11 @@ You don't need to manually create a service\-linked role\. When you create a fil
 The service\-linked roles can appear in your account if you completed an action in another service that uses the features supported by this role\. To learn more, see [A New Role Appeared in My IAM Account](https://docs.aws.amazon.com/IAM/latest/UserGuide/troubleshoot_roles.html#troubleshoot_roles_new-role-appeared)\.
 
 If you delete these service\-linked roles, and then need to create them again, you can use the same process to recreate the role in your account\. When you create a file system, Amazon FSx for Lustre creates the service\-linked role for you again\. 
+
+**Note**  
+In order for Amazon FSx to create the `AWSServiceRoleForFSxS3Access_fs-01234567890` service\-linked role, your IAM entity will need to be allowed access to the following IAM actions, in addition to the `AmazonFSxFullAccess` managed policy:  
+`iam:AttachRolePolicy`
+`iam:PutRolePolicy`
 
 ## Editing a Service\-Linked Role for Amazon FSx for Lustre<a name="edit-slr"></a>
 
@@ -50,4 +56,4 @@ Use the IAM console, the AWS CLI, or the IAM API to delete the AWSServiceRoleFor
 
 ## Supported Regions for Amazon FSx for Lustre Service\-Linked Roles<a name="slr-regions"></a>
 
-Amazon FSx for Lustre supports using service\-linked roles in all of the regions where the service is available\. For more information, see [AWS Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html)\.
+Amazon FSx for Lustre supports using service\-linked roles in all of the Regions where the service is available\. For more information, see [AWS Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html)\.

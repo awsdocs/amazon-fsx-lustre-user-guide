@@ -12,6 +12,8 @@ To specify an action, use the `fsx:` prefix followed by the API operation name \
 | Amazon FSx for Lustre API Operations | Required Permissions \(API Actions\) | Resource | 
 | --- | --- | --- | 
 |   [CreateFileSystem](https://docs.aws.amazon.com/fsx/latest/APIReference/API_CreateFileSystem.html)   |  `fsx:*`  |  `arn:aws:fsx:region:account-id:file-system/*`  | 
+|   [CreateBackup](https://docs.aws.amazon.com/fsx/latest/APIReference/API_CreateBackup.html)  |  `elasticfilesystem:CreateMountTarget` `ec2:DescribeSubnets` `ec2:DescribeNetworkInterfaces` `ec2:CreateNetworkInterface`  |  `arn:aws:fsx:region:account-id:backup/*` `arn:aws:fsx:region:account-id:file-system/*` `arn:aws:fsx:region:account-id:file-system/filesystem-id`  | 
+|   [CreateFileSystemFromBackup](https://docs.aws.amazon.com/fsx/latest/APIReference/API_CreateFileSystemFromBackup.html)   | fsx:CreateFileSystemFromBackup |  `arn:aws:fsx:region:account-id:file-system/*` `arn:aws:fsx:region:account-id:backup/*` `arn:aws:fsx:region:account-id:backup/backup-id`  | 
 | [DeleteFileSystem](https://docs.aws.amazon.com/fsx/latest/APIReference/API_DeleteFileSystem.html) | fsx:DeleteFileSystem |  `arn:aws:fsx:region:account-id:file-system/*` `arn:aws:fsx:region:account-id:file-system/filesystem-id`  | 
 |  [DescribeFileSystems](https://docs.aws.amazon.com/fsx/latest/APIReference/API_DescribeFileSystems.html) | fsx:DescribeFileSystems | N/A | 
 | [UpdateFileSystem](https://docs.aws.amazon.com/fsx/latest/APIReference/API_UpdateFileSystem.html) |  `fsx:UpdateFileSystem`  |  `arn:aws:fsx:region:account-id:file-system/*` `arn:aws:fsx:region:account-id:file-system/filesystem-id`  | 

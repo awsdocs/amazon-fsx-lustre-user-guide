@@ -4,11 +4,11 @@ Amazon FSx for Lustre, built on Lustre, the popular high\-performance file syste
 
 ## How Lustre File Systems Work<a name="how-lustre-fs-work"></a>
 
- Each Amazon FSx for Lustre file system is comprised of the file servers that the clients communicate with, and a set of disks attached to each file server that store your data\. Each file server employs a fast, in\-memory cache to enhance performance for the most frequently accessed data\. When a client accesses data that's stored in the in\-memory cache, the file server doesn't need to read it from disk, which reduces latency and increases the total amount of throughput you can drive\. The following diagram illustrates the paths of a write operation, a read operation served from disk, and a read operation served from in\-memory cache: 
+ Each Amazon FSx for Lustre file system consists of the file servers that the clients communicate with, and a set of disks attached to each file server that store your data\. Each file server employs a fast, in\-memory cache to enhance performance for the most frequently accessed data\. HDD\-based file systems can also be provisioned with an SSD\-based read cache to further enhance performance for the most frequently accessed data\. When a client accesses data that's stored in the in\-memory or SSD cache, the file server doesn't need to read it from disk, which reduces latency and increases the total amount of throughput you can drive\. The following diagram illustrates the paths of a write operation, a read operation served from disk, and a read operation served from in\-memory or SSD cache: 
 
 ![\[Amazon FSx for Lustre performance architecture.\]](http://docs.aws.amazon.com/fsx/latest/LustreGuide/images/LustrePerfDiagram.png)
 
- When you read data that is stored on the file server's in\-memory cache, file system performance is determined by the network throughput\. When you write data to your file system, or when you read data that is not stored on the in\-memory cache, file system performance is determined by the lower of the network throughput and disk throughput\. 
+ When you read data that is stored on the file server's in\-memory or SSD cache, file system performance is determined by the network throughput\. When you write data to your file system, or when you read data that is not stored on the in\-memory cache, file system performance is determined by the lower of the network throughput and disk throughput\. 
 
 ## Aggregate File System Performance<a name="fsx-aggregate-perf"></a>
 
@@ -16,26 +16,17 @@ The throughput that an Amazon FSx for Lustre file system supports is proportiona
 
 Amazon FSx for Lustre file systems provide burst read throughput using a network I/O credit mechanism to allocate network bandwidth based on average bandwidth utilization\. The file systems accrue credits when their network bandwidth usage is below their baseline limits, and can use these credits when they perform network data transfers\.
 
-The following table shows the disk and network throughput and IOPS for each TiB of file system storage capacity, for Amazon FSx for Lustre deployment options:
+The following tables show performance that the Amazon FSx for Lustre deployment options are designed for\.
 
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/fsx/latest/LustreGuide/images/hdd-performance-table.png)
 
-| Deployment Type | Network throughput \(MB/s per TiB of file system storage provisioned\) | Network IOPS \(IOPS per TiB of file system storage provisioned\) | Memory for caching \(GiB per TiB of file system storage provisioned\) | Disk throughput \(MB/s per TiB of file system storage provisioned\) | Disk IOPS \(IOPS per TiB of file system storage provisioned\) | 
-| --- |--- |--- |--- |--- |--- |
-| **** | **Baseline** | **Burst** | **** | **** | **Baseline** | **Burst** | **** | 
-| --- |--- |--- |--- |--- |--- |--- |--- |
-| SCRATCH\_1 | 200 | 350 | Tens of thousands baseline | 17 | 200 \(read\)200 \(write\) | – | Thousands sustained | 
-| --- |--- |--- |--- |--- |--- |--- |--- |
-| SCRATCH\_2 | 200 | 1300 | Tens of thousands baselineHundreds of thousands burst | 6\.7 | 200 \(read\)100 \(write\) | – | 
-| --- |--- |--- |--- |--- |--- |--- |
-| PERSISTENT\-50 | 250 | 1,300\* | 2\.2 | 50 | 240 | Thousands sustained and burst | 
-| --- |--- |--- |--- |--- |--- |--- |
-| PERSISTENT\-100 | 500 | 1,300\* | 4\.4 | 100 | 240 | 
-| --- |--- |--- |--- |--- |--- |
-| PERSISTENT\-200 | 750 | 1,300\* | 8\.8 | 200 | 240 | 
-| --- |--- |--- |--- |--- |--- |
+![\[Image NOT FOUND\]](http://docs.aws.amazon.com/fsx/latest/LustreGuide/images/ssd-performance-table.png)
 
 **Note**  
-\*Persistent file systems in the following AWS Regions provide network burst up to 530 MB/s per TiB of storage: Europe \(Frankfurt\), Europe \(London\), Europe \(Stockholm\), Asia Pacific \(Hong Kong\), Asia Pacific \(Singapore\), Canada \(Central\), and US West \(Los Angeles\)\.
+\*Persistent file systems in the following AWS Regions provide network burst up to 530 MB/s per TiB of storage: Asia Pacific \(Hong Kong\), Asia Pacific \(Singapore\), Canada \(Central\), Europe \(Frankfurt\), Europe \(London\), Europe \(Stockholm\), South America \(São Paulo\), China, and US West \(Los Angeles\)\.
+
+**Note**  
+The Amazon FSx for Lustre SCRATCH\_1 deployment option was designed to support approximately 200 MB/s/TiB\.
 
 ### Example: Aggregate Baseline and Burst Throughput<a name="example-persistant-throughput"></a>
 

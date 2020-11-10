@@ -4,11 +4,14 @@ Amazon FSx for Lustre provides a high performance, parallel file system that sto
 
 It's a best practice to link a highly durable long\-term data repository residing on Amazon S3 with your Amazon FSx for Lustre high\-performance file system\.
 
-In this scenario, you store your datasets on the S3 data repository\. When you create your Amazon FSx for Lustre file system, you link it to your S3 data repository\. At this point, the objects in your S3 bucket are listed as files and directories on your FSx file system\. Amazon FSx then automatically copies the file contents from S3 to your Lustre file system when a file is accessed for the first time on the Amazon FSx file system\. After your compute workload runs, or at any time, you can use a data repository task to export changes back to S3\. For more information, see [Using data repositories with Amazon FSx for Lustre](fsx-data-repositories.md) and [Using data repository tasks to export data and metadata changes](export-data-repo-task.md)\. 
+In this scenario, you store your datasets on the S3 data repository\. When you create your Amazon FSx for Lustre file system, you link it to your S3 data repository\. At this point, the objects in your S3 bucket are listed as files and directories on your FSx file system\. Amazon FSx then automatically copies the file contents from S3 to your Lustre file system when a file is accessed for the first time on the Amazon FSx file system\. After your compute workload runs, or at any time, you can use a data repository task to export changes back to S3\. For more information, see [Using data repositories with Amazon FSx for Lustre](fsx-data-repositories.md) and [Using Data Repository Tasks to Export Data and Metadata Changes](export-data-repo-task.md)\. 
 
 ## File System Deployment Options for Amazon FSx for Lustre<a name="lustre-deployment-types"></a>
 
-Amazon FSx for Lustre provides two file system deployment options: scratch and persistent\.
+Amazon FSx for Lustre provides two file system deployment options: **scratch** and **persistent**\. 
+
+**Note**  
+Both deployment options support solid state drive \(SSD\) storage\. However, hard disk drive \(HDD\) storage is only supported in the persistent deployment option\.
 
 ### Scratch File Systems<a name="scratch-file-system"></a>
 
@@ -39,7 +42,7 @@ The following table illustrates the availability or durability that scratch file
 
 Use persistent file systems for workloads that run for extended periods or indefinitely, and that might be sensitive to disruptions in availability\. 
 
-The following diagram shows the architecture for an Amazon FSx for Lustre persistent file system, with replicated, highly available file servers and data volumes within a single AZ\.
+The following diagram shows the architecture for an Amazon FSx for Lustre persistent file system, with replicated, highly available file servers and data volumes within a single Availability Zone\.
 
 ![\[Amazon FSx for Lustre persistent file system archtecture.\]](http://docs.aws.amazon.com/fsx/latest/LustreGuide/images/fsx-lustre-persistent-architecture.png)
 

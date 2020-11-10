@@ -33,7 +33,7 @@ To mount your Amazon FSx for Lustre file system from your Amazon EC2 instance, f
 1. Make a directory for the mount point with the following command\.
 
    ```
-   $ sudo mkdir -p /mnt/fsx
+   sudo mkdir -p /mnt/fsx
    ```
 
 1. Mount the Amazon FSx for Lustre file system to the directory that you created\. Use the following command and replace the following items:
@@ -51,7 +51,7 @@ To mount your Amazon FSx for Lustre file system from your Amazon EC2 instance, f
 1. Verify that the mount command was successful by listing the contents of the directory to which you mounted the file system `/mnt/fsx`, by using the following command\.
 
    ```
-   $ ls /mnt/fsx
+   ls /mnt/fsx
    import-path  lustre
    $
    ```
@@ -59,7 +59,7 @@ To mount your Amazon FSx for Lustre file system from your Amazon EC2 instance, f
    You can also use the `df` command, following\.
 
    ```
-   $ df
+   df
    Filesystem                      1K-blocks    Used  Available Use% Mounted on
    devtmpf                          1001808       0    1001808   0% /dev
    tmpfs                            1019760       0    1019760   0% /dev/shm

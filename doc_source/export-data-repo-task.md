@@ -1,8 +1,8 @@
-# Using data repository tasks to export data and metadata changes<a name="export-data-repo-task"></a>
+# Using Data Repository Tasks to Export Data and Metadata Changes<a name="export-data-repo-task"></a>
 
 Use the following procedures to export data and metadata changes by using the Amazon FSx console and CLI\.
 
-## To export changes \(Console\)<a name="create-data-repo-task-console"></a>
+## To export changes \(console\)<a name="create-data-repo-task-console"></a>
 
 1. Open the Amazon FSx console at [https://console\.aws\.amazon\.com/fsx/](https://console.aws.amazon.com/fsx/)\.
 

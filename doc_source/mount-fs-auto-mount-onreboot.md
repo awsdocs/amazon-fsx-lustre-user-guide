@@ -18,7 +18,7 @@ Before you can update the `/etc/fstab` file of your EC2 instance, make sure that
    Mount the Amazon FSx for Lustre file system to the directory that you created\. Use the following command and replace the following:
    + Replace *`/fsx`* with the directory that you want to mount your Amazon FSx file system to\.
    + Replace `file_system_dns_name` with the actual file system's DNS name\.
-   + Replace `mountname` with the file system's mount name\. This mount name is returned in the `CreateFileSystem` API operation response\. It's also returned in the response of the describe\-file\-systems AWS CLI command, the describe\-file\-systems CLI command, and the [DescribeFileSystems](https://docs.aws.amazon.com/APIReference/API_DescribeFileSystems.html) API operation\.
+   + Replace `mountname` with the file system's mount name\. This mount name is returned in the `CreateFileSystem` API operation response\. It's also returned in the response of the describe\-file\-systems AWS CLI command, and the `[DescribeFileSystems](https://docs.aws.amazon.com/fsx/latest/APIReference/API_DescribeFileSystems.html)` API operation\.
 
    ```
    file_system_dns_name@tcp:/mountname /fsx lustre defaults,noatime,flock,_netdev 0 0
@@ -39,7 +39,7 @@ The fields in the line of code that you added to the `/etc/fstab` file do the fo
 | Field | Description | 
 | --- | --- | 
 |  `file_system_dns_name@tcp:/`  |  The DNS name for your Amazon FSx file system, which identifies the file system\. You can get this name from the console or programmatically from the AWS CLI or an AWS SDK\.  | 
-|  `mountname`  | The mount name for the file system\. You can get this name from the console or programmatically from the AWS CLI using the describe\-file\-systems command or an AWS SDK using the `DescribeFileSystems` operation\. | 
+|  `mountname`  | The mount name for the file system\. You can get this name from the console or programmatically from the AWS CLI using the describe\-file\-systems command or the AWS API or SDK using the `[DescribeFileSystems](https://docs.aws.amazon.com/fsx/latest/APIReference/API_DescribeFileSystems.html)` operation\. | 
 |  `/fsx`  |  The mount point for the Amazon FSx file system on your EC2 instance\.  | 
 |  `lustre`  |  The type of file system, Amazon FSx\.  | 
 |  `mount options`  |  Mount options for the file system, presented as a comma\-separated list of the following options: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/fsx/latest/LustreGuide/mount-fs-auto-mount-onreboot.html)  | 

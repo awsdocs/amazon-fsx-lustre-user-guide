@@ -1,5 +1,15 @@
 # Troubleshooting<a name="troubleshooting"></a>
 
+Use the following information to help you resolve issues that you might encounter when working with Amazon FSx for Lustre\.
+
+**Topics**
++ [File System Mount Fails Right Away](#mount-fails-right-away)
++ [File System Mount Hangs and Then Fails with Timeout Error](#mount-hangs-fails-timeout)
++ [Automatic Mounting Fails and the Instance Is Unresponsive](#lustre-automount-fails)
++ [File System Mount Using DNS Name Fails](#mount-fails-dns-name)
++ [Troubleshooting a misconfigured linked S3 bucket](#troubleshooting-misconfigured-data-repository)
++ [Cannot create a file system that is linked to an S3 bucket](#slr-permissions-fails)
+
 ## File System Mount Fails Right Away<a name="mount-fails-right-away"></a>
 
 The file system mount command fails right away\. The following code shows an example\.
@@ -72,16 +82,13 @@ mount.lustre: mount file_system_dns_name@tcp:/mountname at /mnt/fsx failed: Inpu
 
  Make sure that the client's VPC security groups have the correct outbound traffic rules applied\. This recommendation holds true especially if you aren't using the default security group, or if you have modified the default security group\. For more information, see [Amazon VPC Security Groups](limit-access-security-groups.md#fsx-vpc-security-groups)\. 
 
-## Misconfigured linked S3 bucket<a name="troubleshooting-misconfigured-data-repository"></a>
+## Troubleshooting a misconfigured linked S3 bucket<a name="troubleshooting-misconfigured-data-repository"></a>
 
-In some cases, an Amazon FSx for Lustre file system's linked S3 bucket will have a misconfigured data repository lifecycle state\. For more information, see [Data repository lifecycle state](overview-data-repo.md#data-repository-lifecycles)\. A linked data repository can have a misconfigured lifecycle state under the following conditions:
-+ The linked S3 bucket has an existing event notification configuration with event types that overlap with the Amazon FSx event notification configuration \(`s3:ObjectCreated:*`, `s3:ObjectRemoved:*`\)\.
-+ The Amazon FSx event notification configuration on the linked S3 bucket was deleted or modified\.
-+ Amazon FSx does not have the necessary IAM permissions required to access the linked S3 bucket\.
+In some cases, an Amazon FSx for Lustre file system's linked S3 bucket might have a misconfigured data repository lifecycle state\. For more information, see [Data repository lifecycle state](overview-data-repo.md#data-repository-lifecycles)\. A linked data repository can have a misconfigured lifecycle state under the following conditions:
 
 **Possible cause**
 
-Amazon FSx does not have the necessary IAM permissions required to access the linked S3 bucket\.
+This error can occur if Amazon FSx does not have the necessary AWS Identity and Access Management \(IAM\) permissions that are required to access the linked data repository\. The required IAM permissions support the Amazon FSx for Lustre service\-linked role that is used to access the specified Amazon S3 bucket on your behalf\.
 
 **Action to Take**
 
@@ -97,15 +104,17 @@ Amazon FSx does not have the necessary IAM permissions required to access the li
 
 For more information about service\-linked roles, see [Using Service\-Linked Roles for Amazon FSx for Lustre](using-service-linked-roles.md)\.
 
-**Possible causes**
+**Possible Cause**
 
-A linked S3 bucket can have a misconfigured data repository lifecycle state if either of the following conditions exist:
-+ The linked S3 bucket has an existing event notification configuration with event types that overlap with the Amazon FSx event notification configuration \(`s3:ObjectCreated:*`, `s3:ObjectRemoved:*`\)\. 
-+ The Amazon FSx event notification configuration on the linked S3 bucket was deleted or modified\.
+This error can occur if the linked Amazon S3 data repository has an existing event notification configuration with event types that overlap with the Amazon FSx event notification configuration \(`s3:ObjectCreated:*`, `s3:ObjectRemoved:*`\)\.
 
-**Action to take**
+This can also occur if the Amazon FSx event notification configuration on the linked S3 bucket was deleted or modified\.
 
-1. Remove any existing event notification on the linked S3 bucket that uses either of the event types that the FSx event configuration uses, `s3:ObjectCreated:*` and `s3:ObjectRemoved:*`\.
+**Action to Take**
+
+1. Remove any existing event notification on the linked S3 bucket that uses either or both of the event types that the FSx event configuration uses, `s3:ObjectCreated:*` and `s3:ObjectRemoved:*`\.
+
+1. Please ensure that there is an S3 Event Notification Configuration in you linked S3 bucket with the name `FSx`, event types `s3:ObjectCreated:*` and `s3:ObjectRemoved:*`, and send to the SNS topic with `ARN:topic_arn_returned_in_API_response`\.
 
 1. Reapply the FSx event notification configuration on the S3 bucket by using the Amazon FSx CLI or API, to refresh the file system's `AutoImportPolicy`\. Do so with the `update-file-system` CLI command \([UpdateFileSystem](https://docs.aws.amazon.com/fsx/latest/APIReference/API_UpdateFileSystem.html) is the equivalent API action\), as follows\. 
 

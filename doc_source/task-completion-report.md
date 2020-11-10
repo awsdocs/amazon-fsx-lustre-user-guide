@@ -4,7 +4,7 @@ A *task completion report* provides details about the results of a data reposito
 
 Amazon FSx delivers the report to the file system's linked data repository in Amazon S3, using the path that you specify when you enable the report for a task\. The path must be located within the file system's export path, chosen when the file system was created\. You can specify whether to generate a report for a task by using the `Enabled` parameter\. 
 
-The report format is a comma separated value \(CSV\) file that has three fields: `FilePath`, `FileStatus`, and `ErrorCode`\.
+The report format is a comma\-separated value \(CSV\) file that has three fields: `FilePath`, `FileStatus`, and `ErrorCode`\.
 
 Reports are encoded using RFC\-4180\-format encoding as follows:
 + Paths starting with any of the following characters are contained in single quotation marks: `@ + - =` 
