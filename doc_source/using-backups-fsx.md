@@ -82,7 +82,7 @@ You can use an available backup to create a new file system, effectively restori
 The following procedure guides you through how to restore a backup using the console to create a new file system\.
 
 **Note**  
-You can only restore your backup to a file system of the same deployment type, throughput per unit of storage, and storage capacity as the original\. 
+You can only restore your backup to a file system of the same deployment type, throughput per unit of storage, storage capacity, and AWS Region as the original\. You can increase your restored file system's storage capacity after it becomes available\. For more information, see [Managing storage and throughput capacity](managing-storage-capacity.md)\.
 
 **To restore a file system from a backup**
 

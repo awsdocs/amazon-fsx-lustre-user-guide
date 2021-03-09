@@ -120,6 +120,8 @@ The `quota` command displays information about user quotas, group quotas, and gr
 
 ## Quotas and Amazon S3 linked buckets<a name="quotas-s3"></a>
 
+
+
 You can link your Amazon FSx for Lustre file system to an Amazon S3 data repository when you create the file system\. For more information, see [Linking your file system to an S3 bucket](create-fs-linked-data-repo.md)\.
 
 You can optionally choose a specific folder or prefix within a linked S3 bucket as an import path to your file system\. When a folder in Amazon S3 is specified and imported into your file system from S3, only the data from that folder is applied towards the quota\. The data of the entire bucket is not counted against the quota limits\.

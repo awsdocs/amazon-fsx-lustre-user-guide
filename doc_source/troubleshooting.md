@@ -7,6 +7,7 @@ Use the following information to help you resolve issues that you might encounte
 + [File System Mount Hangs and Then Fails with Timeout Error](#mount-hangs-fails-timeout)
 + [Automatic Mounting Fails and the Instance Is Unresponsive](#lustre-automount-fails)
 + [File System Mount Using DNS Name Fails](#mount-fails-dns-name)
++ [You can't access your file system](#cant-access-fs)
 + [Troubleshooting a misconfigured linked S3 bucket](#troubleshooting-misconfigured-data-repository)
 + [Cannot create a file system that is linked to an S3 bucket](#slr-permissions-fails)
 
@@ -41,9 +42,11 @@ This error can occur because the security groups for the Amazon EC2 instance or 
 
 **Action to Take**
 
-Make sure that your security groups for the file system have the inbound rules specified in [Amazon VPC Security Groups](limit-access-security-groups.md#fsx-vpc-security-groups)\. 
+Make sure that your security groups for the file system have the inbound rules specified in [Amazon VPC Security Groups](limit-access-security-groups.md#fsx-vpc-security-groups)\.
 
 ## Automatic Mounting Fails and the Instance Is Unresponsive<a name="lustre-automount-fails"></a>
+
+
 
 In some cases, automatic mounting might fail for a file system and your Amazon EC2 instance might stop responding\.
 
@@ -81,6 +84,18 @@ mount.lustre: mount file_system_dns_name@tcp:/mountname at /mnt/fsx failed: Inpu
 **Action to Take**
 
  Make sure that the client's VPC security groups have the correct outbound traffic rules applied\. This recommendation holds true especially if you aren't using the default security group, or if you have modified the default security group\. For more information, see [Amazon VPC Security Groups](limit-access-security-groups.md#fsx-vpc-security-groups)\. 
+
+## You can't access your file system<a name="cant-access-fs"></a>
+
+There are a number of potential causes for being unable to access your file system, each with their own resolution, as follows\.
+
+### The Elastic IP address attached to the file system elastic network interface was deleted<a name="eni-epi-removed"></a>
+
+Amazon FSx doesn't support accessing file systems from the public Internet\. Amazon FSx automatically detaches any Elastic IP address, which is a public IP address reachable from the Internet, that gets attached to a file system's elastic network interface\.
+
+### The file system elastic network interface was modified or deleted<a name="eni-deleted"></a>
+
+You must not modify or delete the file system's elastic network interface\. Modifying or deleting the network interface can cause a permanent loss of connection between your VPC and your file system\. Create a new file system, and do not modify or delete the FSx elastic network interface\. For more information, see [File System Access Control with Amazon VPC](limit-access-security-groups.md)\. 
 
 ## Troubleshooting a misconfigured linked S3 bucket<a name="troubleshooting-misconfigured-data-repository"></a>
 

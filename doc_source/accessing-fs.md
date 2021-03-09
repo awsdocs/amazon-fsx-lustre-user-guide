@@ -9,6 +9,7 @@ Before you can mount a file system, you must create, configure, and launch your 
 **Topics**
 + [Installing the Lustre Client](install-lustre-client.md)
 + [Mounting from an Amazon EC2 Instance](mounting-ec2-instance.md)
++ [Mounting from Amazon ECS](mounting-ecs.md)
 + [Mounting Amazon FSx File Systems from On\-Premises or a Peered Amazon VPC](mounting-on-premises.md)
 + [Mounting Your Amazon FSx File System Automatically](mount-fs-auto-mount-onreboot.md)
 + [Unmounting File Systems](unmounting-fs.md)

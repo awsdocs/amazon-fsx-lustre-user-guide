@@ -6,19 +6,19 @@ You connect the client's VPC and your Amazon FSx file system's VPC using either 
 
 Before using the following the procedure, you need to set up either a VPC peering connection or a VPC transit gateway\. 
 
-A *transit gateway *is a network transit hub that you can use to interconnect your VPCs and on\-premises networks\. For more information about using VPC transit gateways, see [Getting Started with Transit Gateways](https://docs.aws.amazon.com/vpc/latest/tgw/tgw-getting-started.html) in the *Amazon VPC Transit Gateways Guide*\.
+A *transit gateway* is a network transit hub that you can use to interconnect your VPCs and on\-premises networks\. For more information about using VPC transit gateways, see [Getting Started with Transit Gateways](https://docs.aws.amazon.com/vpc/latest/tgw/tgw-getting-started.html) in the *Amazon VPC Transit Gateways Guide*\.
 
 A *VPC peering connection* is a networking connection between two VPCs\. This type of connection enables you to route traffic between them using private Internet Protocol version 4 \(IPv4\) or Internet Protocol version 6 \(IPv6\) addresses\. You can use VPC peering to connect VPCs within the same AWS Region or between AWS Regions\. For more information on VPC peering, see [What is VPC Peering?](https://docs.aws.amazon.com/vpc/latest/peering/Welcome.html) in the *Amazon VPC Peering Guide*\.
 
 You can mount your file system from outside its VPC using the IP address of its primary network interface\. The primary network interface is the first network interface returned when you run the `aws fsx describe-file-systems` AWS CLI command\. You can also get this IP address from the AWS Management Console\.
 
-**Note**  
-Amazon FSx can support access from resources outside the VPC associated with your file system\. It can do this if those resources have an IP address in the following private IP version 4 \(IPv4\) address ranges, as specified in [RFC 1918](http://www.faqs.org/rfcs/rfc1918.html):  
-10\.0\.0\.0–10\.255\.255\.255 \(10/8 prefix\)
-172\.16\.0\.0–172\.31\.255\.255 \(172\.16/12 prefix\)
-192\.168\.0\.0–192\.168\.255\.255 \(192\.168/16 prefix\)
+The following table illustrates IP address requirements for accessing Amazon FSx file systems using a client that's outside of the file system's VPC\.
 
-**To get the IP address of the primary network interface for a file system**
+[\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/fsx/latest/LustreGuide/mounting-on-premises.html)
+
+If you need to access your Amazon FSx file system that was created before December 17, 2020 using a non\-private IP address range, you can create a new file system by restoring a backup of the file system\. For more information, see [Working with backups](using-backups-fsx.md)\.
+
+**To retrieve the IP address of the primary network interface for a file system**
 
 1. Open the Amazon FSx console at [https://console\.aws\.amazon\.com/fsx/](https://console.aws.amazon.com/fsx/)\.
 

@@ -2,6 +2,8 @@
 
 With Amazon FSx for Lustre, you can monitor activity for your file systems using Amazon CloudWatch metrics\.
 
+
+
 ## Monitoring with Amazon CloudWatch<a name="monitoring-cloudwatch"></a>
 
 You can monitor file systems using Amazon CloudWatch, which collects and processes raw data from Amazon FSx for Lustre into readable, near real\-time metrics\. These statistics are retained for a period of 15 months, so that you can access historical information and gain a better perspective on how your web application or service is performing\. By default, Amazon FSx for Lustre metric data is automatically sent to CloudWatch at 1\-minute periods\. For more information about CloudWatch, see [What Is Amazon CloudWatch?](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/WhatIsCloudWatch.html) in the *Amazon CloudWatch User Guide*\.

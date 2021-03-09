@@ -44,6 +44,8 @@ Amazon FSx for Lustre does not import or retain `setuid` and `setgid` informatio
 + `x-amz-meta-file-mtime` – The last modified time in nanoseconds\. Terminate the time value with "ns"; otherwise, Amazon FSx interprets the value as milliseconds\.
 + `x-amz-meta-user-agent` – The user agent, ignored during Amazon FSx import\. During export, Amazon FSx sets this value to `aws-fsx-lustre`\.
 
+The default POSIX permissions that Amazon FSx for Lustre assigns to a file are 755, which allows read and execute access for all users and write access for the owner of the file\.
+
 **Note**  
 Amazon FSx doesn't retain any user\-defined custom metadata on S3 objects\.
 

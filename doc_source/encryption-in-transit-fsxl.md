@@ -10,6 +10,7 @@ In\-transit encryption of data for scratch 2 and persistent file systems is avai
 |  US East \(Ohio\)  |  ✓  |  ✓  | 
 |  US East \(N\. Virginia\)  |  ✓  |  ✓  | 
 |  US West \(Oregon\), excluding US West \(Los Angeles\)  |  ✓  |  ✓  | 
+|  AWS GovCloud \(US\-West\)   |  ✓  |  ✓  | 
 |  Europe \(Ireland\)  |  ✓  |  ✓  | 
-|  Europe \(Frankfurt\)  |  ✓  |   | 
-|  Asia Pacific \(Singapore\)  |  ✓  |   | 
+|  Europe \(Frankfurt\)  |  ✓  |    | 
+|  Asia Pacific \(Singapore\)  |  ✓  |    | 

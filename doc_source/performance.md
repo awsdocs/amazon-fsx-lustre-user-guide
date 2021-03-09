@@ -12,18 +12,50 @@ Amazon FSx for Lustre, built on Lustre, the popular high\-performance file syste
 
 ## Aggregate File System Performance<a name="fsx-aggregate-perf"></a>
 
-The throughput that an Amazon FSx for Lustre file system supports is proportional to its storage capacity\. Amazon FSx for Lustre file systems scale to hundreds of GBps of throughput and millions of IOPS\. Amazon FSx for Lustre also supports concurrent access to the same file or directory from thousands of compute instances\. This access enables rapid data checkpointing from application memory to storage, which is a common technique in high\-performance computing \(HPC\)\.
+The throughput that an Amazon FSx for Lustre file system supports is proportional to its storage capacity\. Amazon FSx for Lustre file systems scale to hundreds of GBps of throughput and millions of IOPS\. Amazon FSx for Lustre also supports concurrent access to the same file or directory from thousands of compute instances\. This access enables rapid data checkpointing from application memory to storage, which is a common technique in high performance computing \(HPC\)\. You can increase the amount of storage and throughput capacity as needed at any time after you create the file system\. For more information, see [Managing storage and throughput capacity](managing-storage-capacity.md)\.
 
 Amazon FSx for Lustre file systems provide burst read throughput using a network I/O credit mechanism to allocate network bandwidth based on average bandwidth utilization\. The file systems accrue credits when their network bandwidth usage is below their baseline limits, and can use these credits when they perform network data transfers\.
 
 The following tables show performance that the Amazon FSx for Lustre deployment options are designed for\.
 
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/fsx/latest/LustreGuide/images/hdd-performance-table.png)
 
-![\[Image NOT FOUND\]](http://docs.aws.amazon.com/fsx/latest/LustreGuide/images/ssd-performance-table.png)
+**File system performance for HDD storage options**  
+
+| Deployment Type | **Network throughput \(MB/s per TiB of storage or SSD cache provisioned\)** |  **Network IOPS \(IOPS per TiB of storage provisioned\)** | **Cache storage \(GiB per TiB of storage provisioned\)** | **Disk latencies per file operation \(milliseconds, P50\) ** | **Disk throughput \(MB/s per TiB of storage or SSD cache provisioned\)** | 
+| --- |--- |--- |--- |--- |--- |
+| **** | **Baseline** | **Burst** |  | **Baseline** | **Burst** | 
+| --- |--- |--- |--- |--- |--- |
+| PERSISTENT\-12 | 
+| --- |
+| HDD storage | 40 | 375\*  |  Tens of thousands baseline Hundreds of thousands burst  | 0\.4 memory |  Metadata: sub\-ms Data: single\-digit ms  | 12 |  80 \(read\) 50 \(write\)  | 
+| --- |--- |--- |--- |--- |--- |--- |--- |
+| SSD read cache |  200  | 1,900 |  200 SSD cache  |  Data: sub\-ms  | 200 |  \-  | 
+| --- |--- |--- |--- |--- |--- |--- |
+|  PERSISTENT\-40 | 
+| --- |
+| HDD storage | 150 | 1,300\*  |  Tens of thousands baseline Hundreds of thousands burst  | 1\.5 RAM |  Metadata: sub\-ms Data: single\-digit ms  | 40 |  250 \(read\) 150 \(write\)  | 
+| --- |--- |--- |--- |--- |--- |--- |--- |
+| SSD read cache |  750  |  6500  | 200 SSD cache |  Data: sub\-ms  | 200 |  \-  | 
+| --- |--- |--- |--- |--- |--- |--- |
+
+
+**File system performance for SSD storage options**  
+
+| Deployment Type | **Network throughput \(MB/s per TiB of storage provisioned\)** |  **Network IOPS \(IOPS per TiB of storage provisioned\)** |  **Cache storage \(GiB per TiB of storage provisioned\)** |  **Disk latencies per file operation \(milliseconds, P50\)** | **Disk throughput \(MB/s per TiB of storage or SSD cache provisioned\)** | 
+| --- |--- |--- |--- |--- |--- |
+| **** | **Baseline** | **Burst** | **** | **** | **** | **Baseline** | **Burst** | 
+| --- |--- |--- |--- |--- |--- |--- |--- |
+| SCRATCH\_2 | 200 | 1300 | Tens of thousands baselineHundreds of thousands burst | 6\.7 RAM |  Metadata: sub\-ms Data: sub\-ms  |  200 \(read\) 100 \(write\)  | – | 
+| --- |--- |--- |--- |--- |--- |--- |--- |
+| PERSISTENT\-50 | 250 | 1,300\* | 2\.2 RAM | 50 | 240 | 
+| --- |--- |--- |--- |--- |--- |
+| PERSISTENT\-100 | 500 | 1,300\* | 4\.4 RAM | 100 | 240 | 
+| --- |--- |--- |--- |--- |--- |
+| PERSISTENT\-200 | 750 | 1,300\* | 8\.8 RAM | 200 | 240 | 
+| --- |--- |--- |--- |--- |--- |
 
 **Note**  
-\*Persistent file systems in the following AWS Regions provide network burst up to 530 MB/s per TiB of storage: Asia Pacific \(Hong Kong\), Asia Pacific \(Singapore\), Canada \(Central\), Europe \(Frankfurt\), Europe \(London\), Europe \(Stockholm\), South America \(São Paulo\), China, and US West \(Los Angeles\)\.
+\*Persistent file systems in the following AWS Regions provide network burst up to 530 MB/s per TiB of storage: Africa \(Cape Town\), Asia Pacific \(Hong Kong\), Asia Pacific \(Singapore\), Canada \(Central\), Europe \(Frankfurt\), Europe \(London\), Europe \(Milan\), Europe \(Stockholm\), Middle East \(Bahrain\), South America \(São Paulo\), China, and US West \(Los Angeles\)\.
 
 **Note**  
 The Amazon FSx for Lustre SCRATCH\_1 deployment option was designed to support approximately 200 MB/s/TiB\.

@@ -1,7 +1,7 @@
 # Amazon FSx for Lustre Lustre User Guide
 
 -----
-*****Copyright &copy; 2020 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
+*****Copyright &copy; 2021 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
 
 -----
 Amazon's trademarks and trade dress may not be used in 
@@ -26,6 +26,7 @@ Amazon's trademarks and trade dress may not be used in
 + [Using Available Deployment Options for Amazon FSx for Lustre File Systems](using-fsx-lustre.md)
 + [Using data repositories with Amazon FSx for Lustre](fsx-data-repositories.md)
    + [Overview of data repositories](overview-data-repo.md)
+   + [Walkthrough: Attaching POSIX permissions when uploading objects into an S3 bucket](attach-s3-posix-permissions.md)
    + [Linking your file system to an S3 bucket](create-fs-linked-data-repo.md)
    + [Importing files from your data repository](importing-files.md)
       + [Automatically import updates from your S3 bucket](autoimport-data-repo.md)
@@ -44,6 +45,7 @@ Amazon's trademarks and trade dress may not be used in
 + [Accessing File Systems](accessing-fs.md)
    + [Installing the Lustre Client](install-lustre-client.md)
    + [Mounting from an Amazon EC2 Instance](mounting-ec2-instance.md)
+   + [Mounting from Amazon ECS](mounting-ecs.md)
    + [Mounting Amazon FSx File Systems from On-Premises or a Peered Amazon VPC](mounting-on-premises.md)
    + [Mounting Your Amazon FSx File System Automatically](mount-fs-auto-mount-onreboot.md)
    + [Unmounting File Systems](unmounting-fs.md)
@@ -51,6 +53,7 @@ Amazon's trademarks and trade dress may not be used in
 + [Administering file systems](administer-lustre-file-systems.md)
    + [Working with backups](using-backups-fsx.md)
    + [Storage quotas](lustre-quotas.md)
+   + [Managing storage and throughput capacity](managing-storage-capacity.md)
    + [Amazon FSx for Lustre maintenance windows](maintenance-windows.md)
 + [Monitoring Amazon FSx for Lustre](monitoring_overview.md)
    + [How to Use Amazon FSx for Lustre Metrics](how_to_use_metrics.md)

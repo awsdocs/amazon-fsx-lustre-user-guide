@@ -4,7 +4,9 @@ To mount your Amazon FSx for Lustre file system from a Linux instance, first ins
 
 If your compute instance isn't running the Linux kernel specified in the installation instructions, and you can't change the kernel, you can build your own Lustre client\. For more information, see [Compiling Lustre](http://wiki.lustre.org/Compiling_Lustre) on the Lustre Wiki\.
 
-## To Install the Lustre Client on Amazon Linux 2<a name="install-lustre-client-amazon-linux-2"></a>
+## Amazon Linux 2 and Amazon Linux<a name="lustre-client-amazon-linux"></a>
+
+### To Install the Lustre Client on Amazon Linux 2<a name="install-lustre-client-amazon-linux-2"></a>
 
 1. Open a terminal on your client\.
 
@@ -28,7 +30,7 @@ If your compute instance isn't running the Linux kernel specified in the install
 
      Confirm that the kernel has been updated using the uname \-r command\. Then download and install the Lustre client as described previously\.
 
-## To Install the Lustre Client on Amazon Linux<a name="install-lustre-client-amazon-linux"></a>
+### To Install the Lustre Client on Amazon Linux<a name="install-lustre-client-amazon-linux"></a>
 
 1. Open a terminal on your client\.
 
@@ -52,7 +54,9 @@ If your compute instance isn't running the Linux kernel specified in the install
 
      Confirm that the kernel has been updated using the uname \-r command\. Then download and install the Lustre client as described previously\.
 
-## To Install the Lustre Client on CentOS and Red Hat 7\.5 or 7\.6<a name="install-lustre-client-amazon-centos-7.5"></a>
+## CentOS and Red Hat<a name="lustre-client-rhel"></a>
+
+### To Install the Lustre Client on CentOS and Red Hat 7\.5 or 7\.6<a name="install-lustre-client-amazon-centos-7.5"></a>
 
 1. Open a terminal on your client\.
 
@@ -80,7 +84,7 @@ If your compute instance isn't running the Linux kernel specified in the install
 **Note**  
 You might need to reboot your compute instance for the client to finish installing\.
 
-## To Install the Lustre Client on CentOS and Red Hat 7\.7, 7\.8, or 7\.9 \(x86\_64 Instances\)<a name="install-lustre-client-Centos-7"></a>
+### To Install the Lustre Client on CentOS and Red Hat 7\.7, 7\.8, or 7\.9 \(x86\_64 Instances\)<a name="install-lustre-client-Centos-7"></a>
 
 You can install and update Lustre client packages that are compatible with Red Hat Enterprise Linux \(RHEL\) and CentOS from the Amazon FSx Lustre client yum package repository\. These packages are signed to help ensure they have not been tampered with before or during download\. The repository installation fails if you don't install the corresponding public key on your system\.
 
@@ -154,7 +158,7 @@ This section describes how to determine which kernel you are running, whether yo
   sudo yum install -y kmod-lustre-client lustre-client
   ```
 
-### Additional Information \(CentOS and Red Hat 7\.7 and Newer\)<a name="lustre-client-Centos-7-additional-info"></a>
+#### Additional Information \(CentOS and Red Hat 7\.7 and Newer\)<a name="lustre-client-Centos-7-additional-info"></a>
 
 The commands preceding install the two packages that are necessary for mounting and interacting with your Amazon FSx file system\. The repository includes additional Lustre packages, such as a package containing the source code and packages containing tests, and you can optionally install them\. To list all available packages in the repository, use the following command\. 
 
@@ -178,11 +182,9 @@ installonlypkgs=kernel, kernel-big‐mem, kernel-enterprise, kernel-smp,
 
  This list includes the default install only packages, specified in the `yum.conf` man page, and the `kmod-lustre-client` package\.
 
-## To Install the Lustre Client on CentOS 7\.8 \(Arm\-Based AWS Graviton\-Powered Instances\)<a name="install-lustre-client-Centos-7-arm"></a>
+### To Install the Lustre Client on CentOS 7\.8 or 7\.9 \(Arm\-Based AWS Graviton\-Powered Instances\)<a name="install-lustre-client-Centos-7-arm"></a>
 
-You can install and update Lustre client packages from the Amazon FSx Lustre client yum package repository that are compatible with CentOS 7\.8 for Arm\-based AWS Graviton1\- and Graviton2\-powered EC2 instances\. These packages are signed to help ensure they have not been tampered with before or during download\. The repository installation fails if you don't install the corresponding public key on your system\.
-
-The Lustre client for CentOS 7\.8 for Arm\-based AWS Graviton\-powered EC2 instances is compatible with kernel version `4.18.0-193.*`\.
+You can install and update Lustre client packages from the Amazon FSx Lustre client yum package repository that are compatible with CentOS 7 for Arm\-based AWS Graviton1\- and Graviton2\-powered EC2 instances\. These packages are signed to help ensure they have not been tampered with before or during download\. The repository installation fails if you don't install the corresponding public key on your system\.
 
 **To add the Amazon FSx Lustre client yum package repository**
 
@@ -206,16 +208,42 @@ The Lustre client for CentOS 7\.8 for Arm\-based AWS Graviton\-powered EC2 insta
    sudo curl https://fsx-lustre-client-repo.s3.amazonaws.com/centos/7/fsx-lustre-client.repo -o /etc/yum.repos.d/aws-fsx.repo
    ```
 
+**To configure the Amazon FSx Lustre client yum repository**
+
+The Amazon FSx Lustre client yum package repository is configured by default to install the Lustre client that is compatible with the kernel version that initially shipped with the latest supported CentOS 7 release\. To install a Lustre client that is compatible with the kernel version you are using, you can edit the repository configuration file\. 
+
+This section describes how to determine which kernel you are running, whether you need to edit the repository configuration, and how to edit the configuration file\.
+
+1. Determine which kernel is currently running on your compute instance by using the following command\.
+
+   ```
+   uname -r
+   ```
+
+1. Do one of the following:
+   + If the command returns `4.18.0-193*`, you don't need to modify the repository configuration\. Continue to the **To install the Lustre client** procedure\.
+   +  If the command returns `4.18.0-147*`, you must edit the repository configuration so that it points to the Lustre client for the CentOS 7\.8 release\.
+
+1. Edit the repository configuration file to point to the CentOS 7\.8 release using the following command\.
+
+   ```
+   sudo sed -i 's#7#7.8#' /etc/yum.repos.d/aws-fsx.repo
+   ```
+
+1. Use the following command to clear the yum cache\.
+
+   ```
+   sudo yum clean all
+   ```
+
 **To install the Lustre client**
 + Install the packages from the repository using the following command\.
 
   ```
-  installonlypkgs=kernel, kernel-big‐mem, kernel-enterprise, kernel-smp,
-                kernel-debug, kernel-unsupported, kernel-source, kernel-devel, kernel-PAE,
-                kernel-PAE-debug, kmod-lustre-client
+  sudo yum install -y kmod-lustre-client lustre-client
   ```
 
-### Additional Information \(CentOS 7\.8 for Arm\-Based AWS Graviton\-Powered EC2 instances\)<a name="lustre-client-Centos-7-arm-additional-info"></a>
+#### Additional Information \(CentOS 7\.8 or 7\.9 for Arm\-Based AWS Graviton\-Powered EC2 instances\)<a name="lustre-client-Centos-7-arm-additional-info"></a>
 
 The commands preceding install the two packages that are necessary for mounting and interacting with your Amazon FSx file system\. The repository includes additional Lustre packages, such as a package containing the source code and packages containing tests, and you can optionally install them\. To list all available packages in the repository, use the following command\. 
 
@@ -239,11 +267,9 @@ installonlypkgs=kernel, kernel-big‐mem, kernel-enterprise, kernel-smp,
 
  This list includes the default install only packages, specified in the `yum.conf` man page, and the `kmod-lustre-client` package\.
 
-## To Install the Lustre Client on CentOS and Red Hat 8\.2 and Newer<a name="install-lustre-client-RH8.2"></a>
+### To Install the Lustre Client on CentOS and Red Hat 8\.2 and Newer<a name="install-lustre-client-RH8.2"></a>
 
 You can install and update Lustre client packages that are compatible with Red Hat Enterprise Linux \(RHEL\) and CentOS from the Amazon FSx Lustre client yum package repository\. These packages are signed to help ensure that they have not been tampered with before or during download\. The repository installation fails if you don't install the corresponding public key on your system\.
-
-The Lustre client for CentOS and Red Hat release 8\.2 is compatible with kernel version `4.18.0-193.*`\.
 
 **To add the Amazon FSx Lustre client yum package repository**
 
@@ -267,6 +293,40 @@ The Lustre client for CentOS and Red Hat release 8\.2 is compatible with kernel 
    sudo curl https://fsx-lustre-client-repo.s3.amazonaws.com/el/8/fsx-lustre-client.repo -o /etc/yum.repos.d/aws-fsx.repo
    ```
 
+**To configure the Amazon FSx Lustre client yum repository**
+
+The Amazon FSx Lustre client yum package repository is configured by default to install the Lustre client that is compatible with the kernel version that initially shipped with the latest supported CentOS and RHEL 8 release\. To install a Lustre client that is compatible with the kernel version you are using, you can edit the repository configuration file\.
+
+This section describes how to determine which kernel you are running, whether you need to edit the repository configuration, and how to edit the configuration file\.
+
+1. Determine which kernel is currently running on your compute instance by using the following command\.
+
+   ```
+   uname -r
+   ```
+
+1. Do one of the following:
+   + If the command returns `4.18.0-240*`, you don't need to modify the repository configuration\. Continue to the **To install the Lustre client** procedure\.
+   +  If the command returns `4.18.0-193*`, you must edit the repository configuration so that it points to the Lustre client for the CentOS and RHEL 8\.2 release\.
+
+1. Edit the repository configuration file to point to a specific version of RHEL using the following command\.
+
+   ```
+   sudo sed -i 's#8#specific_RHEL_version#' /etc/yum.repos.d/aws-fsx.repo
+   ```
+
+   To point to release 8\.2, substitute `specific_RHEL_version` with `8.2` in the command\.
+
+   ```
+   sudo sed -i 's#8#8.2#' /etc/yum.repos.d/aws-fsx.repo
+   ```
+
+1. Use the following command to clear the yum cache\.
+
+   ```
+   sudo yum clean all
+   ```
+
 **To install the Lustre client**
 + Install the packages from the repository using the following command\.
 
@@ -274,7 +334,7 @@ The Lustre client for CentOS and Red Hat release 8\.2 is compatible with kernel 
   sudo yum install -y kmod-lustre-client lustre-client
   ```
 
-### Additional Information \(CentOS and Red Hat 8\.2 and Newer\)<a name="lustre-client-RH8.2-additional-info"></a>
+#### Additional Information \(CentOS and Red Hat 8\.2 and Newer\)<a name="lustre-client-RH8.2-additional-info"></a>
 
 The commands preceding install the two packages that are necessary for mounting and interacting with your Amazon FSx file system\. The repository includes additional Lustre packages, such as a package containing the source code and packages containing tests, and you can optionally install them\. To list all available packages in the repository, use the following command\. 
 
@@ -297,121 +357,9 @@ installonlypkgs=kernel, kernel-PAE, installonlypkg(kernel), installonlypkg(kerne
 
  This list includes the default install only packages, specified in the `yum.conf` man page, and the `kmod-lustre-client` package\.
 
-## To Install the Lustre Client on SUSE Linux 12 SP3, SP4, or SP5<a name="install-lustre-client-SUSE-Linux"></a>
+## Ubuntu<a name="lustre-client-ubuntu"></a>
 
-**To install the Lustre client on SUSE Linux 12 SP3**
-
-1. Open a terminal on your client\.
-
-1. Install the Amazon FSx rpm public key by using the following command\.
-
-   ```
-   sudo wget https://fsx-lustre-client-repo-public-keys.s3.amazonaws.com/fsx-sles-public-key.asc
-   ```
-
-1. Import the key by using the following command\.
-
-   ```
-   sudo rpm --import fsx-sles-public-key.asc
-   ```
-
-1. Add the repository for the Lustre client using the following command\.
-
-   ```
-   sudo wget https://fsx-lustre-client-repo.s3.amazonaws.com/suse/sles-12/SLES-12/fsx-lustre-client.repo
-   ```
-
-1. Download and install the Lustre client with the following commands\.
-
-   ```
-   sudo zypper ar --gpgcheck-strict fsx-lustre-client.repo
-   sudo sed -i 's#SLES-12#SP3#' /etc/zypp/repos.d/aws-fsx.repo
-   sudo zypper refresh
-   sudo zypper in lustre-client
-   ```
-
-**To install the Lustre client on SUSE Linux 12 SP4**
-
-1. Open a terminal on your client\.
-
-1. Install the Amazon FSx rpm public key by using the following command\.
-
-   ```
-   sudo wget https://fsx-lustre-client-repo-public-keys.s3.amazonaws.com/fsx-sles-public-key.asc
-   ```
-
-1. Import the key by using the following command\.
-
-   ```
-   sudo rpm --import fsx-sles-public-key.asc
-   ```
-
-1. Add the repository for the Lustre client using the following command\.
-
-   ```
-   sudo wget https://fsx-lustre-client-repo.s3.amazonaws.com/suse/sles-12/SLES-12/fsx-lustre-client.repo
-   ```
-
-1. Do one of the following:
-   + If you installed SP4 directly, download and install the Lustre client with the following commands\.
-
-     ```
-     sudo zypper ar --gpgcheck-strict fsx-lustre-client.repo
-     sudo sed -i 's#SLES-12#SP4#' /etc/zypp/repos.d/aws-fsx.repo
-     sudo zypper refresh
-     sudo zypper in lustre-client
-     ```
-   + If you migrated from SP3 to SP4 and previously added the FSx repository for SP3, download and install the Lustre client with the following commands\.
-
-     ```
-     sudo zypper ar --gpgcheck-strict fsx-lustre-client.repo
-     sudo sed -i 's#SP3#SP4#' /etc/zypp/repos.d/aws-fsx.repo
-     sudo zypper ref
-     sudo zypper up --force-resolution lustre-client-kmp-default
-     ```
-
-**To install the Lustre client on SUSE Linux 12 SP5**
-
-1. Open a terminal on your client\.
-
-1. Install the Amazon FSx rpm public key by using the following command\.
-
-   ```
-   sudo wget https://fsx-lustre-client-repo-public-keys.s3.amazonaws.com/fsx-sles-public-key.asc
-   ```
-
-1. Import the key by using the following command\.
-
-   ```
-   sudo rpm --import fsx-sles-public-key.asc
-   ```
-
-1. Add the repository for the Lustre client using the following command\.
-
-   ```
-   sudo wget https://fsx-lustre-client-repo.s3.amazonaws.com/suse/sles-12/SLES-12/fsx-lustre-client.repo
-   ```
-
-1. Do one of the following:
-   + If you installed SP5 directly, download and install the Lustre client with the following commands\.
-
-     ```
-     sudo zypper ar --gpgcheck-strict fsx-lustre-client.repo
-     sudo zypper refresh
-     sudo zypper in lustre-client
-     ```
-   + If you migrated from SP4 to SP5 and previously added the FSx repository for SP4, download and install the Lustre client with the following commands\.
-
-     ```
-     sudo sed -i 's#SP4#SLES-12' /etc/zypp/repos.d/aws-fsx.repo
-     sudo zypper ref
-     sudo zypper up --force-resolution lustre-client-kmp-default
-     ```
-
-**Note**  
-You might need to reboot your compute instance for the client to finish installing\.
-
-## To Install the Lustre Client on Ubuntu 16\.04<a name="install-lustre-client-Ubuntu-16"></a>
+### To Install the Lustre Client on Ubuntu 16\.04<a name="install-lustre-client-Ubuntu-16"></a>
 
 You can get Lustre packages from the Ubuntu 16\.04 Amazon FSx repository\. To validate that the contents of the repository have not been tampered with before or during download, a GNU Privacy Guard \(GPG\) signature is applied to the metadata of the repository\. Installing the repository fails unless you have the correct public GPG key installed on your system\. 
 
@@ -497,7 +445,7 @@ Install the Lustre client using the following command\.
    sudo apt-get install -y lustre-client-modules-$(uname -r)
    ```
 
-## To Install the Lustre Client on Ubuntu 18\.04<a name="install-lustre-client-Ubuntu-18"></a>
+### To Install the Lustre Client on Ubuntu 18\.04<a name="install-lustre-client-Ubuntu-18"></a>
 
 You can get Lustre packages from the Ubuntu 18\.04 Amazon FSx repository\. To validate that the contents of the repository have not been tampered with before or during download, a GNU Privacy Guard \(GPG\) signature is applied to the metadata of the repository\. Installing the repository fails unless you have the correct public GPG key installed on your system\. 
 
@@ -583,7 +531,7 @@ Install the Lustre client using the following command\.
    sudo apt-get install -y lustre-client-modules-$(uname -r)
    ```
 
-## To Install the Lustre Client on Ubuntu 20\.04<a name="install-lustre-client-Ubuntu-20"></a>
+### To Install the Lustre Client on Ubuntu 20\.04<a name="install-lustre-client-Ubuntu-20"></a>
 
 You can get Lustre packages from the Ubuntu 20\.04 Amazon FSx repository\. To validate that the contents of the repository have not been tampered with before or during download, a GNU Privacy Guard \(GPG\) signature is applied to the metadata of the repository\. Installing the repository fails unless you have the correct public GPG key installed on your system\. 
 
@@ -668,3 +616,119 @@ Install the Lustre client using the following command\.
    ```
    sudo apt-get install -y lustre-client-modules-$(uname -r)
    ```
+
+## SUSE Linux<a name="lustre-client-suse"></a>
+
+### To Install the Lustre Client on SUSE Linux 12 SP3, SP4, or SP5<a name="install-lustre-client-SUSE-Linux"></a>
+
+**To install the Lustre client on SUSE Linux 12 SP3**
+
+1. Open a terminal on your client\.
+
+1. Install the Amazon FSx rpm public key by using the following command\.
+
+   ```
+   sudo wget https://fsx-lustre-client-repo-public-keys.s3.amazonaws.com/fsx-sles-public-key.asc
+   ```
+
+1. Import the key by using the following command\.
+
+   ```
+   sudo rpm --import fsx-sles-public-key.asc
+   ```
+
+1. Add the repository for the Lustre client using the following command\.
+
+   ```
+   sudo wget https://fsx-lustre-client-repo.s3.amazonaws.com/suse/sles-12/SLES-12/fsx-lustre-client.repo
+   ```
+
+1. Download and install the Lustre client with the following commands\.
+
+   ```
+   sudo zypper ar --gpgcheck-strict fsx-lustre-client.repo
+   sudo sed -i 's#SLES-12#SP3#' /etc/zypp/repos.d/aws-fsx.repo
+   sudo zypper refresh
+   sudo zypper in lustre-client
+   ```
+
+**To install the Lustre client on SUSE Linux 12 SP4**
+
+1. Open a terminal on your client\.
+
+1. Install the Amazon FSx rpm public key by using the following command\.
+
+   ```
+   sudo wget https://fsx-lustre-client-repo-public-keys.s3.amazonaws.com/fsx-sles-public-key.asc
+   ```
+
+1. Import the key by using the following command\.
+
+   ```
+   sudo rpm --import fsx-sles-public-key.asc
+   ```
+
+1. Add the repository for the Lustre client using the following command\.
+
+   ```
+   sudo wget https://fsx-lustre-client-repo.s3.amazonaws.com/suse/sles-12/SLES-12/fsx-lustre-client.repo
+   ```
+
+1. Do one of the following:
+   + If you installed SP4 directly, download and install the Lustre client with the following commands\.
+
+     ```
+     sudo zypper ar --gpgcheck-strict fsx-lustre-client.repo
+     sudo sed -i 's#SLES-12#SP4#' /etc/zypp/repos.d/aws-fsx.repo
+     sudo zypper refresh
+     sudo zypper in lustre-client
+     ```
+   + If you migrated from SP3 to SP4 and previously added the Amazon FSx repository for SP3, download and install the Lustre client with the following commands\.
+
+     ```
+     sudo zypper ar --gpgcheck-strict fsx-lustre-client.repo
+     sudo sed -i 's#SP3#SP4#' /etc/zypp/repos.d/aws-fsx.repo
+     sudo zypper ref
+     sudo zypper up --force-resolution lustre-client-kmp-default
+     ```
+
+**To install the Lustre client on SUSE Linux 12 SP5**
+
+1. Open a terminal on your client\.
+
+1. Install the Amazon FSx rpm public key by using the following command\.
+
+   ```
+   sudo wget https://fsx-lustre-client-repo-public-keys.s3.amazonaws.com/fsx-sles-public-key.asc
+   ```
+
+1. Import the key by using the following command\.
+
+   ```
+   sudo rpm --import fsx-sles-public-key.asc
+   ```
+
+1. Add the repository for the Lustre client using the following command\.
+
+   ```
+   sudo wget https://fsx-lustre-client-repo.s3.amazonaws.com/suse/sles-12/SLES-12/fsx-lustre-client.repo
+   ```
+
+1. Do one of the following:
+   + If you installed SP5 directly, download and install the Lustre client with the following commands\.
+
+     ```
+     sudo zypper ar --gpgcheck-strict fsx-lustre-client.repo
+     sudo zypper refresh
+     sudo zypper in lustre-client
+     ```
+   + If you migrated from SP4 to SP5 and previously added the Amazon FSx repository for SP4, download and install the Lustre client with the following commands\.
+
+     ```
+     sudo sed -i 's#SP4#SLES-12' /etc/zypp/repos.d/aws-fsx.repo
+     sudo zypper ref
+     sudo zypper up --force-resolution lustre-client-kmp-default
+     ```
+
+**Note**  
+You might need to reboot your compute instance for the client to finish installing\.
