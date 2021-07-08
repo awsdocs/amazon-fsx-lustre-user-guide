@@ -2,7 +2,7 @@
 
 Amazon FSx for Lustre makes it easy and cost\-effective to launch and run the popular, high\-performance Lustre file system\. You use Lustre for workloads where speed matters, such as machine learning, high performance computing \(HPC\), video processing, and financial modeling\.
 
-The open\-source Lustre file system is designed for applications that require fast storage—where you want your storage to keep up with your compute\. Lustre was built to solve the problem of quickly and cheaply processing the world's ever\-growing datasets\. It's a widely used file system designed for the fastest computers in the world\. It provides submillisecond latencies, up to hundreds of GBps of throughput, and up to millions of IOPS\. For more information on Lustre, see the [Lustre website](http://lustre.org/)\. 
+The open\-source Lustre file system is designed for applications that require fast storage—where you want your storage to keep up with your compute\. Lustre is built to solve the problem of quickly and cheaply processing the world's ever\-growing datasets\. It's a widely used file system designed for the fastest computers in the world\. It provides submillisecond latencies, up to hundreds of GBps of throughput, and up to millions of IOPS\. For more information on Lustre, see the [Lustre website](http://lustre.org/)\. 
 
 As a fully managed service, Amazon FSx makes it easier for you to use Lustre for workloads where storage speed matters\. Amazon FSx for Lustre eliminates the traditional complexity of setting up and managing Lustre file systems, enabling you to spin up and run a battle\-tested high\-performance file system in minutes\. It also provides multiple deployment options so you can optimize cost for your needs\.
 
