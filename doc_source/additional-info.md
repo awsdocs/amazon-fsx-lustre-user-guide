@@ -3,9 +3,9 @@
 This section provides a reference of supported, but deprecated Amazon FSx features\.
 
 **Topics**
-+ [Setting Up a Custom Backup Schedule](#custom-backup-schedule)
++ [Setting up a custom backup schedule](#custom-backup-schedule)
 
-## Setting Up a Custom Backup Schedule<a name="custom-backup-schedule"></a>
+## Setting up a custom backup schedule<a name="custom-backup-schedule"></a>
 
 We recommend using AWS Backup to set up a custom backup schedule for your file system\. The information provided here is for reference purposes if you need to schedule backups more frequently than you can when using AWS Backup\.
 
@@ -21,7 +21,7 @@ The solution automatically deploys all the components needed, and takes in the f
 
 For more information on CRON schedule patterns, see [Schedule Expressions for Rules](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html) in the Amazon CloudWatch User Guide\.
 
-### Architecture Overview<a name="fsx-custom-backup-overview"></a>
+### Architecture overview<a name="fsx-custom-backup-overview"></a>
 
 Deploying this solution builds the following resources in the AWS Cloud\.
 
@@ -37,13 +37,13 @@ This solution does the following:
 
 1. The backup manager sends a notification message to the Amazon SNS queue on a successful backup if you choose the option to be notified during the initial deployment\. A notification is always sent in the event of a failure\.
 
-### AWS CloudFormation Template<a name="fsx-custom-backup-template"></a>
+### AWS CloudFormation template<a name="fsx-custom-backup-template"></a>
 
 This solution uses AWS CloudFormation to automate the deployment of the Amazon FSx for Lustre custom backup scheduling solution\. To use this solution, download the [fsx\-scheduled\-backup\.template](https://s3.amazonaws.com/solution-references/fsx/backup/fsx-scheduled-backup.template) AWS CloudFormation template\.
 
-### Automated Deployment<a name="fsx-custom-backup-deployment"></a>
+### Automated deployment<a name="fsx-custom-backup-deployment"></a>
 
-The following procedure configures and deploys this custom backup scheduling solution\. It takes about five minutes to deploy\. Before you start, you must have the ID of an Amazon FSx for Lustre file system running in an Amazon Virtual Private Cloud \(Amazon VPC\) in your AWS account\. For more information on creating these resources, see [Getting Started with Amazon FSx for Lustre](getting-started.md)\.
+The following procedure configures and deploys this custom backup scheduling solution\. It takes about five minutes to deploy\. Before you start, you must have the ID of an Amazon FSx for Lustre file system running in an Amazon Virtual Private Cloud \(Amazon VPC\) in your AWS account\. For more information on creating these resources, see [Getting started with Amazon FSx for Lustre](getting-started.md)\.
 
 **Note**  
 Implementing this solution incurs billing for the associated AWS services\. For more information, see the pricing details pages for those services\.
@@ -52,7 +52,7 @@ Implementing this solution incurs billing for the associated AWS services\. For 
 
 1. Download the [fsx\-scheduled\-backup\.template](https://s3.amazonaws.com/solution-references/fsx/backup/fsx-scheduled-backup.template) AWS CloudFormation template\. For more information on creating an AWS CloudFormation stack, see [Creating a Stack on the AWS CloudFormation Console](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-console-create-stack.html) in the *AWS CloudFormation User Guide*\.
 **Note**  
-By default, this template launches in the US East \(N\. Virginia\) AWS Region\. Amazon FSx for Lustre is currently only available in specific AWS Regions\. You must launch this solution in an AWS Region where Amazon FSx for Lustre is available\. For more information, see the Amazon FSx section of [AWS Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html) in the *AWS General Reference\. *
+By default, this template launches in the US East \(N\. Virginia\) AWS Region\. Amazon FSx for Lustre is currently only available in specific AWS Regions\. You must launch this solution in an AWS Region where Amazon FSx for Lustre is available\. For more information, see the Amazon FSx section of [AWS Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html) in the *AWS General Reference*\.
 
 1. For **Parameters**, review the parameters for the template and modify them for the needs of your file system\. This solution uses the following default values\.  
 ****    
@@ -68,7 +68,7 @@ By default, this template launches in the US East \(N\. Virginia\) AWS Region\. 
 
 You can view the status of the stack in the AWS CloudFormation console in the **Status** column\. You should see a status of **CREATE\_COMPLETE** in about five minutes\.
 
-### Additional Options<a name="fsx-custom-backup-supplemental"></a>
+### Additional options<a name="fsx-custom-backup-supplemental"></a>
 
 You can use the Lambda function created by this solution to perform custom scheduled backups of more than one Amazon FSx for Lustre file system\. The file system ID is passed to the Amazon FSx for Lustre function in the input JSON for the CloudWatch event\. The default JSON passed to the Lambda function is as follows, where the values for `FileSystemId` and `SuccessNotification` are passed from the parameters specified when launching the AWS CloudFormation stack\.
 

@@ -1,14 +1,14 @@
-# Setting Up<a name="setting-up"></a>
+# Setting up<a name="setting-up"></a>
 
 Before you use Amazon FSx for Lustre for the first time, complete the following tasks:
 
-1. [Sign Up for AWS](#setting-up-signup)
+1. [Sign up for AWS](#setting-up-signup)
 
-1. [Create an IAM User](#setting-up-iam)
+1. [Create an IAM user](#setting-up-iam)
 
-## Sign Up for AWS<a name="setting-up-signup"></a>
+## Sign up for AWS<a name="setting-up-signup"></a>
 
-When you sign up for Amazon Web Services \(AWS\), your AWS account is automatically signed up for all services in AWS, including Amazon FSx for Lustre\.
+When you sign up for Amazon Web Services, your AWS account is automatically signed up for all services in AWS, including Amazon FSx for Lustre\.
 
 If you have an AWS account already, skip to the next task\. If you don't have an AWS account, use the following procedure to create one\.
 
@@ -22,11 +22,11 @@ If you have an AWS account already, skip to the next task\. If you don't have an
 
 Note your AWS account number, because you need it for the next task\.
 
-## Create an IAM User<a name="setting-up-iam"></a>
+## Create an IAM user<a name="setting-up-iam"></a>
 
 Services in AWS, such as Amazon FSx for Lustre, require that you provide credentials when you access them, so that the service can determine whether you have permissions to access its resources\. AWS recommends that you don't use the root credentials of your AWS account to make requests\. Instead, create an AWS Identity and Access Management \(IAM\) user and grant that user full access\. We call these users administrator users\.
 
-You can use the administrator user credentials, instead of root credentials of your account, to interact with AWS and perform tasks, such as create users and grant them permissions\. For more information, see [Root Account Credentials vs\. IAM User Credentials](https://docs.aws.amazon.com/general/latest/gr/root-vs-iam.html) in the *AWS General Reference* and [IAM Best Practices](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html) in the *IAM User Guide*\. 
+You can use the administrator user credentials, instead of root credentials of your account, to interact with AWS and perform tasks, such as create users and grant them permissions\. For more information, see [Root Account Credentials vs\. IAM User Credentials](https://docs.aws.amazon.com/general/latest/gr/root-vs-iam.html) in the *AWS General Reference* and [IAM Best](https://docs.aws.amazon.com/IAM/latest/UserGuide/best-practices.html) in the *IAM User Guide*\. 
 
 If you signed up for AWS but have not created an IAM user for yourself, you can create one using the IAM Management Console\.
 
@@ -34,7 +34,7 @@ If you signed up for AWS but have not created an IAM user for yourself, you can 
 
 1. Sign in to the [IAM console](https://console.aws.amazon.com/iam/) as the account owner by choosing **Root user** and entering your AWS account email address\. On the next page, enter your password\.
 **Note**  
-We strongly recommend that you adhere to the best practice of using the **Administrator** IAM user below and securely lock away the root user credentials\. Sign in as the root user only to perform a few [account and service management tasks](https://docs.aws.amazon.com/general/latest/gr/aws_tasks-that-require-root.html)\.
+We strongly recommend that you adhere to the best practice of using the **Administrator** IAM user that follows and securely lock away the root user credentials\. Sign in as the root user only to perform a few [account and service management tasks](https://docs.aws.amazon.com/general/latest/gr/aws_tasks-that-require-root.html)\.
 
 1. In the navigation pane, choose **Users** and then choose **Add user**\.
 
@@ -52,7 +52,7 @@ We strongly recommend that you adhere to the best practice of using the **Admini
 
 1. In the **Create group** dialog box, for **Group name** enter **Administrators**\.
 
-1. Choose **Filter policies**, and then select **AWS managed \-job function** to filter the table contents\.
+1. Choose **Filter policies**, and then select **AWS managed \- job function** to filter the table contents\.
 
 1. In the policy list, select the check box for **AdministratorAccess**\. Then choose **Create group**\.
 **Note**  
@@ -84,15 +84,15 @@ https://your_account_alias.signin.aws.amazon.com/console/
 
 To verify the sign\-in link for IAM users for your account, open the IAM console and check under **AWS Account Alias** on the dashboard\.
 
-### Adding Permissions to Use Data Repositories in Amazon S3<a name="fsx-adding-permissions-s3"></a>
+## Adding permissions to use data repositories in Amazon S3<a name="fsx-adding-permissions-s3"></a>
 
-Amazon FSx for Lustre is deeply integrated with Amazon S3\. This integration means that you can seamlessly access the objects stored in your Amazon S3 buckets from applications mounting your Amazon FSx for Lustre file system\. For more information, see [Using data repositories with Amazon FSx for Lustre](fsx-data-repositories.md)\.
+Amazon FSx for Lustre is deeply integrated with Amazon S3\. This integration means that applications that access your FSx for Lustre file system can also seamlessly access the objects stored in your linked Amazon S3 bucket\. For more information, see [Using data repositories with Amazon FSx for Lustre](fsx-data-repositories.md)\.
 
 To use data repositories, you must first allow Amazon FSx for Lustre certain IAM permissions in a role associated with the account for your administrator user\.
 
 **To embed an inline policy for a role using the console**
 
-1. Sign in to the AWS Management Console and open the IAM console at [ https://console\.aws\.amazon\.com/iam/]( https://console.aws.amazon.com/iam/)\.
+1. Sign in to the AWS Management Console and open the IAM console at [https://console\.aws\.amazon\.com//iam/](https://console.aws.amazon.com//iam/)\.
 
 1. In the navigation pane, choose **Roles**\.
 
@@ -123,10 +123,26 @@ You can't embed an inline policy in a service\-linked role in IAM\. Because the 
    }
    ```
 
-After you create an inline policy, it is automatically embedded in your role\.
+After you create an inline policy, it is automatically embedded in your role\. For more information about service\-linked roles, see [Using service\-linked roles for Amazon FSx for Lustre](using-service-linked-roles.md)\.
 
-For more information about service\-linked roles, see [Using Service\-Linked Roles for Amazon FSx for Lustre](using-service-linked-roles.md)\.
+## How FSx for Lustre checks for access to linked S3 buckets<a name="fsx-lustre-permissions-s3-bucket"></a>
 
-## Next Step<a name="setting-up-next-step"></a>
+If the IAM role that you use to create the FSx for Lustre file system does not have the `iam:AttachRolePolicy` and `iam:PutRolePolicy` permissions, then Amazon FSx checks whether it can update your S3 bucket policy\. Amazon FSx can update your bucket policy if the `s3:PutBucketPolicy` permission is included in your IAM role to allow the Amazon FSx file system to import or export data to your S3 bucket\. If allowed to modify the bucket policy, Amazon FSx adds the following permissions to the bucket policy:
++ `s3:AbortMultipartUpload`
++ `s3:DeleteObject`
++ `s3:PutObject`
++ `s3:Get*`
++ `s3:List*`
++ `s3:PutBucketNotification`
++ `s3:PutBucketPolicy`
++ `s3:DeleteBucketPolicy`
 
-[Getting Started with Amazon FSx for Lustre](getting-started.md)
+If Amazon FSx can't modify the bucket policy, it then checks if the existing bucket policy grants Amazon FSx access to the bucket\.
+
+If all of these options fail, then the request to create the file system fails\. The following diagram illustrates the checks that Amazon FSx follows when determining whether a file system can access the S3 bucket to which it will be linked\. 
+
+![\[Progression of checks that Amazon FSx uses to determine if it will have permission to import or export data to the S3 bucket to which it will be linked.\]](http://docs.aws.amazon.com/fsx/latest/LustreGuide/images/fsx-lustre-permissons-create-fs-linked-s3.png)
+
+## Next step<a name="setting-up-next-step"></a>
+
+[Getting started with Amazon FSx for Lustre](getting-started.md)

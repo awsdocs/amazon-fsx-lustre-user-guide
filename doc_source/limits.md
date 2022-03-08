@@ -2,44 +2,46 @@
 
 Following, you can find out about quotas when working with Amazon FSx for Lustre\.
 
-## Quotas That You Can Increase<a name="soft-limits"></a>
+**Topics**
++ [Quotas that you can increase](#soft-limits)
++ [Resource quotas for each file system](#limits-MFS-resources-file-system)
++ [Additional considerations](#limits-additional-considerations)
 
-Following are the quotas for Amazon FSx for Lustre per AWS account, per AWS Region, which you can increase for specific [deployment types](using-fsx-lustre.md#lustre-deployment-types) by contacting AWS Support\.
+## Quotas that you can increase<a name="soft-limits"></a>
+
+Following are the quotas for Amazon FSx for Lustre per AWS account, per AWS Region, which you can increase\.
 
 
 ****  
 
-| Resource | Default limit | Can be increased up to | 
+| Resource | Default | Description | 
 | --- | --- | --- | 
-| Number of file systems | 100 | Thousands | 
-| Number of file updates from linked S3 bucket per file system | 10 million / month | Hundreds of millions / month | 
-| Total number of user\-initiated backups for all file systems |  500  | Thousands | 
-| Total storage for all file systems | 100,800 GiB\. This is the default value\. | Petabytes | 
+|  Lustre Persistent\_1 file systems  |  100  |  The maximum number of Amazon FSx for Lustre Persistent\_1 file systems that you can create in this account\.  | 
+|  Lustre Persistent\_2 file systems  |  100  |  The maximum number of Amazon FSx for Lustre Persistent\_2 file systems that you can create in this account\.  | 
+|  Lustre Persistent HDD storage capacity \(per file system\)  |  102000  |  The maximum amount of HDD storage capacity \(in GiB\) that you can configure for an Amazon FSx for Lustre persistent file system\.  | 
+|  Lustre Persistent\_1 file storage capacity  |  100800  |  The maximum amount of storage capacity \(in GiB\) that you can configure for all Amazon FSx for Lustre Persistent\_1 file systems in this account\.  | 
+|  Lustre Persistent\_2 file storage capacity  |  64,800  |  The maximum amount of storage capacity \(in GiB\) that you can configure for all Amazon FSx for Lustre Persistent\_2 file systems in this account\.  | 
+|  Lustre Scratch file systems  |  100  |  The maximum number of Amazon FSx for Lustre scratch file systems that you can create in this account\.  | 
+|  Lustre Scratch storage capacity  |  100800  |  The maximum amount of storage capacity \(in GiB\) that you can configure for all Amazon FSx for Lustre scratch file systems in this account\.  | 
+|  Lustre backups  |  500  |  The maximum number of user\-initiated backups that you can have for all Amazon FSx for Lustre file systems in this account\.  | 
 
 **To request a quota increase**
 
-1. Open the [AWS Support Center](https://console.aws.amazon.com/support/home#/) page, sign in if necessary, and then choose **Create case**\.
+1. Open the [Service Quotas console](https://console.aws.amazon.com/servicequotas/home?region=us-east-1#!/dashboard)\.
 
-1. For **Create case**, choose **Account and billing support**\.
+1. In the navigation pane, choose **AWS services**\.
 
-1. In the **Case details** panel, make the following entries:
-   + For **Type**, choose **Account**\.
-   + For **Category**, choose **Other Account Issues**\.
-   + For **Subject**, enter **Amazon FSx for Lustre service limit increase request**\.
-   + Provide a detailed **Description** of your request, including the following for each file system that you are requesting an increase for:
-     + The file system ID and Region\.
-     + The file system's deployment type – **SCRATCH\_1**, **SCRATCH\_2**, or **PERSISTENT\_1**\.
+1. Choose **Amazon FSx**\.
 
-       If PERSISTENT\_1, provide the throughput tier – **12 MB/s**, **40 MB/s**, **50 MB/s**, **100 MB/s**, or **200 MB/s**\. 
+1. Choose a quota\.
 
-       If HDD, provide the drive cache type – **NONE** or **READ**\.
-     + The file system's preferred Availability Zone\.
-     + The FSx quota that you want increased, and the value that you want it increased to, if known\.
-     + The reason why you are seeking the quota increase\.
+1. Choose **Request quota increase**, and follow the directions to request a quota increase\.
 
-1. Provide your preferred **Contact options** and choose **Submit**\.
+1. To view the status of the quota request, choose **Quota request history** in the console navigation pane\.
 
-## Resource Quotas for Each File System<a name="limits-MFS-resources-file-system"></a>
+For more information, see [Requesting a quota increase](https://docs.aws.amazon.com/servicequotas/latest/userguide/request-quota-increase.html) in the *Service Quotas User Guide*\.
+
+## Resource quotas for each file system<a name="limits-MFS-resources-file-system"></a>
 
 Following are the limits on Amazon FSx for Lustre resources for each file system in an AWS Region\. 
 
@@ -48,6 +50,19 @@ Following are the limits on Amazon FSx for Lustre resources for each file system
 
 | Resource | Limit per file system | 
 | --- | --- | 
-| Number of tags | 50 | 
+| Maximum number of tags | 50 | 
+| Maximum retention period for automated backups | 90 days | 
+| Maximum number of backup copy requests in progress to a single destination Region per account\. | 5 | 
+| Number of file updates from linked S3 bucket per file systems | 10 million / month | 
+| Minimum storage capacity, SSD file systems | 1\.2 TiB | 
+| Minimum storage capacity, HDD file systems | 6 TiB | 
+| Minimum throughput per unit of storage, SSD | 50 MBps | 
+| Maximum throughput per unit of storage, SSD | 200 MBps | 
+| Minimum throughput per unit of storage, HDD | 12 MBps | 
+| Maximum throughput per unit of storage, HDD | 40 MBps | 
 
-For information on throughput capacity, see [Amazon FSx for Lustre Performance](performance.md)\.
+## Additional considerations<a name="limits-additional-considerations"></a>
+
+In addition, note the following:
++ You can use each AWS Key Management Service \(AWS KMS\) key on up to 125 Amazon FSx for Lustre file systems\.
++ For a list of AWS Regions where you can create file systems, see [Amazon FSx Endpoints and Quotas](https://docs.aws.amazon.com/general/latest/gr/fsxn.html) in the *AWS General Reference*\.

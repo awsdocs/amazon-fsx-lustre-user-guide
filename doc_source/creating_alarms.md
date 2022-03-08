@@ -1,4 +1,4 @@
-# Creating CloudWatch Alarms to Monitor Amazon FSx for Lustre<a name="creating_alarms"></a>
+# Creating CloudWatch alarms to monitor Amazon FSx for Lustre<a name="creating_alarms"></a>
 
 You can create a CloudWatch alarm that sends an Amazon SNS message when the alarm changes state\. An alarm watches a single metric over a time period you specify, and performs one or more actions based on the value of the metric relative to a given threshold over a number of time periods\. The action is a notification sent to an Amazon SNS topic or Auto Scaling policy\.
 
@@ -14,7 +14,9 @@ The following procedures outline how to create alarms for Amazon FSx for Lustre\
 
 1. Choose **FSx Metrics** and scroll through the Amazon FSx for Lustre metrics to locate the metric that you want to place an alarm on\. To display just the Amazon FSx for Lustre metrics in this dialog box, search on the file system ID of your file system\. Choose the metric to create an alarm on, and choose **Next**\.
 
-1.  Enter the **Name**, **Description**, **Whenever** values for the metric\. 
+1. In the **Conditions** section, choose the conditions you want for the alarm, and choose **Next**\.
+**Note**  
+Metrics may not be published during file system maintenance\. To prevent unnecessary and misleading alarm condition changes and to configure your alarms so that they are resilient to missing data points, see [ Configuring how CloudWatch alarms treat missing data](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/AlarmThatSendsEmail.html#alarms-and-missing-data) in the *Amazon CloudWatch User Guide*\.
 
 1. If you want CloudWatch to send you an email when the alarm state is reached, for **Whenever this alarm**, choose **State is ALARM**\. For **Send notification to**, choose an existing SNS topic\. If you choose **Create topic**, you can set the name and email addresses for a new email subscription list\. This list is saved and appears in this box for future alarms\.
 **Note**  

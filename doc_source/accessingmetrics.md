@@ -1,10 +1,10 @@
-# Accessing CloudWatch Metrics<a name="accessingmetrics"></a>
+# Accessing CloudWatch metrics<a name="accessingmetrics"></a>
 
 You can see Amazon FSx for Lustre metrics for CloudWatch in many ways\. You can view them through the CloudWatch console, or you can access them using the CloudWatch CLI or the CloudWatch API\. The following procedures show you how to access the metrics using these various tools\.
 
 **To view metrics using the CloudWatch console**
 
-1. Open the CloudWatch console at [https://console\.aws\.amazon\.com/cloudwatch/](https://console.aws.amazon.com/cloudwatch)\.
+1. Open the [CloudWatch console](https://console.aws.amazon.com/cloudwatch)\.
 
 1. In the navigation pane, choose **Metrics**\. 
 

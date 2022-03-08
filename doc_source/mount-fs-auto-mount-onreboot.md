@@ -1,13 +1,13 @@
-# Mounting Your Amazon FSx File System Automatically<a name="mount-fs-auto-mount-onreboot"></a>
+# Mounting your Amazon FSx file system automatically<a name="mount-fs-auto-mount-onreboot"></a>
 
  You can update the `/etc/fstab` file in your Amazon EC2 instance after you connect to the instance for the first time so that it mounts your Amazon FSx file system each time it reboots\.
 
-## Using /etc/fstab to Mount Amazon FSx for Lustre Automatically<a name="lustre-mount-fs-auto-mount-update-fstab"></a>
+## Using /etc/fstab to mount FSx for Lustre automatically<a name="lustre-mount-fs-auto-mount-update-fstab"></a>
 
 To automatically mount your Amazon FSx file system directory when the Amazon EC2 instance reboots, you can use the `fstab` file\. The `fstab` file contains information about file systems\. The command `mount -a`, which runs during instance startup, mounts the file systems listed in the `fstab` file\.
 
 **Note**  
-Before you can update the `/etc/fstab` file of your EC2 instance, make sure that you've already created your Amazon FSx file system\. For more information, see [Step 1: Create Your Amazon FSx for Lustre File System](getting-started-step1.md) in the Getting Started exercise\.
+Before you can update the `/etc/fstab` file of your EC2 instance, make sure that you've already created your Amazon FSx file system\. For more information, see [Step 1: Create your Amazon FSx for Lustre file system](getting-started-step1.md) in the Getting Started exercise\.
 
 **To update the /etc/fstab file in your EC2 instance**
 
@@ -24,7 +24,7 @@ Before you can update the `/etc/fstab` file of your EC2 instance, make sure that
    file_system_dns_name@tcp:/mountname /fsx lustre defaults,noatime,flock,_netdev 0 0
    ```
 **Warning**  
-Use the `_netdev` option, used to identify network file systems, when mounting your file system automatically\. If `_netdev` is missing, your EC2 instance might stop responding\. This result is because network file systems need to be initialized after the compute instance starts its networking\. For more information, see [Automatic Mounting Fails and the Instance Is Unresponsive](troubleshooting.md#lustre-automount-fails)\.
+Use the `_netdev` option, used to identify network file systems, when mounting your file system automatically\. If `_netdev` is missing, your EC2 instance might stop responding\. This result is because network file systems need to be initialized after the compute instance starts its networking\. For more information, see [Automatic mounting fails and the instance is unresponsive](troubleshooting.md#lustre-automount-fails)\.
 
 1. Save the changes to the file\.
 

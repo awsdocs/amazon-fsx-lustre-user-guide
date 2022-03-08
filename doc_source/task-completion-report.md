@@ -1,8 +1,8 @@
-# Working with Task Completion Reports<a name="task-completion-report"></a>
+# Working with task completion reports<a name="task-completion-report"></a>
 
-A *task completion report* provides details about the results of a data repository task\. The report includes results for the files processed by the task that match the scope of the report\. Currently, the only available scope is `FAILED_FILES_ONLY`\. 
+A *task completion report* provides details about the results of an export or import data repository task\. The report includes results for the files processed by the task that match the scope of the report\. You can specify whether to generate a report for a task by using the `Enabled` parameter\. 
 
-Amazon FSx delivers the report to the file system's linked data repository in Amazon S3, using the path that you specify when you enable the report for a task\. The path must be located within the file system's export path, chosen when the file system was created\. You can specify whether to generate a report for a task by using the `Enabled` parameter\. 
+Amazon FSx delivers the report to the file system's linked data repository in Amazon S3, using the path that you specify when you enable the report for a task\. The report's file name is `failures.csv` for export tasks or `report.csv` for import tasks\.
 
 The report format is a comma\-separated value \(CSV\) file that has three fields: `FilePath`, `FileStatus`, and `ErrorCode`\.
 
@@ -27,6 +27,4 @@ dir1/myLargeFile,failed,FileSizeTooLarge
 dir2/anotherLargeFile,failed,FileSizeTooLarge
 ```
 
-For more information about task failures and how to resolve them, see [Troubleshooting Failed Data Repository Tasks](failed-tasks.md)\.
-
-To learn how to enable a task completion report when creating a data repository task, see [Creating a Data Repository Task](managing-data-repo-task.md#creating-data-repo-task)\.
+For more information about task failures and how to resolve them, see [Troubleshooting import and export failures](failed-tasks.md)\.

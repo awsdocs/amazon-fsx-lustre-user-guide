@@ -1,4 +1,4 @@
-# Unmounting File Systems<a name="unmounting-fs"></a>
+# Unmounting file systems<a name="unmounting-fs"></a>
 
 Before you delete a file system, we recommend that you unmount it from every Amazon EC2 instance that it's connected to\. You can unmount a file system on your Amazon EC2 instance by running the `umount` command on the instance itself\. You can't unmount an Amazon FSx file system through the AWS CLI, the AWS Management Console, or through any of the AWS SDKs\. To unmount an Amazon FSx file system connected to an Amazon EC2 instance running Linux, use the `umount` command as follows:
 

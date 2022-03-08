@@ -1,4 +1,4 @@
-# Using Service\-Linked Roles for Amazon FSx for Lustre<a name="using-service-linked-roles"></a>
+# Using service\-linked roles for Amazon FSx for Lustre<a name="using-service-linked-roles"></a>
 
 Amazon FSx for Lustre uses AWS Identity and Access Management \(IAM\)[ service\-linked roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_terms-and-concepts.html#iam-term-service-linked-role)\. A service\-linked role is a unique type of IAM role that is linked directly to Amazon FSx for Lustre\. Service\-linked roles are predefined by Amazon FSx for Lustre and include all the permissions that the service requires to call other AWS services on your behalf\. 
 
@@ -8,7 +8,7 @@ You can delete a service\-linked role only after first deleting their related re
 
 For information about other services that support service\-linked roles, see [AWS Services That Work with IAM](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_aws-services-that-work-with-iam.html) and look for the services that have **Yes **in the **Service\-Linked Role** column\. Choose a **Yes** with a link to view the service\-linked role documentation for that service\.
 
-## Service\-Linked Role Permissions for Amazon FSx for Lustre<a name="slr-permissions"></a>
+## Service\-linked role permissions for Amazon FSx for Lustre<a name="slr-permissions"></a>
 
 Amazon FSx for Lustre uses two service\-linked roles named `AWSServiceRoleForAmazonFSx` and `AWSServiceRoleForFSxS3Access_fs-01234567890` that perform certain actions in your account\. Examples of these actions are creating elastic network interfaces for your file systems in your VPC and accessing your data repository in an Amazon S3 bucket\. For `AWSServiceRoleForFSxS3Access_fs-01234567890`, this service\-linked role is created for each Amazon FSx for Lustre file system you create that is linked to an S3 bucket\.
 
@@ -25,7 +25,7 @@ For `AWSServiceRoleForFSxS3Access_fs-01234567890`, the role permissions policy a
 
 You must configure permissions to allow an IAM entity \(such as a user, group, or role\) to create, edit, or delete a service\-linked role\. For more information, see [Service\-Linked Role Permissions](https://docs.aws.amazon.com/IAM/latest/UserGuide/using-service-linked-roles.html#service-linked-role-permissions) in the *IAM User Guide*\.
 
-## Creating a Service\-Linked Role for Amazon FSx for Lustre<a name="create-slr"></a>
+## Creating a service\-linked role for Amazon FSx for Lustre<a name="create-slr"></a>
 
 You don't need to manually create a service\-linked role\. When you create a file system in the AWS Management Console, the IAM CLI, or the IAM API, Amazon FSx for Lustre creates the service\-linked roles for you\. 
 
@@ -39,11 +39,11 @@ In order for Amazon FSx to create the `AWSServiceRoleForFSxS3Access_fs-012345678
 `iam:AttachRolePolicy`
 `iam:PutRolePolicy`
 
-## Editing a Service\-Linked Role for Amazon FSx for Lustre<a name="edit-slr"></a>
+## Editing a service\-linked role for Amazon FSx for Lustre<a name="edit-slr"></a>
 
 Amazon FSx for Lustre does not allow you to edit these service\-linked roles\. After you create a service\-linked role, you cannot change the name of the role because various entities might reference the role\. However, you can edit the description of the role using IAM\. For more information, see [Editing a Service\-Linked Role](https://docs.aws.amazon.com/IAM/latest/UserGuide/using-service-linked-roles.html#edit-service-linked-role) in the *IAM User Guide*\.
 
-## Deleting a Service\-Linked Role for Amazon FSx for Lustre<a name="delete-slr"></a>
+## Deleting a service\-linked role for Amazon FSx for Lustre<a name="delete-slr"></a>
 
 If you no longer need to use a feature or service that requires a service\-linked role, we recommend that you delete that role\. That way you don’t have an unused entity that is not actively monitored or maintained\. However, you must delete all of your file systems and backups before you can manually delete the service\-linked role\.
 
@@ -54,6 +54,6 @@ If the Amazon FSx for Lustre service is using the role when you try to delete th
 
 Use the IAM console, the AWS CLI, or the IAM API to delete the AWSServiceRoleForAmazonFSx service\-linked role\. For more information, see [Deleting a Service\-Linked Role](https://docs.aws.amazon.com/IAM/latest/UserGuide/using-service-linked-roles.html#delete-service-linked-role) in the *IAM User Guide*\.
 
-## Supported Regions for Amazon FSx for Lustre Service\-Linked Roles<a name="slr-regions"></a>
+## Supported regions for Amazon FSx for Lustre service\-linked roles<a name="slr-regions"></a>
 
 Amazon FSx for Lustre supports using service\-linked roles in all of the Regions where the service is available\. For more information, see [AWS Regions and Endpoints](https://docs.aws.amazon.com/general/latest/gr/rande.html)\.

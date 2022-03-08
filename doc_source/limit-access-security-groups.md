@@ -29,7 +29,7 @@ To further control network traffic going through your file system's network inte
 
 1.  Choose **Create** to create the security group\. 
 
-Next, you add inbound rules to the security group that you just created to enable Lustre traffic between your Amazon FSx for Lustre file servers\.
+Next, you add inbound rules to the security group that you just created to enable Lustre traffic between your FSx for Lustre file servers\.
 
 **To add inbound rules to your security group**
 
@@ -40,7 +40,7 @@ Next, you add inbound rules to the security group that you just created to enabl
 
 1. Choose **Save** to save and apply the new inbound rules\.
 
-By default, security group rules allow all outbound traffic \(All, 0\.0\.0\.0/0\)\. If your security group doesn't allow all outbound traffic, add the following outbound rules to your security group\. These rules allow traffic between Amazon FSx for Lustre file servers and Lustre clients, and between Lustre file servers\.
+By default, security group rules allow all outbound traffic \(All, 0\.0\.0\.0/0\)\. If your security group doesn't allow all outbound traffic, add the following outbound rules to your security group\. These rules allow traffic between FSx for Lustre file servers and Lustre clients, and between Lustre file servers\.
 
 **To add outbound rules to your security group**
 
@@ -73,9 +73,9 @@ Add the following inbound rules to the security groups applied to your Lustre cl
 | Type | Protocol | Port Range | Source | Description | 
 | --- | --- | --- | --- | --- | 
 | Custom TCP rule | TCP | 988 | Choose Custom and enter the security group IDs of the security groups that are applied to your Lustre clients | Allows Lustre traffic between Lustre clients | 
-| Custom TCP rule | TCP | 988 | Choose Custom and enter the security group IDs of the security groups associated with your Amazon FSx for Lustre file systems  | Allows Lustre traffic between Amazon FSx for Lustre file servers and Lustre clients | 
+| Custom TCP rule | TCP | 988 | Choose Custom and enter the security group IDs of the security groups associated with your FSx for Lustre file systems  | Allows Lustre traffic between FSx for Lustre file servers and Lustre clients | 
 | Custom TCP rule | TCP | 1021\-1023 | Choose Custom and enter the security group IDs of the security groups that are applied to your Lustre clients | Allows Lustre traffic between Lustre clients | 
-| Custom TCP rule | TCP | 1021\-1023 | Choose Custom and enter the security group IDs of the security groups associated with your Amazon FSx for Lustre file systems  | Allows Lustre traffic between Amazon FSx for Lustre file servers and Lustre clients | 
+| Custom TCP rule | TCP | 1021\-1023 | Choose Custom and enter the security group IDs of the security groups associated with your FSx for Lustre file systems  | Allows Lustre traffic between FSx for Lustre file servers and Lustre clients | 
 
 Add the following outbound rules to the security groups applied to your Lustre clients\.
 
@@ -83,6 +83,6 @@ Add the following outbound rules to the security groups applied to your Lustre c
 | Type | Protocol | Port Range | Source | Description | 
 | --- | --- | --- | --- | --- | 
 | Custom TCP rule | TCP | 988 | Choose Custom and enter the security group IDs of the security groups that are applied to your Lustre clients | Allows Lustre traffic between Lustre clients | 
-| Custom TCP rule | TCP | 988 | Choose Custom and enter the security group IDs of the security groups associated with your Amazon FSx for Lustre file systems | Allow Lustre traffic between Amazon FSx for Lustre file servers and Lustre clients | 
+| Custom TCP rule | TCP | 988 | Choose Custom and enter the security group IDs of the security groups associated with your FSx for Lustre file systems | Allow Lustre traffic between FSx for Lustre file servers and Lustre clients | 
 | Custom TCP rule | TCP | 1021\-1023 | Choose Custom and enter the security group IDs of the security groups that are applied to your Lustre clients | Allows Lustre traffic between Lustre clients | 
-| Custom TCP rule | TCP | 1021\-1023 | Choose Custom and enter the security group IDs of the security groups associated with your Amazon FSx for Lustre file systems | Allows Lustre traffic between Amazon FSx for Lustre file servers and Lustre clients | 
+| Custom TCP rule | TCP | 1021\-1023 | Choose Custom and enter the security group IDs of the security groups associated with your FSx for Lustre file systems | Allows Lustre traffic between FSx for Lustre file servers and Lustre clients | 

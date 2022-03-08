@@ -3,15 +3,18 @@
 Use the following information to help you resolve issues that you might encounter when working with Amazon FSx for Lustre\.
 
 **Topics**
-+ [File System Mount Fails Right Away](#mount-fails-right-away)
-+ [File System Mount Hangs and Then Fails with Timeout Error](#mount-hangs-fails-timeout)
-+ [Automatic Mounting Fails and the Instance Is Unresponsive](#lustre-automount-fails)
-+ [File System Mount Using DNS Name Fails](#mount-fails-dns-name)
++ [File system mount fails right away](#mount-fails-right-away)
++ [File system mount hangs and then fails with timeout error](#mount-hangs-fails-timeout)
++ [Automatic mounting fails and the instance is unresponsive](#lustre-automount-fails)
++ [File system mount fails during system boot](#mount-fails-boot-up)
++ [File system mount using DNS name fails](#mount-fails-dns-name)
 + [You can't access your file system](#cant-access-fs)
-+ [Troubleshooting a misconfigured linked S3 bucket](#troubleshooting-misconfigured-data-repository)
++ [Unable to validate access to an S3 bucket when creating a data repository association](#s3-validation-error)
 + [Cannot create a file system that is linked to an S3 bucket](#slr-permissions-fails)
++ [Troubleshooting a misconfigured linked S3 bucket](#troubleshooting-misconfigured-data-repository)
++ [Troubleshooting storage issues](#lfs-migrate-ts)
 
-## File System Mount Fails Right Away<a name="mount-fails-right-away"></a>
+## File system mount fails right away<a name="mount-fails-right-away"></a>
 
 The file system mount command fails right away\. The following code shows an example\.
 
@@ -25,7 +28,7 @@ Is the filesystem name correct?
 
 This error can occur if you aren't using the correct `mountname` value when mounting a persistent or scratch 2 file system by using the mount command\. You can get the `mountname` value from the response of the [https://docs.aws.amazon.com/cli/latest/reference/fsx/describe-file-systems.html](https://docs.aws.amazon.com/cli/latest/reference/fsx/describe-file-systems.html) AWS CLI command or the [https://docs.aws.amazon.com/fsx/latest/APIReference/API_DescribeFileSystems.html](https://docs.aws.amazon.com/fsx/latest/APIReference/API_DescribeFileSystems.html) API operation\.
 
-## File System Mount Hangs and Then Fails with Timeout Error<a name="mount-hangs-fails-timeout"></a>
+## File system mount hangs and then fails with timeout error<a name="mount-hangs-fails-timeout"></a>
 
 The file system mount command hangs for a minute or two, and then fails with a timeout error\. 
 
@@ -40,11 +43,11 @@ Connection timed out
 
 This error can occur because the security groups for the Amazon EC2 instance or the file system aren't configured properly\.
 
-**Action to Take**
+**Action to take**
 
 Make sure that your security groups for the file system have the inbound rules specified in [Amazon VPC Security Groups](limit-access-security-groups.md#fsx-vpc-security-groups)\.
 
-## Automatic Mounting Fails and the Instance Is Unresponsive<a name="lustre-automount-fails"></a>
+## Automatic mounting fails and the instance is unresponsive<a name="lustre-automount-fails"></a>
 
 
 
@@ -52,12 +55,29 @@ In some cases, automatic mounting might fail for a file system and your Amazon E
 
 This issue can occur if the `_netdev` option wasn't declared\. If `_netdev` is missing, your Amazon EC2 instance can stop responding\. This result is because network file systems need to be initialized after the compute instance starts its networking\.
 
-**Action to Take**  
+**Action to take**  
 If this issue occurs, contact AWS Support\.
 
-## File System Mount Using DNS Name Fails<a name="mount-fails-dns-name"></a>
+## File system mount fails during system boot<a name="mount-fails-boot-up"></a>
 
-A file system mount that is using a Domain Name Service \(DNS\) name fails\. The following code shows an example\.
+The file system mount fails during the system boot\. The mounting is automated using `/etc/fstab`\. When the file system is not mounted, the following error is seen in the syslog for the instance booting time frame\.
+
+```
+LNetError: 3135:0:(lib-socket.c:583:lnet_sock_listen()) Can't create socket: port 988 already in use
+LNetError: 122-1: Can't start acceptor on port 988: port already in use
+```
+
+This error can occur when port 988 is not available\. When the instance is configured to mount NFS file systems, it is possible that the NFS mounts will bind its client port to port 988
+
+**Action to take**
+
+You can work around this problem by tuning the NFS client's `noresvport` and `noauto` mount options where possible\.
+
+## File system mount using DNS name fails<a name="mount-fails-dns-name"></a>
+
+Misconfigured Domain Name Service \(DNS\) names can cause file system mount failures, as shown in the following scenarios\.
+
+**Scenario 1:** A file system mount that is using a Domain Name Service \(DNS\) name fails\. The following code shows an example\.
 
 ```
 sudo mount -t lustre file_system_dns_name@tcp:/mountname /mnt/fsx
@@ -65,7 +85,7 @@ mount.lustre: Can't parse NID
 'file_system_dns_name@tcp:/mountname'
 ```
 
-**Action to Take**
+**Action to take**
 
 Check your virtual private cloud \(VPC\) configuration\. If you are using a custom VPC, make sure that DNS settings are enabled\. For more information, see [Using DNS with Your VPC](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-dns.html) in the *Amazon VPC User Guide*\. 
 
@@ -74,14 +94,14 @@ To specify a DNS name in the `mount` command, do the following:
 + Connect your Amazon EC2 instance inside a VPC configured to use the DNS server provided by Amazon\. For more information, see [DHCP Options Sets](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_DHCP_Options.html) in the *Amazon VPC User Guide*\.
 + Ensure that the Amazon VPC of the connecting Amazon EC2 instance has DNS host names enabled\. For more information, see [Updating DNS Support for Your VPC](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-dns.html#vpc-dns-updating) in the *Amazon VPC User Guide*\.
 
-A file system mount that is using a Domain Name Service \(DNS\) name fails\. The following code shows an example\.
+**Scenario 2:** A file system mount that is using a Domain Name Service \(DNS\) name fails\. The following code shows an example\.
 
 ```
 mount -t lustre file_system_dns_name@tcp:/mountname /mnt/fsx
 mount.lustre: mount file_system_dns_name@tcp:/mountname at /mnt/fsx failed: Input/output error Is the MGS running?
 ```
 
-**Action to Take**
+**Action to take**
 
  Make sure that the client's VPC security groups have the correct outbound traffic rules applied\. This recommendation holds true especially if you aren't using the default security group, or if you have modified the default security group\. For more information, see [Amazon VPC Security Groups](limit-access-security-groups.md#fsx-vpc-security-groups)\. 
 
@@ -95,19 +115,74 @@ Amazon FSx doesn't support accessing file systems from the public Internet\. Ama
 
 ### The file system elastic network interface was modified or deleted<a name="eni-deleted"></a>
 
-You must not modify or delete the file system's elastic network interface\. Modifying or deleting the network interface can cause a permanent loss of connection between your VPC and your file system\. Create a new file system, and do not modify or delete the FSx elastic network interface\. For more information, see [File System Access Control with Amazon VPC](limit-access-security-groups.md)\. 
+You must not modify or delete the file system's elastic network interface\. Modifying or deleting the network interface can cause a permanent loss of connection between your VPC and your file system\. Create a new file system, and do not modify or delete the FSx elastic network interface\. For more information, see [File System Access Control with Amazon VPC](limit-access-security-groups.md)\.
+
+## Unable to validate access to an S3 bucket when creating a data repository association<a name="s3-validation-error"></a>
+
+Creating a data repository association \(DRA\) from the Amazon FSx console or using the `create-data-repository-association` CLI command \([CreateDataRepositoryAssociation](https://docs.aws.amazon.com/fsx/latest/APIReference/API_CreateDataRepositoryAssociation.html) is the equivalent API action\) fails with the following error message\.
+
+```
+Amazon FSx is unable to validate access to the S3 bucket. Ensure the IAM role or user
+you are using has s3:Get*, s3:List* and s3:PutObject permissions to the S3 bucket prefix.
+```
+
+**Note**  
+You can also get the above error when creating a Scratch 1, Scratch 2, or Persistent 1 file system that is linked to a data repository \(S3 bucket or prefix\) using the Amazon FSx console or the `create-file-system` CLI command \([CreateFileSystem](https://docs.aws.amazon.com/fsx/latest/APIReference/API_CreateFileSystem.html) is the equivalent API action\)\.
+
+**Action to take**
+
+If the FSx for Lustre file system is in the same account as the S3 bucket, this error means the IAM role you used for the create request doesn't have the necessary permissions to access the S3 bucket\. Make sure the IAM role has the permissions listed in the error message\. These permissions support the Amazon FSx for Lustre service\-linked role that is used to access the specified Amazon S3 bucket on your behalf\.
+
+If the FSx for Lustre file system is in a different account as the S3 bucket \(cross\-account case\), in additional to making sure the IAM role you used has the required permissions, the S3 bucket policy should be configured to allow the access from the account that the FSx for Lustre is created in\. Following is a sample bucket policy,
+
+```
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::file_system_account_ID:root"
+            },
+            "Action": "s3:*",
+            "Resource": [
+                "arn:aws:s3:::bucket_name",
+                "arn:aws:s3:::bucket_name/*"
+            ]
+        }
+    ]
+}
+```
+
+For more information about S3 cross\-account bucket permissions, see [Example 2: Bucket owner granting cross\-account bucket permissions](https://docs.aws.amazon.com/AmazonS3/latest/userguide/example-walkthroughs-managing-access-example2.html) in the *Amazon Simple Storage Service User Guide*\.
+
+## Cannot create a file system that is linked to an S3 bucket<a name="slr-permissions-fails"></a>
+
+If creating a new file system that is linked to an S3 bucket fails with an error message similar to the following\.
+
+```
+User: arn:aws:iam::012345678901:user/username is not authorized to perform: iam:PutRolePolicy on resource: resource ARN
+```
+
+This error can happen if you try to create a file system linked to an Amazon S3 bucket without the necessary IAM permissions\. The required IAM permissions support the Amazon FSx for Lustre service\-linked role that is used to access the specified Amazon S3 bucket on your behalf\.
+
+**Action to take**
+
+Ensure that your IAM entity \(user, group, or role\) has the appropriate permissions to create file systems\. Doing this includes adding the permissions policy that supports the Amazon FSx for Lustre service\-linked role\. For more information, see [Adding permissions to use data repositories in Amazon S3](setting-up.md#fsx-adding-permissions-s3)\.
+
+For more information about service\-linked roles, see [Using service\-linked roles for Amazon FSx for Lustre](using-service-linked-roles.md)\.
 
 ## Troubleshooting a misconfigured linked S3 bucket<a name="troubleshooting-misconfigured-data-repository"></a>
 
-In some cases, an Amazon FSx for Lustre file system's linked S3 bucket might have a misconfigured data repository lifecycle state\. For more information, see [Data repository lifecycle state](overview-data-repo.md#data-repository-lifecycles)\. A linked data repository can have a misconfigured lifecycle state under the following conditions:
+In some cases, an FSx for Lustre file system's linked S3 bucket might have a misconfigured data repository lifecycle state\. 
 
 **Possible cause**
 
 This error can occur if Amazon FSx does not have the necessary AWS Identity and Access Management \(IAM\) permissions that are required to access the linked data repository\. The required IAM permissions support the Amazon FSx for Lustre service\-linked role that is used to access the specified Amazon S3 bucket on your behalf\.
 
-**Action to Take**
+**Action to take**
 
-1. Ensure that your IAM entity \(user, group, or role\) has the appropriate permissions to create file systems\. Doing this includes adding the permissions policy that supports the Amazon FSx for Lustre service\-linked role\. For more information, see [Adding Permissions to Use Data Repositories in Amazon S3](setting-up.md#fsx-adding-permissions-s3)\.
+1. Ensure that your IAM entity \(user, group, or role\) has the appropriate permissions to create file systems\. Doing this includes adding the permissions policy that supports the Amazon FSx for Lustre service\-linked role\. For more information, see [Adding permissions to use data repositories in Amazon S3](setting-up.md#fsx-adding-permissions-s3)\.
 
 1. Using the Amazon FSx CLI or API, refresh the file system's `AutoImportPolicy` with the `update-file-system` CLI command \([UpdateFileSystem](https://docs.aws.amazon.com/fsx/latest/APIReference/API_UpdateFileSystem.html) is the equivalent API action\), as follows\. 
 
@@ -117,7 +192,7 @@ This error can occur if Amazon FSx does not have the necessary AWS Identity and 
    --lustre-configuration AutoImportPolicy=the_existing_AutoImportPolicy
    ```
 
-For more information about service\-linked roles, see [Using Service\-Linked Roles for Amazon FSx for Lustre](using-service-linked-roles.md)\.
+For more information about service\-linked roles, see [Using service\-linked roles for Amazon FSx for Lustre](using-service-linked-roles.md)\.
 
 **Possible Cause**
 
@@ -125,7 +200,7 @@ This error can occur if the linked Amazon S3 data repository has an existing eve
 
 This can also occur if the Amazon FSx event notification configuration on the linked S3 bucket was deleted or modified\.
 
-**Action to Take**
+**Action to take**
 
 1. Remove any existing event notification on the linked S3 bucket that uses either or both of the event types that the FSx event configuration uses, `s3:ObjectCreated:*` and `s3:ObjectRemoved:*`\.
 
@@ -139,18 +214,48 @@ This can also occur if the Amazon FSx event notification configuration on the li
    --lustre-configuration AutoImportPolicy=the_existing_AutoImportPolicy
    ```
 
-## Cannot create a file system that is linked to an S3 bucket<a name="slr-permissions-fails"></a>
+## Troubleshooting storage issues<a name="lfs-migrate-ts"></a>
 
-If creating a new file system that is linked to an S3 bucket fails with an error message similar to the following\.
+In some cases, you may experience storage issues with your file system\. You can troubleshoot these issues by using `lfs` commands, such as the `lfs migrate` command\.
 
-```
-User: arn:aws:iam::012345678901:user/username is not authorized to perform: iam:PutRolePolicy on resource: resource ARN
-```
+### Write error due to no space on storage target<a name="lfs-migrate-no-storage"></a>
 
-This error can happen if you try to create a file system linked to an Amazon S3 bucket without the necessary IAM permissions\. The required IAM permissions support the Amazon FSx for Lustre service\-linked role that is used to access the specified Amazon S3 bucket on your behalf\.
+You can check the storage usage of your file system by using the `lfs df -h` command, as described in [File system storage layout](performance.md#storage-layout)\. The `filesystem_summary` field reports the total file system storage usage\.
 
-**Action to Take**
+If the file system disk usage is 100%, consider increasing the storage capacity of your file system\. For more information, see [Managing storage and throughput capacity](managing-storage-capacity.md)\.
 
-Ensure that your IAM entity \(user, group, or role\) has the appropriate permissions to create file systems\. Doing this includes adding the permissions policy that supports the Amazon FSx for Lustre service\-linked role\. For more information, see [Adding Permissions to Use Data Repositories in Amazon S3](setting-up.md#fsx-adding-permissions-s3)\.
+If the file system storage usage is not 100% and you still get write errors, the file you are writing to may be striped on an OST that is full\.
 
-For more information about service\-linked roles, see [Using Service\-Linked Roles for Amazon FSx for Lustre](using-service-linked-roles.md)\.
+**Action to take**
+
+If many of your OSTs are full, increase the storage capacity of your file system\. Check for unbalanced storage on OSTs by following the actions of the [Unbalanced storage on OSTs](#lfs-migrate-unbalanced-storage) section\.
+
+### Unbalanced storage on OSTs<a name="lfs-migrate-unbalanced-storage"></a>
+
+Amazon FSx for Lustre distributes new file stripes evenly across OSTs\. However, your file system may still become unbalanced due to I/O patterns or file storage layout\. As a result, some storage targets can become full while others remain relatively empty\.
+
+**Action to take**
+
+1. Use the `lfs df -h` command to determine the available capacity remaining on each storage target\.
+
+1. Use the `lfs find` command to identify files that can be migrated to other storage targets\. For example, the following command returns every file that is larger than 1TB and has at least 1 object on `OST 2`\. Any file that is striped across multiple OSTs and using `OST 2` will be returned\.
+
+   ```
+   lfs find /mnt/lfs -size +1T --ost 2
+   ```
+
+1. Use the `lfs migrate` command to move files from one storage target to another storage target or to multiple storage targets\. The following command shows an example of moving a file from the current storage target\.
+
+   ```
+   lfs migrate /mnt/lfs/file1
+   ```
+
+   If you want to change the storage layout of the file, for example stripe a file from a single storage target to multiple storage targets \(such as 4 storage targets\), you can use a command similar to the following:
+
+   ```
+   lfs migrate -c 4 /mnt/lfs/file1
+   ```
+
+   If the file is very large, stripe the file across multiple storage targets\. For more information, see [Handling Full OSTs ](https://wiki.lustre.org/Handling_Full_OSTs) on the Lustre website\.
+
+   You may also consider changing the stripe configuration of your file system or a directory, so that new files are striped across multiple storage targets\. For more information, see in [Striping data in your file system](performance.md#striping-data)\. 

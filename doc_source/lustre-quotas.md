@@ -1,6 +1,6 @@
 # Storage quotas<a name="lustre-quotas"></a>
 
-You can create storage quotas for users and groups on Amazon FSx for Lustre file systems\. With storage quotas, you can limit the amount of disk space and the number of files that a user or a group can consume\. Storage quotas automatically track user\- and group\-level usage so you can monitor consumption whether or not you choose to set storage limits\.
+You can create storage quotas for users and groups on FSx for Lustre file systems\. With storage quotas, you can limit the amount of disk space and the number of files that a user or a group can consume\. Storage quotas automatically track user\- and group\-level usage so you can monitor consumption whether or not you choose to set storage limits\.
 
 Amazon FSx enforces quotas and prevents users who have exceeded them from writing to the storage space\. When users exceed their quotas, they must delete enough files to get under the quota limits so that they can write to the file system again\.
 
@@ -14,7 +14,7 @@ Amazon FSx enforces quotas and prevents users who have exceeded them from writin
 
 ## Quota enforcement<a name="quotas-enforcement"></a>
 
-User and group quota enforcement is automatically enabled on all Amazon FSx for Lustre file systems\. You cannot disable quota enforcement\.
+User and group quota enforcement is automatically enabled on all FSx for Lustre file systems\. You cannot disable quota enforcement\.
 
 ## Types of quotas<a name="quota-types"></a>
 
@@ -122,7 +122,7 @@ The `quota` command displays information about user quotas, group quotas, and gr
 
 
 
-You can link your Amazon FSx for Lustre file system to an Amazon S3 data repository when you create the file system\. For more information, see [Linking your file system to an S3 bucket](create-fs-linked-data-repo.md)\.
+You can link your FSx for Lustre file system to an Amazon S3 data repository\. For more information, see [Linking your file system to an S3 bucket](create-dra-linked-data-repo.md)\.
 
 You can optionally choose a specific folder or prefix within a linked S3 bucket as an import path to your file system\. When a folder in Amazon S3 is specified and imported into your file system from S3, only the data from that folder is applied towards the quota\. The data of the entire bucket is not counted against the quota limits\.
 

@@ -1,4 +1,4 @@
-# Step 5: Clean Up Resources<a name="getting-started-step4"></a>
+# Step 5: Clean up resources<a name="getting-started-step4"></a>
 
 After you have finished this exercise, you should follow these steps to clean up your resources and protect your AWS account\.
 
@@ -20,6 +20,6 @@ After you have finished this exercise, you should follow these steps to clean up
 
    1. For **Actions**, choose **Delete file system**\.
 
-   1. In the dialog box that appears, confirm that you want to delete your file system, and choose **Delete file system**\.
+   1. In the dialog box that appears, choose if you want to take a final backup of the file system\. Then provide the file system ID to confirm the deletion\. Choose **Delete file system**\.
 
-1. If you created an Amazon S3 bucket for this exercise, and if you don't want to preserve the data you exported, you can now delete it\. For more information, see [How Do I Delete an S3 Bucket?](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/delete-bucket.html) in the *Amazon Simple Storage Service Console User Guide\.*
+1. If you created an Amazon S3 bucket for this exercise, and if you don't want to preserve the data you exported, you can now delete it\. For more information, see [Deleting a bucket](https://docs.aws.amazon.com/AmazonS3/latest/user-guide/delete-bucket.html) in the *Amazon Simple Storage Service User Guide\.*

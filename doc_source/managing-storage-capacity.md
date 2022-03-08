@@ -1,6 +1,6 @@
 # Managing storage and throughput capacity<a name="managing-storage-capacity"></a>
 
-You can increase the storage capacity that is configured on your Amazon FSx for Lustre file system as you need additional storage and throughput\. Because the throughput of an Amazon FSx for Lustre file system scales linearly with storage capacity, you also get a comparable increase in throughput capacity\. To increase the storage capacity, you can use the Amazon FSx console, the AWS Command Line Interface \(AWS CLI\), or the Amazon FSx API\.
+You can increase the storage capacity that is configured on your FSx for Lustre file system as you need additional storage and throughput\. Because the throughput of an FSx for Lustre file system scales linearly with storage capacity, you also get a comparable increase in throughput capacity\. To increase the storage capacity, you can use the Amazon FSx console, the AWS Command Line Interface \(AWS CLI\), or the Amazon FSx API\.
 
 When you request an update to your file system's storage capacity, Amazon FSx automatically adds new network file servers and scales your metadata server\. While scaling storage capacity, the file system may be unavailable for a few minutes\. File operations issued by clients while the file system is unavailable will transparently retry and eventually succeed after storage scaling is complete\. During the time that the file system is unavailable, the file system status is set to `UPDATING`\. Once storage scaling is complete, the file system status is set to `AVAILABLE`\.
 
@@ -22,13 +22,13 @@ Here are a few important items to consider when increasing storage capacity:
 + **Increase increments** – When you increase storage capacity, use the increments listed in the **Increase storage capacity** dialog box\.
 + **Time between increases** – You can't make further storage capacity increases on a file system until 6 hours after the last increase was requested, or until the storage optimization process has completed, whichever time is longer\.
 + **Throughput capacity** – The Amazon FSx console, the AWS CLI, and the Amazon FSx API don't allow you to specify a desired throughput level\. However, you automatically increase throughput capacity when you increase the storage capacity\. For persistent HDD file systems with SSD cache, the read cache storage capacity is also similarly increased to maintain an SSD cache that is sized to 20 percent of the HDD storage capacity\. Amazon FSx calculates the new values for the storage and throughput capacity units and lists them in the **Increase storage capacity** dialog box\.
-+ **Deployment type** – You can increase the storage capacity of all deployment types except for scratch 1 file systems\.
++ **Deployment type** – You can increase the storage capacity of all deployment types except for scratch 1 file systems\. If you have a scratch 1 file system, you can create a new one with a larger storage capacity\.
 
 ## When to increase storage and throughput capacity<a name="when-to-modify-storage-capacity"></a>
 
-Increase your file system's storage capacity when it's running low on free storage capacity\. Use the `FreeStorageCapacity` CloudWatch metric to monitor the amount of free storage that is available on the file system\. You can create an Amazon CloudWatch alarm on this metric and get notified when it drops below a specific threshold\. For more information, see [Monitoring with Amazon CloudWatch](monitoring_overview.md#monitoring-cloudwatch)\.
+Increase your file system's storage capacity when it's running low on free storage capacity\. Use the `FreeStorageCapacity` CloudWatch metric to monitor the amount of free storage that is available on the file system\. You can create an Amazon CloudWatch alarm on this metric and get notified when it drops below a specific threshold\. For more information, see [Monitoring with Amazon CloudWatch](monitoring-cloudwatch.md)\.
 
-You can use CloudWatch metrics to monitor your file system's ongoing throughput usage levels\. If you determine that your file system needs a higher throughput capacity, you can use the metric information to help you decide how much to increase the storage capacity\. For information about how to determine your file system's current throughput, see [How to Use Amazon FSx for Lustre Metrics](how_to_use_metrics.md)\. For information about how storage capacity affects throughput capacity, see [Amazon FSx for Lustre Performance](performance.md)\.
+You can use CloudWatch metrics to monitor your file system's ongoing throughput usage levels\. If you determine that your file system needs a higher throughput capacity, you can use the metric information to help you decide how much to increase the storage capacity\. For information about how to determine your file system's current throughput, see [How to use Amazon FSx for Lustre metrics](how_to_use_metrics.md)\. For information about how storage capacity affects throughput capacity, see [Amazon FSx for Lustre performance](performance.md)\.
 
 You can also view your file system's storage capacity and total throughput on the **Summary** panel of the file system details page\.
 
@@ -65,7 +65,7 @@ You cannot increase the storage capacity of scratch 1 file systems\.
 
 ### To increase storage capacity for a file system \(CLI\)<a name="increase-storage-cli"></a>
 
-To increase the storage capacity for an Amazon FSx for Lustre file system, use the AWS CLI command [update\-file\-system](https://docs.aws.amazon.com/cli/latest/reference/fsx/update-file-system.html)\. Set the following parameters:
+To increase the storage capacity for an FSx for Lustre file system, use the AWS CLI command [update\-file\-system](https://docs.aws.amazon.com/cli/latest/reference/fsx/update-file-system.html)\. Set the following parameters:
 + Set `--file-system-id` to the ID of the file system you are updating\.
 + Set `--storage-capacity` to an integer value that is the amount, in GiB, of the storage capacity increase\. For a persistent SSD or scratch 2 file system, this value must be in multiples of 2400\. For a persistent HDD file system, this value must be in multiples of 6000 for 12 MB/s/TiB file systems and multiples of 1800 for 40 MB/s/TiB file systems\. The new target value must be greater than the current storage capacity of the file system\.
 

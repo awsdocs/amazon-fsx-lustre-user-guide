@@ -1,4 +1,4 @@
-# Mounting from an Amazon EC2 Instance<a name="mounting-ec2-instance"></a>
+# Mounting from an Amazon Elastic Compute Cloud instance<a name="mounting-ec2-instance"></a>
 
 You can mount your file system from an Amazon EC2 instance\.
 
@@ -6,7 +6,7 @@ You can mount your file system from an Amazon EC2 instance\.
 
 1. Connect to your Amazon EC2 instance\.
 
-1. Make a directory on your Amazon FSx for Lustre file system for the mount point with the following command\.
+1. Make a directory on your FSx for Lustre file system for the mount point with the following command\.
 
    ```
    $ sudo mkdir -p /fsx

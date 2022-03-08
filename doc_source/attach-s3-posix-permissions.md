@@ -1,10 +1,10 @@
-# Walkthrough: Attaching POSIX permissions when uploading objects into an S3 bucket<a name="attach-s3-posix-permissions"></a>
+# Walkthrough: Attaching POSIX permissions when uploading objects into an Amazon S3 bucket<a name="attach-s3-posix-permissions"></a>
 
 The following procedure walks you through the process of uploading objects into Amazon S3 with POSIX permissions\. Doing so allows you to import the POSIX permissions when you create an Amazon FSx file system that is linked to that S3 bucket\.
 
 **To upload objects with POSIX permissions to Amazon S3**
 
-1. From your local computer or machine, create a test directory and file that will be uploaded to the S3 bucket\.
+1. From your local computer or machine, use the following example commands to create a test directory \(`s3cptestdir`\) and file \(`s3cptest.txt`\) that will be uploaded to the S3 bucket\.
 
    ```
    $ mkdir s3cptestdir
@@ -14,9 +14,9 @@ The following procedure walks you through the process of uploading objects into 
    -rw-r--r-- 1 500 500 26 Jan 8 11:29 s3cptestdir/s3cptest.txt
    ```
 
-   The newly\-created file and directory have a file owner UID and GID of 500 and permissions as shown in the example\.
+   The newly created file and directory have a file owner user ID \(UID\) and group ID \(GID\) of 500 and permissions as shown in the preceding example\.
 
-1. Call the S3 API to create the directory `s3cptestdir` with metadata permissions\. You must specify the directory name with a trailing slash \("/"\)\. For information on supported POSIX metadata, see [POSIX metadata support for data repositories](overview-data-repo.md#posix-metadata-support)\.
+1. Call the Amazon S3 API to create the directory `s3cptestdir` with metadata permissions\. You must specify the directory name with a trailing slash \(`/`\)\. For information about supported POSIX metadata, see [POSIX metadata support for data repositories](overview-dra-data-repo.md#posix-metadata-support)\.
 
    Replace `bucket_name` with the actual name of your S3 bucket\.
 
@@ -96,4 +96,4 @@ The following procedure walks you through the process of uploading objects into 
    -rw-rw-r-- 1 500 500 26 Jan 8 17:33 s3cptestdir/s3cptest.txt
    ```
 
-Both the `s3cptestdir` director and the `s3cptest.txt` file have POSIX permissions imported\.
+Both the `s3cptestdir` directory and the `s3cptest.txt` file have POSIX permissions imported\.

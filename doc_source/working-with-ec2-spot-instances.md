@@ -1,14 +1,14 @@
 # Working with Amazon EC2 Spot Instances<a name="working-with-ec2-spot-instances"></a>
 
-Amazon FSx for Lustre can be used with EC2 Spot Instances to significantly lower your Amazon EC2 costs\. A Spot Instance is an unused EC2 instance that is available for less than the On\-Demand price\. Amazon EC2 can interrupt your Spot Instance when the Spot price exceeds your maximum price, when the demand for Spot Instances rises, or when the supply of Spot Instances decreases\.
+FSx for Lustre can be used with EC2 Spot Instances to significantly lower your Amazon EC2 costs\. A Spot Instance is an unused EC2 instance that is available for less than the On\-Demand price\. Amazon EC2 can interrupt your Spot Instance when the Spot price exceeds your maximum price, when the demand for Spot Instances rises, or when the supply of Spot Instances decreases\.
 
 When Amazon EC2 interrupts a Spot Instance, it provides a Spot Instance interruption notice, which gives the instance a two\-minute warning before Amazon EC2 interrupts it\. For more information, see [Spot Instances](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-spot-instances.html) in the *Amazon EC2 User Guide for Linux Instances*\. 
 
-To ensure that Amazon FSx file systems are unaffected by EC2 Spot Instances Interruptions, we recommend unmounting Amazon FSx file systems prior to terminating or hibernating EC2 Spot Instances\. For more information, see [Unmounting File Systems](unmounting-fs.md)\. 
+To ensure that Amazon FSx file systems are unaffected by EC2 Spot Instances Interruptions, we recommend unmounting Amazon FSx file systems prior to terminating or hibernating EC2 Spot Instances\. For more information, see [Unmounting file systems](unmounting-fs.md)\. 
 
 ## Handling Amazon EC2 Spot Instance interruptions<a name="handling-ec2-spot-interruptions-in-fsx"></a>
 
- Amazon FSx for Lustre is a distributed file system where server and client instances cooperate to provide a performant and reliable file system\. They maintain a distributed and coherent state across both client and server instances\. Amazon FSx for Lustre servers delegate temporary access permissions to clients while they are actively doing I/O and caching file system data\. Clients are expected to reply in a short period of time when servers request them to revoke their temporary access permissions\. To protect the file system against misbehaving clients, servers can evict Lustre clients that do not respond after a few minutes\. To avoid having to wait multiple minutes for a non\-responding client to reply to the server request, it is important to cleanly unmount Lustre clients, especially before terminating EC2 Spot Instances\. 
+ FSx for Lustre is a distributed file system where server and client instances cooperate to provide a performant and reliable file system\. They maintain a distributed and coherent state across both client and server instances\. FSx for Lustre servers delegate temporary access permissions to clients while they are actively doing I/O and caching file system data\. Clients are expected to reply in a short period of time when servers request them to revoke their temporary access permissions\. To protect the file system against misbehaving clients, servers can evict Lustre clients that do not respond after a few minutes\. To avoid having to wait multiple minutes for a non\-responding client to reply to the server request, it is important to cleanly unmount Lustre clients, especially before terminating EC2 Spot Instances\. 
 
  EC2 Spot sends termination notices 2 minutes in advance before shutting down an instance\. We recommend that you automate the process of cleanly unmounting Lustre clients before terminating EC2 Spot Instances\. 
 
@@ -43,6 +43,7 @@ do
     if [[ "$HTTP_CODE" -eq 401 ]] ; then
         # Refreshing Authentication Token
         TOKEN=$(curl -s -X PUT "http://169.254.169.254/latest/api/token" -H "X-aws-ec2-metadata-token-ttl-seconds: 30")
+        continue
     elif [[ "$HTTP_CODE" -ne 200 ]] ; then
         # If the return code is not 200, the instance is not going to be interrupted
         continue
