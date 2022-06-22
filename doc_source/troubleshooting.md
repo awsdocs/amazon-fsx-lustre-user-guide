@@ -236,26 +236,42 @@ Amazon FSx for Lustre distributes new file stripes evenly across OSTs\. However,
 
 **Action to take**
 
-1. Use the `lfs df -h` command to determine the available capacity remaining on each storage target\.
+1. Launch a relatively large client instance \(such as the Amazon EC2 `c5n.4xlarge` instance type\) to mount to the file system\.
 
-1. Use the `lfs find` command to identify files that can be migrated to other storage targets\. For example, the following command returns every file that is larger than 1TB and has at least 1 object on `OST 2`\. Any file that is striped across multiple OSTs and using `OST 2` will be returned\.
-
-   ```
-   lfs find /mnt/lfs -size +1T --ost 2
-   ```
-
-1. Use the `lfs migrate` command to move files from one storage target to another storage target or to multiple storage targets\. The following command shows an example of moving a file from the current storage target\.
+1. Before running the `migrate` command, first run the following commands on each client instance to speed up the process:
 
    ```
-   lfs migrate /mnt/lfs/file1
+   sudo lctl set_param 'mdc.*.max_rpcs_in_flight=60'
+   sudo lctl set_param 'mdc.*.max_mod_rpcs_in_flight=59'
    ```
 
-   If you want to change the storage layout of the file, for example stripe a file from a single storage target to multiple storage targets \(such as 4 storage targets\), you can use a command similar to the following:
+1. Start a screen session and run the following script\. Make sure to change the following variables:
+   + Replace the values in `OSTS` with the values of your OSTs\.
+   + Provide an integer value to `nproc` to set the number of max\-procs processes to run in parallel\. For example, the Amazon EC2 `c5n.4xlarge` instance type has 16 vCPUs, so you can use `16` \(or a value < 16\) for `nproc`\.
+   + Provide your mount directory path in `mnt_dir_path`\.
 
    ```
-   lfs migrate -c 4 /mnt/lfs/file1
+   # find all OSTs with usage above a certain threshold; for example, greater than or equal to 85% full 
+   for OST in $(lfs df -h |egrep '( 8[5-9]| 9[0-9]|100)%'|cut -d' ' -f1); do echo ${OST};done|tr '\012' ','
+   
+   # customer can also just pass OST values directly to OSTS variable
+   OSTS='dzfevbmv-OST0000_UUID,dzfevbmv-OST0002_UUID,dzfevbmv-OST0004_UUID,dzfevbmv-OST0005_UUID,dzfevbmv-OST0006_UUID,dzfevbmv-OST0008_UUID'
+   
+   nproc=<Run up to max-procs processes if client is c5n.4xlarge with 16 vcpu, this value can be set to 16>
+   
+   mnt_dir_path=<mount dir, e.g. '/my_mnt'>
+   
+   lfs find ${mnt_dir_path} --ost ${OSTS}| xargs -P ${nproc} -n2 lfs migrate -E 1g -c 1 -E -1 -c5
    ```
 
-   If the file is very large, stripe the file across multiple storage targets\. For more information, see [Handling Full OSTs ](https://wiki.lustre.org/Handling_Full_OSTs) on the Lustre website\.
+**Notes**
++ If you notice that there is an impact on the performance of the reads of the file system, you can stop the migrations at any time by using `ctrl-c` or k`ill -9`, and reduce the number of threads \(`nproc` value\) back to a lower number \(such as 8\), and resume migrating files\.
++ The `lfs migrate` command will fail on a file that is also opened by the client workload\. It will throw an error and move to the next file; therefore, it is possible if there are many files being accessed, the script will not be able to migrate any files, and it will be reflected as the migration is making very slow progress\.
++ You can monitor OST usage using either of the following methods
+  + On client mount, run the following command to monitor OST usage and find the OST with usage greater than 85%:
 
-   You may also consider changing the stripe configuration of your file system or a directory, so that new files are striped across multiple storage targets\. For more information, see in [Striping data in your file system](performance.md#striping-data)\. 
+    ```
+    lfs df -h |egrep '( 8[5-9]| 9[1-9]|100)%'
+    ```
+  + Check the Amazon CloudWatch metric, `OST FreeDataStorageCapacity`, check `Minimum`\. If your script is finding OSTs that are over 85% full, then when the metric is close to 15%, use `ctrl-c` or `kill -9` to stop the migration\.
++ You may also consider changing the stripe configuration of your file system or a directory, so that new files are striped across multiple storage targets\. For more information, see in [Striping data in your file system](performance.md#striping-data)\. 

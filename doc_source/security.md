@@ -16,4 +16,5 @@ Following, you can find a description of security considerations for working wit
 + [Amazon VPC Network ACLs](limit-access-acl.md)
 + [Resource administration access control with IAM for Amazon FSx for Lustre](access-control-overview.md)
 + [AWS managed policies for Amazon FSx](security-iam-awsmanpol.md)
-+ [Compliance Validation for Amazon FSx for Lustre](SERVICENAME-compliance.md)
++ [Compliance Validation for Amazon FSx for Lustre](fsx-lustre-compliance.md)
++ [Amazon FSx for Lustre and interface VPC endpoints \(AWS PrivateLink\)](fsx-vpc-endpoints.md)

@@ -17,13 +17,13 @@ In\-transit encryption of data for scratch 2 and persistent file systems is avai
 |  Europe \(Ireland\)  |  ✓  |  ✓  |  ✓  | 
 |  Europe \(Frankfurt\)  |  ✓  |  ✓  |  ✓  | 
 |  Europe \(Paris\)  |  ✓  |  ✓  |    | 
-|  Europe \(London\)  |  ✓  |  ✓  |    | 
+|  Europe \(London\)  |  ✓  |  ✓  |  ✓  | 
 |  Europe \(Stockholm\) \*  |  ✓  |  ✓  |    | 
-|  Asia Pacific \(Singapore\)  |  ✓  |  ✓  |    | 
+|  Asia Pacific \(Singapore\)  |  ✓  |  ✓  |  ✓  | 
 |  Asia Pacific \(Tokyo\) \*  |  ✓  |  ✓  |  ✓  | 
 |  Asia Pacific \(Mumbai\) \*  |  ✓  |  ✓  |    | 
 |  Asia Pacific \(Hong Kong\) \*  |  ✓  |  ✓  |    | 
-|  Asia Pacific \(Sydney\) \*  |  ✓  |  ✓  |    | 
+|  Asia Pacific \(Sydney\) \*  |  ✓  |  ✓  |  ✓  | 
 |  South America \(São Paulo\) \*  |  ✓  |  ✓  |    | 
 
 **Note**  

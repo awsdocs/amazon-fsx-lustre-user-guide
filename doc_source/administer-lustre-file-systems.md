@@ -9,5 +9,6 @@ You can administer your FSx for Lustre file systems using the Amazon FSx Managem
 + [Storage quotas](lustre-quotas.md)
 + [Managing storage and throughput capacity](managing-storage-capacity.md)
 + [Lustre data compression](data-compression.md)
++ [Lustre root squash](root-squash.md)
 + [Tag your Amazon FSx resources](tag-resources.md)
 + [Amazon FSx for Lustre maintenance windows](maintenance-windows.md)

@@ -54,20 +54,20 @@ On existing file systems that have logging enabled, you can change the event log
 
 When the file system becomes **Available**, logging will be enabled\.
 
-### To enable logging when creating a file system \(CLI\)<a name="w166aac21c11c13b7b3"></a>
+### To enable logging when creating a file system \(CLI\)<a name="w189aac23c11c13b7b3"></a>
 
 1. When creating a new file system, use the `LogConfiguration` property with the [CreateFileSystem](https://docs.aws.amazon.com/fsx/latest/APIReference/API_CreateFileSystem.html) operation to enable logging for the new file system\.
 
    ```
    create-file-system --file-system-type LUSTRE \
        --storage-capacity 1200 --subnet-id subnet-08b31917a72b548a9  \ 
-       --lustre-configuration "LogConfiguration={Level=DISABLED, \
+       --lustre-configuration "LogConfiguration={Level=WARN_ERROR, \
            Destination="arn:aws:logs:us-east-1:234567890123:log-group:/aws/fsx/testEventLogging"}"
    ```
 
 1. When the file system becomes **Available**, logging feature will be enabled\.
 
-### To change the logging configuration \(console\)<a name="w166aac21c11c13b7b5"></a>
+### To change the logging configuration \(console\)<a name="w189aac23c11c13b7b5"></a>
 
 1. Open the Amazon FSx console at [https://console\.aws\.amazon\.com/fsx/](https://console.aws.amazon.com/fsx/)\.
 
@@ -85,7 +85,7 @@ When the file system becomes **Available**, logging will be enabled\.
 
 1. Choose **Save**\.
 
-### To change the logging configuration \(CLI\)<a name="w166aac21c11c13b7b7"></a>
+### To change the logging configuration \(CLI\)<a name="w189aac23c11c13b7b7"></a>
 + Use the [https://docs.aws.amazon.com/cli/latest/reference/fsx/update-file-system.html](https://docs.aws.amazon.com/cli/latest/reference/fsx/update-file-system.html) CLI command or the equivalent [https://docs.aws.amazon.com/fsx/latest/APIReference/API_UpdateFileSystem.html](https://docs.aws.amazon.com/fsx/latest/APIReference/API_UpdateFileSystem.html) API operation\.
 
   ```
@@ -101,4 +101,4 @@ You can view the logs after Amazon FSx has started emitting them\. You can view 
 + You can use CloudWatch Logs Insights to interactively search and analyze your log data\. For more information, see [ Analyzing log data with CloudWatch Logs Insights](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/AnalyzingLogData.html), in the *Amazon CloudWatch Logs User Guide*\.
 + You can also export logs to Amazon S3\. For more information, see [ Exporting log data to Amazon S3](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/S3Export.html), in the *Amazon CloudWatch Logs User Guide*\.
 
-To learn about failure reasons, see [Troubleshooting import and export failures](failed-tasks.md)\.
+To learn about failure reasons, see [Data repository event logs](data-repo-event-logs.md)\.

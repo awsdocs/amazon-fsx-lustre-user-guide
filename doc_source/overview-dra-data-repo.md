@@ -46,7 +46,7 @@ For symlinks, FSx for Lustre uses the following Amazon S3 schema for symlinks:
 
 Amazon FSx stores POSIX metadata, including ownership, permissions, and timestamps for Amazon FSx files, directories, and symbolic links, in S3 objects as follows:
 + `Content-Type` – The HTTP entity header used to indicate the media type of the resource for web browsers\.
-+ `x-amz-meta-file-permissions` – The file type and permissions in the format `<octal file type><octal permission mask>`, consistent with `st_mode` in Linux stat\(2\)\.
++ `x-amz-meta-file-permissions` – The file type and permissions in the format `<octal file type><octal permission mask>`, consistent with `st_mode` in the [Linux stat\(2\) man page](https://man7.org/linux/man-pages/man2/lstat.2.html)\.
 **Note**  
 FSx for Lustre does not import or retain `setuid` information\.
 + `x-amz-meta-file-owner` – The owner user ID \(UID\) expressed as an integer\.

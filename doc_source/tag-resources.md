@@ -14,7 +14,7 @@ A tag is a label that you assign to an AWS resource\. Each tag consists of a key
 
 Tags enable you to categorize your AWS resources in different ways, for example, by purpose, owner, or environment\. For example, you could define a set of tags for your account's Amazon FSx for Lustre file systems that helps you track each instance's owner and stack level\.
 
-We recommend that you devise a set of tag keys that meets your needs for each resource type\. Using a consistent set of tag keys makes it easier for you to manage your resources\. You can search and filter the resources based on the tags you add\. For more information about how to implement an effective resource tagging strategy, see the AWS whitepaper [Tagging Best Practices](https://docs.aws.amazon.com/whitepapers/latest/tagging-best-practices/welcome.html)\.
+We recommend that you devise a set of tag keys that meets your needs for each resource type\. Using a consistent set of tag keys makes it easier for you to manage your resources\. You can search and filter the resources based on the tags you add\.
 
 Tags don't have any semantic meaning to Amazon FSx and are interpreted strictly as a string of characters\. Also, tags are not automatically assigned to your resources\. You can edit tag keys and values, and you can remove tags from a resource at any time\. You can set the value of a tag to an empty string, but you can't set the value of a tag to null\. If you add a tag that has the same key as an existing tag on that resource, the new value overwrites the old value\. If you delete a resource, any tags for the resource are also deleted\.
 
@@ -28,7 +28,7 @@ You can apply tag\-based resource\-level permissions in your IAM policies to the
 
 You can also apply resource\-level permissions to the `TagResource` and `UntagResource` Amazon FSx for Lustre API actions in your IAM policies to control which tag keys and values are set on your existing resources\.
 
-For more information about tagging your resources for billing, see [Using cost allocation tags](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html) in the *AWS Billing and Cost Management User Guide*\.
+For more information about tagging your resources for billing, see [Using cost allocation tags](https://docs.aws.amazon.com/awsaccountbilling/latest/aboutv2/cost-alloc-tags.html) in the *AWS Billing User Guide*\.
 
 ## Tag restrictions<a name="tag-restrictions"></a>
 

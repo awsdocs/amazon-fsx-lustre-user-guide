@@ -7,7 +7,7 @@ Amazon FSx for Lustre, built on Lustre, the popular high\-performance file syste
 + [Aggregate file system performance](#fsx-aggregate-perf)
 + [File system storage layout](#storage-layout)
 + [Striping data in your file system](#striping-data)
-+ [Monitoring performance and usage](performance-monitoring.md)
++ [Monitoring performance and usage](#performance-monitoring)
 + [Performance tips](#performance-tips)
 
 ## How FSx for Lustre file systems work<a name="how-lustre-fs-work"></a>
@@ -31,7 +31,7 @@ The following tables show performance that the FSx for Lustre deployment options
 
 **File system performance for SSD storage options**  
 
-| Deployment Type | **Network throughput \(MB/s/TiB of storage provisioned\)** |  **Network IOPS \(IOPS/TiB of storage provisioned\)** |  **Cache storage \(GiB of RAM/TiB of storage provisioned\)** |  **Disk latencies per file operation \(milliseconds, P50\)** | **Disk throughput \(MB/s/TiB of storage or SSD cache provisioned\)** | 
+| Deployment Type | **Network throughput \(MB/s/TiB of storage provisioned\)** |  **Network IOPS \(IOPS/TiB of storage provisioned\)** |  **Cache storage \(GiB of RAM/TiB of storage provisioned\)** |  **Disk latencies per file operation \(milliseconds, P50\)** | **Disk throughput \(MBps/TiB of storage or SSD cache provisioned\)** | 
 | --- |--- |--- |--- |--- |--- |
 | **** | **Baseline** | **Burst** | **** | **** | **** | **Baseline** | **Burst** | 
 | --- |--- |--- |--- |--- |--- |--- |--- |
@@ -47,7 +47,7 @@ The following tables show performance that the FSx for Lustre deployment options
 
 **File system performance for HDD storage options**  
 
-| Deployment Type | **Network throughput \(MB/s/TiB of storage or SSD cache provisioned\)** |  **Network IOPS \(IOPS/TiB of storage provisioned\)** | **Cache storage \(GiB of RAM/TiB of storage provisioned\)** | **Disk latencies per file operation \(milliseconds, P50\) ** | **Disk throughput \(MB/s/TiB of storage or SSD cache provisioned\)** | 
+| Deployment Type | **Network throughput \(MB/s/TiB of storage or SSD cache provisioned\)** |  **Network IOPS \(IOPS/TiB of storage provisioned\)** | **Cache storage \(GiB of RAM/TiB of storage provisioned\)** | **Disk latencies per file operation \(milliseconds, P50\) ** | **Disk throughput \(MBps/TiB of storage or SSD cache provisioned\)** | 
 | --- |--- |--- |--- |--- |--- |
 | **** | **Baseline** | **Burst** |  | **Baseline** | **Burst** | 
 | --- |--- |--- |--- |--- |--- |
@@ -191,6 +191,14 @@ lfs setstripe -E 1G -c 1 -E -1 -c 5 /mountname
 ```
 
 Customers with workloads that have highly concurrent access on medium and large files are likely to benefit from a layout with more stripes at smaller sizes and striping across all OSTs for the largest files, as shown in the three\-component example layout shown previously\.
+
+## Monitoring performance and usage<a name="performance-monitoring"></a>
+
+Every minute, Amazon FSx for Lustre emits usage metrics for each disk \(MDT and OST\) to Amazon CloudWatch\.
+
+To view aggregate file system usage details, you can look at the Sum statistic of each metric\. For example, the Sum of the `DataReadBytes` statistic reports the total read throughput seen by all the OSTs in a file system\. Similarly, the Sum of the `FreeDataStorageCapacity` statistic reports the total available storage capacity for file data in the file system\.
+
+For more information on monitoring your file system’s performance, see [Monitoring Amazon FSx for Lustre](monitoring_overview.md)\.
 
 ## Performance tips<a name="performance-tips"></a>
 

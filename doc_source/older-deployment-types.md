@@ -152,7 +152,7 @@ You can view a file system's export path using the FSx for Lustre console, the A
 ------
 #### [ CLI ]
 
-To determine the export path for your file system, use the [https://docs.aws.amazon.com/cli/latest/reference/fsx/describe-file-systems.html](https://docs.aws.amazon.com/cli/latest/reference/fsx/describe-file-systems.html) AWSCLI command\.
+To determine the export path for your file system, use the [https://docs.aws.amazon.com/cli/latest/reference/fsx/describe-file-systems.html](https://docs.aws.amazon.com/cli/latest/reference/fsx/describe-file-systems.html) AWS CLI command\.
 
 ```
 aws fsx describe-file-systems

@@ -14,4 +14,5 @@ File system backups are not supported on file systems that are linked to a data 
 + [Exporting changes to the data repository](export-changed-data-meta-dra.md)
 + [Releasing data from your file system](release-files.md)
 + [Using Amazon FSx with your on\-premises data repository](fsx-on-premises.md)
++ [Data repository event logs](data-repo-event-logs.md)
 + [Working with older deployment types](older-deployment-types.md)

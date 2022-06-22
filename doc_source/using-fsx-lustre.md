@@ -75,6 +75,9 @@ You can create Persistent\_2 deployment types using the Amazon FSx console, AWS 
 + Canada \(Central\)
 + Europe \(Ireland\)
 + Europe \(Frankfurt\)
++ Europe \(London\)
 + Asia Pacific \(Tokyo\)
++ Asia Pacific \(Singapore\)
++ Asia Pacific \(Sydney\)
 
 For more information on FSx for Lustre performance, see [Aggregate file system performance](performance.md#fsx-aggregate-perf)\.

@@ -9,7 +9,7 @@ Support for data repository associations, automatic export, and multiple reposit
 
 You can export to a data repository that is in the same AWS Region as the file system or in a different AWS Region\.
 
-You can configure the automatic export settings when you create the data repository association for the S3 repository or at any time after the data repository association is created\. You can update the automatic export settings at any time using the the FSx management console, the AWS CLI, and the AWS API\.
+You can configure the automatic export settings when you create the data repository association for the S3 repository or at any time after the data repository association is created\. You can update the automatic export settings at any time using the FSx management console, the AWS CLI, and the AWS API\.
 
 **Note**  
 You can configure both automatic export and automatic import on the same data repository association\. This topic describes only the automatic export feature\.
@@ -23,7 +23,7 @@ The export settings specify how you want Amazon FSx to update your linked S3 buc
 
 We recommend that you configure an export policy of **New**, **Changed**, and **Deleted**\. This policy ensures that all updates made on your file system are automatically exported to your linked S3 bucket\.
 
-You can [turn on logging](cw-event-logging.md#manage-logging) to CloudWatch Logs to log information about any files or directories that could not be exported automatically\. The log entries contain information about the file or directory path on the Lustre file system that failed to export and the failure reason\. For more information, see [Troubleshooting import and export failures](failed-tasks.md)\.
+You can [turn on logging](cw-event-logging.md#manage-logging) to CloudWatch Logs to log information about any files or directories that could not be exported automatically\. The log entries contain information about the file or directory path on the Lustre file system that failed to export and the failure reason\. For more information, see [Data repository event logs](data-repo-event-logs.md)\.
 
 ## Updating export settings<a name="manage-autoexport-dra"></a>
 

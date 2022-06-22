@@ -8,7 +8,7 @@ Amazon FSx for Lustre integrates with AWS Key Management Service \(AWS KMS\) for
     If you use a customer managed key as your KMS key for file data encryption and decryption, you can enable key rotation\. When you enable key rotation, AWS KMS automatically rotates your key once per year\. Additionally, with a customer managed key, you can choose when to disable, re\-enable, delete, or revoke access to your customer managed key at any time\. 
 
 **Important**  
-Amazon FSx accepts only symmetric KMS keys\. You can't use asymmetric KMS keys with Amazon FSx\.
+Amazon FSx accepts only symmetric encryption KMS keys\. You can't use asymmetric KMS keys with Amazon FSx\.
 
 ## Amazon FSx key policies for AWS KMS<a name="FSxKMSPolicy"></a>
 

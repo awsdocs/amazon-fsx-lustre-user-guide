@@ -154,6 +154,6 @@ The `-h` option is useful for these commands because it prints sizes in a human\
 
 You can use Amazon CloudWatch Logs metrics to view your file system usage\. The `LogicalDiskUsage` metric shows the total logical disk usage \(without compression\), and the `PhysicalDiskUsage` metric shows the total physical disk usage \(with compression\)\. These two metrics are available only if your file system has data compression enabled or previously had it enabled\.
 
-You can determine your file system's compression ratio by dividing the `Sum` of the `LogicalDiskUsage` statistic by the `Sum` of the `PhysicalDiskUsage` statistic\. For information about using metric math to calculate this ratio, see [Metric math: Data compression ratio ](how_to_use_metrics.md#metric-math-compression-ratio)\. 
+You can determine your file system's compression ratio by dividing the `Sum` of the `LogicalDiskUsage` statistic by the `Sum` of the `PhysicalDiskUsage` statistic\. For information about using metric math to calculate this ratio, see [Metric math: Data compression ratio](how_to_use_metrics.md#metric-math-compression-ratio)\. 
 
 For more information about monitoring your file system’s performance, see [Monitoring Amazon FSx for Lustre](monitoring_overview.md)\.

@@ -21,7 +21,7 @@ Before you can update the `/etc/fstab` file of your EC2 instance, make sure that
    + Replace `mountname` with the file system's mount name\. This mount name is returned in the `CreateFileSystem` API operation response\. It's also returned in the response of the describe\-file\-systems AWS CLI command, and the `[DescribeFileSystems](https://docs.aws.amazon.com/fsx/latest/APIReference/API_DescribeFileSystems.html)` API operation\.
 
    ```
-   file_system_dns_name@tcp:/mountname /fsx lustre defaults,noatime,flock,_netdev 0 0
+   file_system_dns_name@tcp:/mountname /fsx lustre defaults,noatime,flock,_netdev,x-systemd.automount,x-systemd.requires=network.service 0 0
    ```
 **Warning**  
 Use the `_netdev` option, used to identify network file systems, when mounting your file system automatically\. If `_netdev` is missing, your EC2 instance might stop responding\. This result is because network file systems need to be initialized after the compute instance starts its networking\. For more information, see [Automatic mounting fails and the instance is unresponsive](troubleshooting.md#lustre-automount-fails)\.
@@ -43,5 +43,6 @@ The fields in the line of code that you added to the `/etc/fstab` file do the fo
 |  `/fsx`  |  The mount point for the Amazon FSx file system on your EC2 instance\.  | 
 |  `lustre`  |  The type of file system, Amazon FSx\.  | 
 |  `mount options`  |  Mount options for the file system, presented as a comma\-separated list of the following options: [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/fsx/latest/LustreGuide/mount-fs-auto-mount-onreboot.html)  | 
+|  `x-systemd.automount,x-systemd.requires=network.service`  |  These options ensure that the auto mounter does not run until the network connectivity is online\.  | 
 |  `0`  |  A value that indicates whether the file system should be backed up by `dump`\. For Amazon FSx, this value should be `0`\.  | 
 |  `0`  |  A value that indicates the order in which `fsck` checks file systems at boot\. For Amazon FSx file systems, this value should be `0` to indicate that `fsck` should not run at startup\.  | 

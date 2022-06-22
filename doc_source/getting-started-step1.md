@@ -44,7 +44,7 @@ Next, you create your file system in the console\.
 ![\[File system details section of the FSx for Lustre Create sile system console page.\]](http://docs.aws.amazon.com/fsx/latest/LustreGuide/images/FSxLScreenShot.png)
 
 1. In the **Network & security** section, provide the following networking and security group information:
-   + Choose the VPC that you want to associate with your file system\. For this getting started exercise, choose the same VPC that you chose for your Amazon EC2 instance\.
+   + For **Virtual Private Cloud \(VPC\)**, choose the VPC that you want to associate with your file system\. For this getting started exercise, choose the same VPC that you chose for your Amazon EC2 instance\.
    + For **VPC security groups**, the ID for the default security group for your VPC should be already added\. If you're not using the default security group, make sure that the following inbound rule is added to the security group you're using for this getting started exercise\.    
 [\[See the AWS documentation website for more details\]](http://docs.aws.amazon.com/fsx/latest/LustreGuide/getting-started-step1.html)
 
@@ -62,7 +62,7 @@ Next, you create your file system in the console\.
 Selecting this option also disables backups and you won't be able to enable backups while creating the file system\.
 If you link one or more Amazon FSx for Lustre file systems to an Amazon S3 bucket, don't delete the Amazon S3 bucket until all linked file systems have been deleted\.
 
-1. For **Logging \- optional**, logging is enabled by default\. When enabled, failures and warnings for data repository activity on your file system are logged to Amazon CloudWatch Logs\. For information about configuring logging, see [Managing logging](cw-event-logging.md#manage-logging)\.
+1. For **Logging \- *optional***, logging is enabled by default\. When enabled, failures and warnings for data repository activity on your file system are logged to Amazon CloudWatch Logs\. For information about configuring logging, see [Managing logging](cw-event-logging.md#manage-logging)\.
 
 1. In **Backup and maintenance \- *optional***, you can do the following\.
 
