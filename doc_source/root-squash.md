@@ -51,10 +51,8 @@ You can enable root squash when creating a new Amazon FSx for Lustre file system
         --client-request-token CRT1234 \
         --file-system-type LUSTRE \
         --file-system-type-version 2.12 \
-        --lustre-configuration DeploymentType=PERSISTENT_2,PerUnitStorageThroughput=200,DataCompressionType=LZ4 \
-            RootSquashConfiguration={RootSquash="65534:65534", \
-            NoSquashNids=["10.216.123.47@tcp", "10.216.12.176@tcp"]} \
-        --storage-capacity 3600 \
+        --lustre-configuration DeploymentType=PERSISTENT_2,PerUnitStorageThroughput=125,DataCompressionType=LZ4,RootSquashConfiguration='{RootSquash="65534:65534", NoSquashNids=["10.216.123.47@tcp", "10.216.12.176@tcp"]}' \
+        --storage-capacity 1200 \
         --subnet-ids subnet-123456 \
         --tags Key=Name,Value=Lustre-TEST-1 \
         --region us-east-2
@@ -119,8 +117,7 @@ This command specifies that root squash is enabled using `65534` as the value fo
 ```
 $ aws fsx update-file-system \
     --file-system-id fs-0123456789abcdef0 \
-    --lustre-configuration RootSquashConfiguration={RootSquash="65534:65534", \
-          NoSquashNids=["10.216.123.47@tcp", "10.216.12.176@tcp"]}
+    --lustre-configuration RootSquashConfiguration='{RootSquash="65534:65534", NoSquashNids=["10.216.123.47@tcp", "10.216.12.176@tcp"]}'
 ```
 
 If the command is successful, Amazon FSx for Lustre returns the response in JSON format\.
