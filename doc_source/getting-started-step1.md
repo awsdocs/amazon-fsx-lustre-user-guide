@@ -50,11 +50,13 @@ Next, you create your file system in the console\.
 
      The following screen capture shows an example of editing inbound rules\.  
 ![\[Inbound traffic rule on the default security group assigned to the FSx for Lustre file system.\]](http://docs.aws.amazon.com/fsx/latest/LustreGuide/images/Inbound-Traffic-Lustrec-rule.PNG)
+**Important**  
+Make sure that the security group you are using follows the configuration instructions in [File System Access Control with Amazon VPC](limit-access-security-groups.md)\. You must set up the security group to allow inbound traffic on ports 988 and 1021\-1023 from the security group itself or the full subnet CIDR, which is required to allow the file system hosts to communicate with each other\.
    + For **Subnet**, choose any value from the list of available subnets\.
 
 1. For the **Encryption** section, the options available vary depending upon which file system type you're creating: 
    + For a persistent file system, you can choose an AWS Key Management Service \(AWS KMS\) encryption key to encrypt the data on your file system at rest\. 
-   + For a scratch file system, data at rest is encrypted using the default Amazon FSx–managed key for your account\.
+   + For a scratch file system, data at rest is encrypted using keys managed by AWS\.
    + For scratch 2 and persistent file systems, data in transit is encrypted automatically when the file system is accessed from a supported Amazon EC2 instance type\. For more information, see [Encrypting data in transit](encryption-in-transit-fsxl.md)\.
 
 1. For the **Data Repository Import/Export \- optional** section, linking your file system to Amazon S3 data repositories is disabled by default\. For information about enabling this option and creating a data repository association to an existing S3 bucket, see [To link an S3 bucket while creating a file system \(console\)](create-dra-linked-data-repo.md#export-path-lustre-console-dra-new)\.
@@ -81,4 +83,4 @@ If you link one or more Amazon FSx for Lustre file systems to an Amazon S3 bucke
 
 1. Review the settings for your Amazon FSx for Lustre file system, and choose **Create file system**\.
 
-Now that you've created your file system, note its fully qualified domain name and mount name for a later step\. You can find the fully qualified domain name and mount name for a file system by choosing the name of the file system in the **File Systems** dashboard, and then choosing **Attach**\.
+Now that you've created your file system, note its fully qualified domain name and mount name for a later step\. You can find the fully qualified domain name and mount name for a file system by choosing the name of the file system in the **Caches** dashboard, and then choosing **Attach**\.

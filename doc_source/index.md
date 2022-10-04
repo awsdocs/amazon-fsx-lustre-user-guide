@@ -4,13 +4,13 @@
 *****Copyright &copy; Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
 
 -----
-Amazon's trademarks and trade dress may not be used in 
-     connection with any product or service that is not Amazon's, 
-     in any manner that is likely to cause confusion among customers, 
-     or in any manner that disparages or discredits Amazon. All other 
-     trademarks not owned by Amazon are the property of their respective
-     owners, who may or may not be affiliated with, connected to, or 
-     sponsored by Amazon.
+Amazon's trademarks and trade dress may not be used in
+connection with any product or service that is not Amazon's,
+in any manner that is likely to cause confusion among customers,
+or in any manner that disparages or discredits Amazon. All other
+trademarks not owned by Amazon are the property of their respective
+owners, who may or may not be affiliated with, connected to, or
+sponsored by Amazon.
 
 -----
 ## Contents
@@ -90,5 +90,12 @@ Amazon's trademarks and trade dress may not be used in
    + [Amazon FSx for Lustre and interface VPC endpoints (AWS PrivateLink)](fsx-vpc-endpoints.md)
 + [Quotas](limits.md)
 + [Troubleshooting](troubleshooting.md)
+   + [Trying to create an FSx for Lustre file system fails](cannot-create-fs.md)
+   + [Troubleshooting file system mount issues](mount-troubleshooting.md)
+   + [You can't access your file system](cant-access-fs.md)
+   + [Unable to validate access to an S3 bucket when creating a data repository association](s3-validation-error.md)
+   + [Renaming directories takes a long time](rename-directory-time.md)
+   + [Troubleshooting a misconfigured linked S3 bucket](troubleshooting-misconfigured-data-repository.md)
+   + [Troubleshooting storage issues](lfs-migrate-ts.md)
 + [Additional information](additional-info.md)
 + [Document history](doc-history.md)

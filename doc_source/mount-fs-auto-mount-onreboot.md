@@ -24,7 +24,7 @@ Before you can update the `/etc/fstab` file of your EC2 instance, make sure that
    file_system_dns_name@tcp:/mountname /fsx lustre defaults,noatime,flock,_netdev,x-systemd.automount,x-systemd.requires=network.service 0 0
    ```
 **Warning**  
-Use the `_netdev` option, used to identify network file systems, when mounting your file system automatically\. If `_netdev` is missing, your EC2 instance might stop responding\. This result is because network file systems need to be initialized after the compute instance starts its networking\. For more information, see [Automatic mounting fails and the instance is unresponsive](troubleshooting.md#lustre-automount-fails)\.
+Use the `_netdev` option, used to identify network file systems, when mounting your file system automatically\. If `_netdev` is missing, your EC2 instance might stop responding\. This result is because network file systems need to be initialized after the compute instance starts its networking\. For more information, see [Automatic mounting fails and the instance is unresponsive](mount-troubleshooting.md#lustre-automount-fails)\.
 
 1. Save the changes to the file\.
 

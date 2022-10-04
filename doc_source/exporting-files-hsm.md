@@ -10,6 +10,9 @@ sudo lfs hsm_archive path/to/export/file
 sudo lfs hsm_state path/to/export/file
 ```
 
+**Note**  
+You must run the HSM commands \(such as `hsm_archive`\) as the root user or using `sudo`\.
+
 To export your entire file system or an entire directory in your file system, run the following commands\. If you export multiple files simultaneously, Amazon FSx for Lustre exports your files to your Amazon S3 data repository in parallel\.
 
 ```

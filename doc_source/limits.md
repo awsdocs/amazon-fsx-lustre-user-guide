@@ -20,7 +20,7 @@ Following are the quotas for Amazon FSx for Lustre per AWS account, per AWS Regi
 |  Lustre Persistent\_2 file systems  |  100  |  The maximum number of Amazon FSx for Lustre Persistent\_2 file systems that you can create in this account\.  | 
 |  Lustre Persistent HDD storage capacity \(per file system\)  |  102000  |  The maximum amount of HDD storage capacity \(in GiB\) that you can configure for an Amazon FSx for Lustre persistent file system\.  | 
 |  Lustre Persistent\_1 file storage capacity  |  100800  |  The maximum amount of storage capacity \(in GiB\) that you can configure for all Amazon FSx for Lustre Persistent\_1 file systems in this account\.  | 
-|  Lustre Persistent\_2 file storage capacity  |  64,800  |  The maximum amount of storage capacity \(in GiB\) that you can configure for all Amazon FSx for Lustre Persistent\_2 file systems in this account\.  | 
+|  Lustre Persistent\_2 file storage capacity  |  100800  |  The maximum amount of storage capacity \(in GiB\) that you can configure for all Amazon FSx for Lustre Persistent\_2 file systems in this account\.  | 
 |  Lustre Scratch file systems  |  100  |  The maximum number of Amazon FSx for Lustre scratch file systems that you can create in this account\.  | 
 |  Lustre Scratch storage capacity  |  100800  |  The maximum amount of storage capacity \(in GiB\) that you can configure for all Amazon FSx for Lustre scratch file systems in this account\.  | 
 |  Lustre backups  |  500  |  The maximum number of user\-initiated backups that you can have for all Amazon FSx for Lustre file systems in this account\.  | 
@@ -57,7 +57,7 @@ Following are the limits on Amazon FSx for Lustre resources for each file system
 | Minimum storage capacity, SSD file systems | 1\.2 TiB | 
 | Minimum storage capacity, HDD file systems | 6 TiB | 
 | Minimum throughput per unit of storage, SSD | 50 MBps | 
-| Maximum throughput per unit of storage, SSD | 200 MBps | 
+| Maximum throughput per unit of storage, SSD | 1000 MBps | 
 | Minimum throughput per unit of storage, HDD | 12 MBps | 
 | Maximum throughput per unit of storage, HDD | 40 MBps | 
 

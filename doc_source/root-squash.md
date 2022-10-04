@@ -51,10 +51,10 @@ You can enable root squash when creating a new Amazon FSx for Lustre file system
         --client-request-token CRT1234 \
         --file-system-type LUSTRE \
         --file-system-type-version 2.12 \
-        --lustre-configuration DeploymentType=PERSISTENT_2,PerUnitStorageThroughput=200,DataCompressionType=LZ4 \
-            RootSquashConfiguration={RootSquash="65534:65534", \
-            NoSquashNids=["10.216.123.47@tcp", "10.216.12.176@tcp"]} \
-        --storage-capacity 3600 \
+        --lustre-configuration "DeploymentType=PERSISTENT_2,PerUnitStorageThroughput=250,DataCompressionType=LZ4,\
+            RootSquashConfiguration={RootSquash="65534:65534",\
+            NoSquashNids=["10.216.123.47@tcp", "10.216.12.176@tcp"]}" \
+        --storage-capacity 2400 \
         --subnet-ids subnet-123456 \
         --tags Key=Name,Value=Lustre-TEST-1 \
         --region us-east-2
@@ -73,7 +73,7 @@ After successfully creating the file system, Amazon FSx returns the file system 
             "FileSystemType": "LUSTRE",
             "FileSystemTypeVersion": "2.12",
             "Lifecycle": "CREATING",
-            "StorageCapacity": 3600,
+            "StorageCapacity": 2400,
             "VpcId": "vpc-123456",
             "SubnetIds": [
                 "subnet-123456"
@@ -92,7 +92,7 @@ After successfully creating the file system, Amazon FSx returns the file system 
             "LustreConfiguration": {
                 "DeploymentType": "PERSISTENT_2",
                 "DataCompressionType": "LZ4",
-                "PerUnitStorageThroughput": 200,
+                "PerUnitStorageThroughput": 250,
                 "RootSquashConfiguration": {
                     "RootSquash": "65534:65534", 
                     "NoSquashNids": "10.216.123.47@tcp 10.216.29.176@tcp"

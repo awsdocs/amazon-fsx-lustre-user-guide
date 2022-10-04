@@ -23,7 +23,7 @@ The export settings specify how you want Amazon FSx to update your linked S3 buc
 
 We recommend that you configure an export policy of **New**, **Changed**, and **Deleted**\. This policy ensures that all updates made on your file system are automatically exported to your linked S3 bucket\.
 
-You can [turn on logging](cw-event-logging.md#manage-logging) to CloudWatch Logs to log information about any files or directories that could not be exported automatically\. The log entries contain information about the file or directory path on the Lustre file system that failed to export and the failure reason\. For more information, see [Data repository event logs](data-repo-event-logs.md)\.
+You can [turn on logging](cw-event-logging.md#manage-logging) to CloudWatch Logs to log information about any files or directories that could not be exported automatically\. The log entries contain information about the failure reason\. For more information, see [Data repository event logs](data-repo-event-logs.md)\.
 
 ## Updating export settings<a name="manage-autoexport-dra"></a>
 

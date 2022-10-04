@@ -1,6 +1,6 @@
 # Step 2: Install and configure the Lustre client on your instance before mounting your file system<a name="getting-started-step2"></a>
 
-To mount your Amazon FSx for Lustre file system from your Amazon EC2 instance, first install the Lustre 2\.10 client\. The 2\.10 versions of the Lustre client support Amazon FSx for Lustre versions 2\.10 and 2\.12\.
+To mount your Amazon FSx for Lustre file system from your Amazon EC2 instance, first install the Lustre client\.
 
 **To download the Lustre client onto your Amazon EC2 instance**
 
@@ -16,7 +16,7 @@ To mount your Amazon FSx for Lustre file system from your Amazon EC2 instance, f
    + If the command returns `4.14.104-95.84.amzn2.x86_64` for x86\-based EC2 instances, or `4.14.181-142.260.amzn2.aarch64` or higher for Graviton2\-based EC2 instances, download and install the Lustre client with the following command\.
 
      ```
-     sudo amazon-linux-extras install -y lustre2.10
+     sudo amazon-linux-extras install -y lustre
      ```
    +  If the command returns a result less than `4.14.104-95.84.amzn2.x86_64` for x86\-based EC2 instances, or less than `4.14.181-142.260.amzn2.aarch64` for Graviton2\-based EC2 instances, update the kernel and reboot your Amazon EC2 instance by running the following command\. 
 

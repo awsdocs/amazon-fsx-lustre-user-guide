@@ -163,7 +163,7 @@ There is no single optimal layout configuration for all use cases\. For detailed
 + The effective stripe count is the lesser of the actual number of OST volumes and the stripe count value you specify\. You can use the special stripe count value of `-1` to indicate that stripes should be placed on all OST volumes\.
 + Setting a large stripe count for small files is sub\-optimal because for certain operations Lustre requires a network round trip to every OST in the layout, even if the file is too small to consume space on all the OST volumes\.
 + You can set up a progressive file layout \(PFL\) that allows the layout of a file to change with size\. A PFL configuration can simplify managing a file system that has a combination of large and small files without you having to explicitly set a configuration for each file\. For more information, see [Progressive file layouts](#striping-pfl)\.
-+ Stripe size by default is 1MiB\. Setting a stripe offset may useful in special circumstances, but in general it is best to leave it unspecified and use the default\.
++ Stripe size by default is 1MiB\. Setting a stripe offset may be userful in special circumstances, but in general it is best to leave it unspecified and use the default\.
 
 ### Progressive file layouts<a name="striping-pfl"></a>
 
@@ -172,12 +172,12 @@ You can specify a progressive file layout \(PFL\) configuration for a directory 
 To specify a PFL configuration, use the `lfs setstripe` command with `-E` options to specify layout components for different sized files, such as the following command:
 
 ```
-lfs setstripe -E 100M -c 1 -E 10G -c8 -E -1 -c -1 /mountname/directory
+lfs setstripe -E 100M -c 1 -E 10G -c 8 -E -1 -c -1 /mountname/directory
 ```
 
 This command sets three layout components:
 + The first component \(`-E 100M -c 1`\) indicates a stripe count value of 1 for files up to 100MiB in size\.
-+ The second component \(`-E 10G -c8`\) indicates a stripe count of 8 for files up to 10GiB in size\.
++ The second component \(`-E 10G -c 8`\) indicates a stripe count of 8 for files up to 10GiB in size\.
 + The third component \(`-E -1 -c -1`\) indicates that files larger than 10GiB will be striped across all OSTs\.
 
 **Important**  
@@ -208,6 +208,35 @@ When using Amazon FSx for Lustre, keep the following performance tips in mind\. 
 **Note**  
 Your chosen request model has tradeoffs in consistency \(if you're using multiple Amazon EC2 instances\) and speed\.
 + **Amazon EC2 instances** – Applications that perform a large number of read and write operations likely need more memory or computing capacity than applications that don't\. When launching your Amazon EC2 instances for your compute\-intensive workload, choose instance types that have the amount of these resources that your application needs\. The performance characteristics of Amazon FSx for Lustre file systems don't depend on the use of Amazon EBS–optimized instances\.
++ **Recommended tuning for large client instance types**
+
+  1. To tune large client instances for optimal performance: 
+
+     1. For client instance types with memory of more than 64 GiB, we recommend applying the following tuning:
+
+        ```
+        lctl set_param ldlm.namespaces.*.lru_max_age=600000
+        ```
+
+     1. For client instance types with more than 64 CPU cores, we recommend applying the following tuning:
+
+        ```
+        echo "options ptlrpc ptlrpcd_per_cpt_max=32" >> /etc/modprobe.d/modprobe.conf
+        echo "options ksocklnd credits=2560" >> /etc/modprobe.d/modprobe.conf
+                    
+        # reload all kernel modules to apply the above two settings
+        sudo reboot
+        ```
+
+  1. After the client is mounted, the following tuning needs to be applied:
+
+     ```
+     sudo lctl set_param osc.*OST*.max_rpcs_in_flight=32
+     sudo lctl set_param mdc.*.max_rpcs_in_flight=64
+     sudo lctl set_param mdc.*.max_mod_rpcs_in_flight=50
+     ```
+
+  Note that `lctl set_param` is known to not persist over reboot\. Since these parameters cannot be set permanently from the client side, it is recommended to implement a boot cron job to set the configuration with the recommended tunings\.
 + **Workload balance across OSTs** – In some cases, your workload isn’t driving the aggregate throughput that your file system can provide \(200 MB/s per TiB of storage\)\. If so, you can use CloudWatch metrics to troubleshoot if performance is affected by an imbalance in your workload’s I/O patterns\. To identify if this is the cause, look at the Maximum CloudWatch metric for Amazon FSx for Lustre\.
 
   In some cases, this statistic shows a load at or above 240 MBps of throughput \(the throughput capacity of a single 1\.2\-TiB Amazon FSx for Lustre disk\)\. In such cases, your workload is not evenly spread out across your disks\. If this is the case, you can use the `lfs setstripe` command to modify the striping of files your workload is most frequently accessing\. For optimal performance, stripe files with high throughput requirements across all the OSTs comprising your file system\.

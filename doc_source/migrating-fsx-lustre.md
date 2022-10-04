@@ -4,7 +4,7 @@ You can use AWS DataSync to transfer data between FSx for Lustre file systems\. 
 
 ## How to migrate existing files to FSx for Lustre using AWS DataSync<a name="migrate-files-to-fsx-datasync"></a>
 
-You can use DataSync to transfer files between two FSx for Lustre file systems, including file systems in different AWS Regions and file systems owned by different AWS accounts\. You can also use DataSync with FSx for Lustre file systems for other tasks\. For example, you can perform one\-time data migrations, periodically ingest data for distributed workloads, and schedule replication for data protection and recovery\.
+You can use DataSync to transfer files between two FSx for Lustre file systems, and also move data to a file system in a different AWS Region or AWS account\. You can also use DataSync with FSx for Lustre file systems for other tasks\. For example, you can perform one\-time data migrations, periodically ingest data for distributed workloads, and schedule replication for data protection and recovery\.
 
 In DataSync, a *location* is an endpoint for an FSx for Lustre file system\. For information about specific transfer scenarios, see [Working with locations](https://docs.aws.amazon.com/datasync/latest/userguide/working-with-locations.html) in the *AWS DataSync User Guide*\.
 

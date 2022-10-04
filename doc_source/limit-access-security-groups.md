@@ -63,7 +63,7 @@ By default, security group rules allow all outbound traffic \(All, 0\.0\.0\.0/0\
 
 1. In the **Change Security Groups** dialog box, choose the security groups to use, and choose **Save**\.
 
-## Lustre Client VPC Security Group Rules<a name="lustre-client-inbound-outbound-rules"></a>
+## Lustre client VPC security group rules<a name="lustre-client-inbound-outbound-rules"></a>
 
 You use VPC security groups to control access to your Lustre clients by adding inbound rules to control incoming traffic and outbound rules to control the outgoing traffic from your Lustre clients\. Make sure to have the right network traffic rules in your security group to ensure that Lustre traffic can flow between your Lustre clients and your Amazon FSx file systems\.
 

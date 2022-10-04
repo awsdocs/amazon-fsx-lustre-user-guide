@@ -216,7 +216,7 @@ You can cancel a data repository task while it's in either the PENDING or EXECUT
 + Amazon FSx continues processing any files that are currently in process\.
 + Amazon FSx doesn't revert any files that the task already processed\.
 
-### To cancel a data repository task \(console\)<a name="w189aac13c25c15c11b7b1"></a>
+### To cancel a data repository task \(console\)<a name="w209aac13c25c15c11b7b1"></a>
 
 1. Open the Amazon FSx console at [https://console\.aws\.amazon\.com/fsx/](https://console.aws.amazon.com/fsx/)\.
 
@@ -230,7 +230,7 @@ You can cancel a data repository task while it's in either the PENDING or EXECUT
 
 1. Enter the task ID to confirm the cancellation request\.
 
-### To cancel a data repository task \(CLI\)<a name="w189aac13c25c15c11b7b3"></a>
+### To cancel a data repository task \(CLI\)<a name="w209aac13c25c15c11b7b3"></a>
 
 Use the Amazon FSx [https://docs.aws.amazon.com/cli/latest/reference/fsx/cancel-data-repository-task.html](https://docs.aws.amazon.com/cli/latest/reference/fsx/cancel-data-repository-task.html) CLI command, to cancel a task\. [https://docs.aws.amazon.com/fsx/latest/APIReference/API_CancelDataRepositoryTask.html](https://docs.aws.amazon.com/fsx/latest/APIReference/API_CancelDataRepositoryTask.html) is the equivalent API command\.
 + Use the following command to view all data repository task objects in your account\.

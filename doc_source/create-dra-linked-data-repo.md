@@ -220,9 +220,6 @@ If you want Amazon FSx to encrypt data when writing to your S3 bucket, you need 
 
 By default, Amazon FSx supports S3 buckets encrypted using SSE\-S3\. If you want to link your Amazon FSx file system to an S3 bucket encrypted using SSE\-KMS encryption, you need to add a statement to your customer managed key policy that allows Amazon FSx to encrypt and decrypt objects in your S3 bucket using your KMS key\.
 
-**Note**  
- If you're using a KMS with a CMK to encrypt your S3 bucket with S3 bucket keys enabled, set the encryption context to the bucket ARN, not the object ARN\.
-
 The following statement allows a specific Amazon FSx file system to encrypt and decrypt objects for a specific S3 bucket, *bucket\_name*\.
 
 ```
@@ -249,6 +246,15 @@ The following statement allows a specific Amazon FSx file system to encrypt and 
             "kms:EncryptionContext:aws:s3:arn": "arn:aws:s3:::bucket_name/*"
         }
     }
+}
+```
+
+**Note**  
+ If you're using a KMS with a CMK to encrypt your S3 bucket with S3 bucket keys enabled, set the `EncryptionContext` to the bucket ARN, not the object ARN, as in this example:  
+
+```
+"StringLike": {
+    "kms:EncryptionContext:aws:s3:arn": "arn:aws:s3:::bucket_name"
 }
 ```
 

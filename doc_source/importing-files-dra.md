@@ -1,6 +1,6 @@
 # Importing files from your data repository<a name="importing-files-dra"></a>
 
-At any time, you can create a data repository association \(DRA\) to link your Amazon FSx file system to an Amazon S3 data repository\. You can configured the data repository association to automatically import file metadata for new, changed, or deleted objects from your S3 bucket\. For more information, see [Automatically import updates from your S3 bucket](autoimport-data-repo-dra.md)\.
+At any time, you can create a data repository association \(DRA\) to link your Amazon FSx file system to an Amazon S3 data repository\. You can configure the data repository association to automatically import file metadata for new, changed, or deleted objects from your S3 bucket\. For more information, see [Automatically import updates from your S3 bucket](autoimport-data-repo-dra.md)\.
 
 You can manually import metadata changes from a linked S3 bucket or a subset of the linked bucket by using import data repository tasks\. For more information, see [Using data repository tasks to import metadata changes](import-data-repo-task-dra.md)\.
 

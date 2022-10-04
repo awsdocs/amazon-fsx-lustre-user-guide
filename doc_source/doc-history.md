@@ -1,11 +1,14 @@
 # Document history<a name="doc-history"></a>
 + **API version: **2018\-03\-01
-+ **Latest documentation update: **May 25, 2022
++ **Latest documentation update: **September 8, 2022
 
 The following table describes important changes to the *Amazon FSx for Lustre User Guide*\. For notifications about documentation updates, you can subscribe to the RSS feed\.
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [Lustre client support for Centos, Rocky Linux, and Red Hat Enterprise Linux \(RHEL\) 8\.6 added](#doc-history) | The FSx for Lustre client now supports Amazon EC2 instances running Centos, Rocky Linux, and Red Hat Enterprise Linux \(RHEL\) 8\.6\. For more information, see [Installing the Lustre client](https://docs.aws.amazon.com/fsx/latest/LustreGuide/install-lustre-client.html)\. | September 8, 2022 | 
+| [Lustre client support for Ubuntu 22 added](#doc-history) | The FSx for Lustre client now supports Amazon EC2 instances running Ubuntu 22\.04\. For more information, see [Installing the Lustre client](https://docs.aws.amazon.com/fsx/latest/LustreGuide/install-lustre-client.html)\. | July 28, 2022 | 
+| [Lustre client support for Rocky Linux added](#doc-history) | The FSx for Lustre client now supports Amazon EC2 instances running Rocky Linux\. For more information, see [Installing the Lustre client](https://docs.aws.amazon.com/fsx/latest/LustreGuide/install-lustre-client.html)\. | July 8, 2022 | 
 | [Support added for Lustre root squash](#doc-history) | You can now use the Lustre root squash feature to restrict root level access from clients that try to access your FSx for Lustre file system as root\. For more information, see [ Lustre root squash](https://docs.aws.amazon.com/fsx/latest/LustreGuide/root-squash.html)\. | May 25, 2022 | 
 | [Additional AWS Region support added for Persistent\_2 deployment type](#doc-history) | Next\-generation Persistent\_2 SSD FSx for Lustre file systems are now available in the Europe \(London\), Asia Pacific \(Singapore\), and Asia Pacific \(Sydney\) AWS Regions\. For more information, see [ Deployment options for FSx for Lustre file systems](https://docs.aws.amazon.com/fsx/latest/LustreGuide/using-fsx-lustre.html)\. | April 19, 2022 | 
 | [Support added for using AWS DataSync to migrate files to your Amazon FSx for Lustre file systems\.](#doc-history) | You can now use AWS DataSync to migrate files from existing file systems to FSx for Lustre file systems\. For more information, see [ How to migrate existing files to FSx for Lustre using AWS DataSync](https://docs.aws.amazon.com/fsx/latest/LustreGuide/migrating-fsx-lustre.html)\. | April 5, 2022 | 

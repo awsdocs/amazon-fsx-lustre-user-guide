@@ -2,8 +2,6 @@
 
 
 
-
-
 To add permissions to users, groups, and roles, it is easier to use AWS managed policies than to write policies yourself\. It takes time and expertise to [create IAM customer managed policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_create-console.html) that provide your team with only the permissions they need\. To get started quickly, you can use our AWS managed policies\. These policies cover common use cases and are available in your AWS account\. For more information about AWS managed policies, see [AWS managed policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-vs-inline.html#aws-managed-policies) in the *IAM User Guide*\.
 
 AWS services maintain and update AWS managed policies\. You can't change the permissions in AWS managed policies\. Services occasionally add additional permissions to an AWS managed policy to support new features\. This type of update affects all identities \(users, groups, and roles\) where the policy is attached\. Services are most likely to update an AWS managed policy when a new feature is launched or when new operations become available\. Services do not remove permissions from an AWS managed policy, so policy updates won't break your existing permissions\.
@@ -12,15 +10,9 @@ Additionally, AWS supports managed policies for job functions that span multiple
 
 
 
-
-
-
-
-
-
 ## AWS managed policy: AmazonFSxDeleteServiceLinkedRoleAccess<a name="security-iam-awsmanpol-AmazonFSxDeleteServiceLinkedRoleAccess"></a>
 
-You can't attach `AmazonFSxDeleteServiceLinkedRoleAccess` to your IAM entities\. This policy is linked to a service service and used only with the service\-linked role for that service\. You cannot attach, detach, modify, or delete this policy\. For more information, see [Using service\-linked roles for Amazon FSx for Lustre](using-service-linked-roles.md)\.
+You can't attach `AmazonFSxDeleteServiceLinkedRoleAccess` to your IAM entities\. This policy is linked to a service and used only with the service\-linked role for that service\. You cannot attach, detach, modify, or delete this policy\. For more information, see [Using service\-linked roles for Amazon FSx for Lustre](using-service-linked-roles.md)\.
 
 This policy grants administrative permissions that allow Amazon FSx to delete its Service Linked Role for Amazon S3 access, used only by Amazon FSx for Lustre\.
 
@@ -49,13 +41,13 @@ This policy includes permissions in `iam` to allow Amazon FSx to view, delete, a
 
 You can't attach AmazonFSxServiceRolePolicy to your IAM entities\. This policy is attached to a service\-linked role that allows Amazon FSx to manage AWS resources on your behalf\. For more information, see [Using service\-linked roles for Amazon FSx for Lustre](using-service-linked-roles.md)\.
 
-This policy grants administrative permissions that allows Amazon FSx to manage AWS reources on the user's behalf\.
+This policy grants administrative permissions that allows Amazon FSx to manage AWS resources on the user's behalf\.
 
 **Permissions details**
 
 This policy includes the following permissions\.
 + `cloudwatch` – Allows Amazon FSx to publish metric data points to CloudWatch\.
-+ `ds` – Allows Amazon FSx to view, authorize, and unauthorize applications in your AWS Directory Service directory\.
++ `ds` – Allows Amazon FSx to view, authorize, and un\-authorized applications in your AWS Directory Service directory\.
 + `ec2` – Allows Amazon FSx to do the following:
   + View, create, and disassociate network interfaces associated with an Amazon FSx file system\.
   + View one or more Elastic IP addresses associated with an Amazon FSx file system\.
@@ -273,7 +265,7 @@ This policy includes the following permissions\.
 
 
 + `fsx` – Allows principals to perform all actions in the Amazon FSx management console\.
-+ `cloudwatch` – Allows principals to view CloudWatch Alarms in the Amazon FSx management console\.
++ `cloudwatch` – Allows principals to view CloudWatch Alarms and metrics in the Amazon FSx management console\.
 + `ds` – Allows principals to list information about an AWS Directory Service directory\.
 + `ec2` – Allows principals to create tags on route tables, list network interfaces, route tables, security groups, subnets and the VPC associated with an Amazon FSx file system\.
 + `kms` – Allows principals to list aliases for AWS Key Management Service keys\.
@@ -288,6 +280,7 @@ This policy includes the following permissions\.
             "Effect": "Allow",
             "Action": [
                 "cloudwatch:DescribeAlarms",
+                "cloudwatch:GetMetricData",
                 "ds:DescribeDirectories",
                 "ec2:DescribeNetworkInterfaceAttribute",
                 "ec2:DescribeRouteTables",
@@ -363,7 +356,7 @@ This policy includes the following permissions\.
 
 
 + `fsx` – Allows principals to view information about Amazon FSx file systems, including all tags, in the Amazon FSx Management Console\.
-+ `cloudwatch` – Allows principals to view CloudWatch Alarms in the Amazon FSx Management Console\.
++ `cloudwatch` – Allows principals to view CloudWatch Alarms and metrics in the Amazon FSx Management Console\.
 + `ds` – Allows principals to view information about an AWS Directory Service directory in the Amazon FSx Management Console\.
 + `ec2` – Allows principals to view network interfaces, security groups, subnets and the VPC associated with an Amazon FSx file system in the Amazon FSx Management Console\.
 + `kms` – Allows principals to view aliases for AWS Key Management Service keys in the Amazon FSx Management Console\.
@@ -380,6 +373,7 @@ This policy includes the following permissions\.
             "Effect": "Allow",
             "Action": [
                 "cloudwatch:DescribeAlarms",
+                "cloudwatch:GetMetricData",
                 "ds:DescribeDirectories",
                 "ec2:DescribeNetworkInterfaceAttribute",
                 "ec2:DescribeSecurityGroups",
@@ -426,12 +420,14 @@ View details about updates to AWS managed policies for Amazon FSx since this ser
 
 | Change | Description | Date | 
 | --- | --- | --- | 
+| [AmazonFSxConsoleReadOnlyAccess](#security-iam-awsmanpol-AmazonFSxConsoleReadOnlyAccess) – Update to an existing policy | Amazon FSx added new permissions to enable users to view enhanced performance metrics and recommended actions for FSx for Windows File Server file systems in the Amazon FSx console\. | September 21, 2022 | 
+| [AmazonFSxConsoleFullAccess](#security-iam-awsmanpol-AmazonFSxConsoleFullAccess) – Update to an existing policy | Amazon FSx added new permissions to enable users to view enhanced performance metrics and recommended actions for FSx for Windows File Server file systems in the Amazon FSx console\. | September 21, 2022 | 
 | [AmazonFSxReadOnlyAccess](#security-iam-awsmanpol-AmazonFSxReadOnlyAccess) – Started tracking policy | This policy grants read\-only access to all Amazon FSx resources and any tags associated with them\. | February 4, 2022 | 
 | [AmazonFSxDeleteServiceLinkedRoleAccess](#security-iam-awsmanpol-AmazonFSxDeleteServiceLinkedRoleAccess) – Started tracking policy | This policy grants administrative permissions that allow Amazon FSx to delete its Service Linked Role for Amazon S3 access\. | January 7, 2022 | 
-| [AmazonFSxServiceRolePolicy](#security-iam-awsmanpol-AmazonFSxServiceRolePolicy) – Update to an existing policy | Amazon FSx added new permisions to allow Amazon FSx to manage network configurations for Amazon FSx for NetApp ONTAP file systems\. | September 2, 2021 | 
-| [AmazonFSxFullAccess](#security-iam-awsmanpol-AmazonFSxFullAccess) – Update to an existing policy | Amazon FSx added new permisions to allow Amazon FSx to create tags on EC2 route tables for scoped down calls\. | September 2, 2021 | 
+| [AmazonFSxServiceRolePolicy](#security-iam-awsmanpol-AmazonFSxServiceRolePolicy) – Update to an existing policy | Amazon FSx added new permissions to allow Amazon FSx to manage network configurations for Amazon FSx for NetApp ONTAP file systems\. | September 2, 2021 | 
+| [AmazonFSxFullAccess](#security-iam-awsmanpol-AmazonFSxFullAccess) – Update to an existing policy | Amazon FSx added new permissions to allow Amazon FSx to create tags on EC2 route tables for scoped down calls\. | September 2, 2021 | 
 | [AmazonFSxConsoleFullAccess](#security-iam-awsmanpol-AmazonFSxConsoleFullAccess) – Update to an existing policy | Amazon FSx added new permissions to allow Amazon FSx to create Amazon FSx for NetApp ONTAP Multi\-AZ file systems\. | September 2, 2021 | 
-| [AmazonFSxConsoleFullAccess](#security-iam-awsmanpol-AmazonFSxConsoleFullAccess) – Update to an existing policy | Amazon FSx added new permisions to allow Amazon FSx to create tags on EC2 route tables for scoped down calls\. | September 2, 2021 | 
+| [AmazonFSxConsoleFullAccess](#security-iam-awsmanpol-AmazonFSxConsoleFullAccess) – Update to an existing policy | Amazon FSx added new permissions to allow Amazon FSx to create tags on EC2 route tables for scoped down calls\. | September 2, 2021 | 
 |  [AmazonFSxServiceRolePolicy](#security-iam-awsmanpol-AmazonFSxServiceRolePolicy) – Update to an existing policy  |  Amazon FSx added new permissions to allow Amazon FSx to describe and write to CloudWatch Logs log streams\. This is required so that users can view file access audit logs for FSx for Windows File Server file systems using CloudWatch Logs\.  | June 8, 2021 | 
 |  [AmazonFSxServiceRolePolicy](#security-iam-awsmanpol-AmazonFSxServiceRolePolicy) – Update to an existing policy  |  Amazon FSx added new permissions to allow Amazon FSx to describe and write to Amazon Kinesis Data Firehose delivery streams\. This is required so that users can view file access audit logs for an FSx for Windows File Server file system using Amazon Kinesis Data Firehose\.  | June 8, 2021 | 
 |  [AmazonFSxFullAccess](#security-iam-awsmanpol-AmazonFSxFullAccess) – Update to an existing policy  |  Amazon FSx added new permissions to allow principals to describe and create CloudWatch Logs log groups, log streams, and write events to log streams\. This is required so that principals can view file access audit logs for FSx for Windows File Server file systems using CloudWatch Logs\.  | June 8, 2021 | 

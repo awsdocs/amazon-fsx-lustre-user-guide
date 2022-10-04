@@ -54,7 +54,7 @@ On existing file systems that have logging enabled, you can change the event log
 
 When the file system becomes **Available**, logging will be enabled\.
 
-### To enable logging when creating a file system \(CLI\)<a name="w189aac23c11c13b7b3"></a>
+### To enable logging when creating a file system \(CLI\)<a name="w209aac23c11c13b7b3"></a>
 
 1. When creating a new file system, use the `LogConfiguration` property with the [CreateFileSystem](https://docs.aws.amazon.com/fsx/latest/APIReference/API_CreateFileSystem.html) operation to enable logging for the new file system\.
 
@@ -67,7 +67,7 @@ When the file system becomes **Available**, logging will be enabled\.
 
 1. When the file system becomes **Available**, logging feature will be enabled\.
 
-### To change the logging configuration \(console\)<a name="w189aac23c11c13b7b5"></a>
+### To change the logging configuration \(console\)<a name="w209aac23c11c13b7b5"></a>
 
 1. Open the Amazon FSx console at [https://console\.aws\.amazon\.com/fsx/](https://console.aws.amazon.com/fsx/)\.
 
@@ -85,7 +85,7 @@ When the file system becomes **Available**, logging will be enabled\.
 
 1. Choose **Save**\.
 
-### To change the logging configuration \(CLI\)<a name="w189aac23c11c13b7b7"></a>
+### To change the logging configuration \(CLI\)<a name="w209aac23c11c13b7b7"></a>
 + Use the [https://docs.aws.amazon.com/cli/latest/reference/fsx/update-file-system.html](https://docs.aws.amazon.com/cli/latest/reference/fsx/update-file-system.html) CLI command or the equivalent [https://docs.aws.amazon.com/fsx/latest/APIReference/API_UpdateFileSystem.html](https://docs.aws.amazon.com/fsx/latest/APIReference/API_UpdateFileSystem.html) API operation\.
 
   ```
